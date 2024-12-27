@@ -1,4 +1,9 @@
 baseURL = 'https://top-xiao.github.io/blog/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = "Arnold's homepage"
 theme = "PaperMod"
+[module]
+[[module.mounts]]
+source = "content"
+target = "content"
+
