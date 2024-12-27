@@ -1,0 +1,9 @@
+baseURL = 'https://top-xiao.github.io/blog/'
+languageCode = 'en-us'
+title = "Arnold's Homepage"
+theme = "PaperMod"
+[module]
+[[module.mounts]]
+source = "content"
+target = "content"
+
