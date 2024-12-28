@@ -12,7 +12,7 @@ target = "content"
       [markup.goldmark.extensions.passthrough]
         enable = true
         [markup.goldmark.extensions.passthrough.delimiters]
-          block = [['\\[', '\\]'], ['$$', '$$']]
-          inline = [['\\(', '\\)']]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
 [params]
   math = true
