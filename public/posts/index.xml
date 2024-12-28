@@ -6,8 +6,25 @@
     <description>Recent content in Posts on Arnold&#39;s Homepage</description>
     <generator>Hugo -- 0.140.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Sep 2020 11:30:03 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 28 Dec 2024 22:35:53 +0900</lastBuildDate>
     <atom:link href="http://localhost:1313/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Examples</title>
+      <link>http://localhost:1313/blog/posts/examples/</link>
+      <pubDate>Sat, 28 Dec 2024 22:35:53 +0900</pubDate>
+      <guid>http://localhost:1313/blog/posts/examples/</guid>
+      <description>&lt;p&gt;This is an inline (a^&lt;em&gt;=x-b^&lt;/em&gt;) equation.&lt;/p&gt;
+&lt;p&gt;These are block equations:&lt;/p&gt;
+&lt;p&gt;[a^&lt;em&gt;=x-b^&lt;/em&gt;]&lt;/p&gt;
+&lt;p&gt;[ a^&lt;em&gt;=x-b^&lt;/em&gt; ]&lt;/p&gt;
+&lt;p&gt;[
+a^&lt;em&gt;=x-b^&lt;/em&gt;
+]&lt;/p&gt;
+&lt;p&gt;These are also block equations:&lt;/p&gt;
+$$a^*=x-b^*$$$$ a^*=x-b^* $$$$
+a^*=x-b^*
+$$</description>
+    </item>
     <item>
       <title>A Brief Introduction to Complex Analysis</title>
       <link>http://localhost:1313/blog/posts/2024-12-27/</link>
