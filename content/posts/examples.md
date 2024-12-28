@@ -1,6 +1,5 @@
 +++
 date = '2024-12-28T22:35:53+09:00'
-draft = true
 title = 'Examples'
 +++
 
