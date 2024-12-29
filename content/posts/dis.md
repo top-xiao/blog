@@ -9,7 +9,10 @@ $$\begin{aligned}
     \mathcal{S}(\mathbb{R}^d)\coloneqq \\{f \in C^{\infty}(\mathbb{R}^d) | \forall n \in \mathbb{N}, p_n(f) < \infty \\}, 
   \end{aligned}
 $$ 
-where  $\\{p_n\\}_{n \in \mathbb{N}}$  is a collection of
+
+where  $ \\{ p_n \\} _ { n \in \mathbb{N} } $  
+
+is a collection of
 seminorms on  $C^{\infty}(\mathbb{R}^d)$ , defined by 
 
 $$

@@ -1,3 +1,2 @@
 User-agent: *
-Disallow:
-Sitemap: http://localhost:37599/blog/sitemap.xml
+Sitemap: http://localhost:35701/blog/sitemap.xml
