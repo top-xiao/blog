@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Complex Analysis on TeXify3</title>
-    <link>http://localhost:1313/blog/tags/complex-analysis/</link>
+    <link>http://localhost:42025/blog/tags/complex-analysis/</link>
     <description>Recent content in Complex Analysis on TeXify3</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 15 Sep 2020 11:30:03 +0000</lastBuildDate><atom:link href="http://localhost:1313/blog/tags/complex-analysis/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Sep 2020 11:30:03 +0000</lastBuildDate><atom:link href="http://localhost:42025/blog/tags/complex-analysis/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A Brief Introduction to Complex Analysis</title>
-      <link>http://localhost:1313/blog/posts/2024-12-27/</link>
+      <link>http://localhost:42025/blog/posts/2024-12-27/</link>
       <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/posts/2024-12-27/</guid>
+      <guid>http://localhost:42025/blog/posts/2024-12-27/</guid>
       <description>&lt;p&gt;皆様, はじめまして, 李正日です. このブログでは複素解析の速習講義を紹介しようと思っています.
 まず, 正則函数の定義から始めよう:
 $ U $ を複素平面上の開集合とする. $ U $上の複素数値函数 $ f: U \to \mathbb{C} $ が正則函数であるとは任意の点 $ p \in U $ に対し,&lt;/p&gt;
