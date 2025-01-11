@@ -1,0 +1,3789 @@
++++
+title = "Lebesgue Integration Theory"
+date = "2017-12-29T12:15:02-00:00"
+categories = ["Integration"]
+tags = ["Integration"]
+layout = "hyde-master"
++++
+
+<body>
+
+<h1 id="測度">測度</h1>
+<h2 id="外測度の定義と諸性質">外測度の定義と諸性質</h2>
+<div class="definition">
+<p><strong>Definition 1.1</strong> (区間の長さ). <em><span
+class="math inline">\(\mathbb{R}\)</span>上の開区間<span
+class="math inline">\(I\)</span>と実数<span
+class="math inline">\(a&lt;b\)</span>に対し, 区間<span
+class="math inline">\(I\)</span>の長さ <span class="math inline">\(\ell
+(I)\)</span>を <span class="math display">\[\ell (I) \coloneqq
+\begin{cases}
+        0, &amp; I = \emptyset \\
+        b-a, &amp; I = (a,b) \\
+        \infty, &amp; I = (-\infty, a), (a, \infty), \mathbb{R}
+    \end{cases}\]</span> と定める. <span
+class="math inline">\(|I|\)</span>と略記することがある.</em></p>
+</div>
+<div class="definition">
+<p><strong>Definition 1.2</strong> (Lebesgue外測度). <em><span
+class="math inline">\(\mathbb{R}\)</span>の部分集合<span
+class="math inline">\(A\)</span>に対し, <span
+class="math inline">\(A\)</span>の外測度<span
+class="math inline">\(\lambda^*(A)\)</span> を <span
+class="math display">\[\lambda^*(A) \coloneqq \inf \{\sum_{n \in
+\mathbb{N}} |I_n|  \mid A \subseteq \bigcup_{n \in \mathbb{N}} I_n,
+\text{ $\forall n \in \mathbb{N}; I_n $
+が$\mathbb{R}$の開区間}\}\]</span></em></p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 1.3</strong> (外測度の単調性). <em><span
+class="math inline">\(A,B \subseteq \mathbb{R}\)</span>に対し, <span
+class="math inline">\(A \subseteq B\)</span>とする. この時, <span
+class="math inline">\(\lambda^*(A) \leq \lambda^*(B)\)</span>が成立する.
+これを測度の単調性と呼ぶ.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span
+class="math inline">\(B\)</span>を被覆する開区間の列が <span
+class="math inline">\(A\)</span>を被覆するので,
+定義より明らかである. ◻</p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 1.4</strong> (外測度の劣加法性). <em><span
+class="math inline">\(\left( A_k \right) _{k \in \mathbb{N} }, \forall k
+\in \mathbb{N}, A_k \subseteq \mathbb{R}\)</span>とする. この時, <span
+class="math display">\[\lambda^*\left(\bigcup_{k \in
+\mathbb{N}}A_k\right) \leq \sum_{k \in \mathbb{N}}
+\lambda^*(A_k)\]</span> が成立する.
+これを外測度の劣加法性と呼ぶ.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(\varepsilon &gt;
+0\)</span> 任意の<span class="math inline">\(k \in
+\mathbb{N}\)</span>に対し, <span class="math inline">\(A_k \subseteq
+\bigcup_{i \in \mathbb{N}}I_{k,i}, \sum_{i \in \mathbb{N}} |I_{k,i}|
+\leq \lambda^*(A_k) + \frac{\varepsilon}{2^k}\)</span>
+を満たす開区間の列を取り, <span class="math inline">\(\bigcup_{k \in
+\mathbb{N}} A_k \subseteq \bigcup_{k \in \mathbb{N}} \bigcup_{i
+\in  \mathbb{N}} I_{k,i}\)</span> が成立する.
+(可算集合の直積が可算集合より, 右辺は可算開区間の和になる). <span
+class="math display">\[\lambda^*\left(\bigcup_{k \in \mathbb{N}}A_k
+\right) \leq \sum_{k \in \mathbb{N}} \sum_{i \in \mathbb{N}} |I_{k,i}|
+\leq \sum_{k \in \mathbb{N}} \lambda^*(A_k) + \sum_{k \in \mathbb{N}}
+\frac{1}{2^k}  = \sum_{k \in \mathbb{N}}\lambda^*(A_k) + 2
+\varepsilon\]</span></p>
+<p><span class="math inline">\(\varepsilon\)</span>の任意性より, <span
+class="math display">\[\lambda^*\left( \bigcup_{k \in \mathbb{N}} A_k
+\right) \leq \sum_{k \in \mathbb{N}} \lambda^*(A_k)
+.\]</span> ◻</p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 1.5</strong>. <em><span
+class="math inline">\(\mathbb{R}\)</span>の一点集合の外測度が <span
+class="math inline">\(0\)</span>である.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 自然数<span class="math inline">\(k\)</span>に対し,
+その点を含む長さが <span class="math inline">\(\frac{1}{2^k}\)</span>
+となるような列が取れる. その列について考えれば良い. ◻</p>
+</div>
+<div class="definition">
+<p><strong>Definition 1.6</strong> (集合の平行移動). <em><span
+class="math inline">\(A \subseteq \mathbb{R}, t \in
+\mathbb{R}\)</span>に対し, <span class="math display">\[t+A \coloneqq
+\{t +a  \mid a \in A\}\]</span> と定める.</em></p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 1.7</strong> (外測度の平行移動不変性). <em><span
+class="math inline">\(A \subseteq \mathbb{R}, t\in
+\mathbb{R}\)</span>に対し, <span class="math display">\[\lambda^*(A) =
+\lambda^*(t + A)\]</span> が成立する.
+これを外測度の平行移動不変性と呼ぶ.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 開区間の長さが平行移動の不変性を持つので,
+定義通り確認するだけで済む. ◻</p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 1.8</strong> (外測度と長さが適合する). <em><span
+class="math inline">\(a, b \in \mathbb{R}, a&lt;b\)</span>に対し, <span
+class="math inline">\(\lambda^*([a,b]) = b-a\)</span>.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(\lambda^*([a,b]) \leq
+b-a\)</span>が<span class="math inline">\(I_k \coloneqq (a-
+\frac{1}{2^k}, b+ \frac{1}{2^k})\)</span>
+の長さで評価すればすぐにわかる.</p>
+<p>以下<span class="math inline">\(\lambda^*([a,b]) \geq
+b-a\)</span>を示す. 帰納法を用いる. <span
+class="math inline">\(n\)</span>に関する命題を以下のように定める</p>
+<p><span class="math display">\[P_n \coloneqq \forall [a,b] \subseteq
+\mathbb{R}\text{に対し, $[a,b]\subseteq \bigcup_{k=1} ^n I_k$の時,
+$\sum_{k=1}^n |I_k| \geq b-a$ が成立する.}\]</span></p>
+<p><span class="math inline">\([a,b]\)</span>が一つの開区間<span
+class="math inline">\(I\)</span>で被覆される時, <span
+class="math inline">\(|I| \leq b-a\)</span> が明らかである. <span
+class="math inline">\([a,b]\)</span>が <span
+class="math inline">\(n+1\)</span>個の開区間で被覆される時, <span
+class="math inline">\(b \in I_{n+1}= (c,d), a&lt;c&lt;b&lt;d\)</span>
+としても一般性を失わない. この時, <span
+class="math inline">\([a,c]\)</span>が <span class="math inline">\(I_1,
+\ldots, I_n\)</span>によって被覆されるので, 帰納法の仮定が使えて,</p>
+<p><span class="math display">\[\sum_{k=1}^{n+1} |I_k| = |I_{n+1}| +
+\sum_{k=1}^{n} |I_k|  
+    \geq b-c + c-a = b-a\]</span> 以上より, <span
+class="math inline">\(P_n\)</span>が任意の <span
+class="math inline">\(n\)</span>に対して成立する.</p>
+<p><span class="math inline">\([a,b]\)</span>を被覆する開区間の列に対し,
+<span class="math inline">\([a,b]\)</span>のコンパクト性より,
+有限部分被覆が取れる. 上記の有限に議論に帰着される.</p>
+<p>従って, <span class="math inline">\(\lambda^*([a,b]) \geq
+b-a\)</span>が成立する. ◻</p>
+</div>
+<div id="prop:non-measurableset" class="proposition">
+<p><strong>Proposition 1.9</strong> (有限加法性の破綻). <em><span
+class="math inline">\(A, B \subseteq \mathbb{R}, A \cap B =
+\emptyset\)</span>で, <span class="math inline">\(\lambda^*(A) +
+\lambda^*(B) \neq \lambda^*(A\cup B)\)</span>となるような集合<span
+class="math inline">\(A,B\)</span>が存在する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 背理法による.</p>
+<p>群<span class="math inline">\(\mathbb{R}/\mathbb{Q}\)</span>の<span
+class="math inline">\([-1,1]\)</span>における完全代表系 <span
+class="math inline">\(V\)</span>を選択公理を用いて一つ取り, <span
+class="math inline">\(q + V , q \in \mathbb{Q}\cap
+[-2,2]\)</span>を取り, <span class="math inline">\([-2,2] \subseteq
+\bigcup_{q \in [-2,2]\cap \mathbb{Q}}(q +V)\)</span>
+と単調性と劣加法性より, <span
+class="math inline">\(\lambda^*(V)&gt;0\)</span>, <span
+class="math inline">\(\bigcup_{q \in [-2,2] \cap \mathbb{Q}}(q+V)
+\subseteq [-3,3]\)</span>より, もし有限加法性が成立するならば,
+アルキメデスの原理に反する. ◻</p>
+</div>
+<div id="prop:non-full-measure" class="proposition">
+<p><strong>Proposition 1.10</strong>. <em>以下の性質を満たす写像<span
+class="math inline">\(\mu\)</span>が存在しない.</em></p>
+<ol>
+<li><p><em><span class="math inline">\(\mu : \mathcal{P}(R) \to [0,
+\infty]\)</span>.</em></p></li>
+<li><p><em>任意の<span
+class="math inline">\(\mathbb{R}\)</span>上の開区間<span
+class="math inline">\(I\)</span>に対して<span class="math inline">\(\mu
+(I) = \ell (I)\)</span>.</em></p></li>
+<li><p><em>互いに素な可算集合列<span class="math inline">\((A_k)_{k \in
+\mathbb{N}}\)</span> に対し, <span class="math inline">\(\mu
+\left(\bigcup_{k \in \mathbb{N}}A_k\right) = \sum_{k \in \mathbb{N}}
+\mu\left( A_k \right)\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(\forall A \in
+\mathcal{P}(\mathbb{R}); \forall t \in \mathbb{R}, \mu(t + A) = \mu (
+A)\)</span>.</em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> Proposition <a href="#prop:non-measurableset"
+data-reference-type="ref"
+data-reference="prop:non-measurableset">1.9</a>の証明を繰り返せばよい. ◻</p>
+</div>
+<h2 id="sigma-加法族と可測函数"><span
+class="math inline">\(\sigma\)</span>-加法族と可測函数</h2>
+<p><span
+class="math inline">\(\mathbb{R}\)</span>上の外測度は長さを与える函数として集合の単調性,
+劣加法性,
+平行移動不変性と区間の長さと一致するなど素晴らしい性質を持っているが,
+持ってほしい有限加法性は破綻してしまう.
+私達はここで諦めてしまうのは早すぎる. ならば,
+外測度という概念を捨てるか? という考えも受け入れ難い. ここでProposition
+<a href="#prop:non-full-measure" data-reference-type="ref"
+data-reference="prop:non-full-measure">1.10</a>の主張を見れば,
+すべての集合の長さを測ることを諦めるのが良さそうだろう.</p>
+<p>しかし, 長さを測ることは写像を与えることであり,
+写像の定義域をどのように定めればよいだろう?
+定義域を持つべき性質は何だろう? 全体集合の長さを測りたい,
+長さの持つ集合の差集合の長さを持ってほしい,
+可算個の長さを持つ集合の和集合も長さを持ってくれると良い.
+これらの願望で生まれたのは<span
+class="math inline">\(\sigma\)</span>-加法族である.</p>
+<div class="definition">
+<p><strong>Definition 1.11</strong> (<span
+class="math inline">\(\sigma\)</span>-加法族と可測空間). <em>集合<span
+class="math inline">\(X\)</span>の部分集合族<span
+class="math inline">\(\mathcal{S}\subseteq \mathcal{P}(X)\)</span>
+が以下の3条件を満たす時に, <span
+class="math inline">\(\mathcal{S}\)</span> を<span
+class="math inline">\(\sigma\)</span>-加法族という.</em></p>
+<ol>
+<li><p><em><span class="math inline">\(X \in
+\mathcal{S}\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(\forall A \in \mathcal{S}; X
+\setminus A \in \mathcal{S}\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(\forall \left( A_k \right) _{k
+\in \mathbb{N}} \subseteq \mathcal{S}; \bigcup_{k \in \mathbb{N}} A_k
+\in \mathcal{S}\)</span>.</em></p></li>
+</ol>
+<p><em>この時<span class="math inline">\((X ,\mathcal{S})\)</span>
+を可測空間と呼ぶ. <span class="math inline">\(\mathcal{S}\)</span>
+の元を<span class="math inline">\(\mathcal{S}\)</span>-可測集合と呼ぶ,
+また単に可測集合と呼ぶこともある.</em></p>
+</div>
+<div class="definition">
+<p><strong>Definition 1.12</strong> (Lebesgue可測集合族). <em>次の<span
+class="math inline">\(\mathbb{R}\)</span>の部分集合族<span
+class="math inline">\(\mathscr{L}\)</span> がLebesgue 可測集合族と呼ぶ.
+<span class="math display">\[\mathscr{L}\coloneqq \{E \in
+\mathcal{P}(\mathbb{R}) \mid  \forall A \in \mathcal{P}(\mathbb{R});
+\lambda^*(A \cap E) + \lambda^*(A \setminus E) = \lambda^*(A)\}\]</span>
+<span class="math inline">\(\mathscr{L}\)</span> の元をLebesgue
+可測集合と呼ぶ.</em></p>
+</div>
+<div id="lem:lebesgue-sigma-finite" class="lemma">
+<p><strong>Lemma 1.13</strong>. <em><span class="math inline">\(A , B
+\in \mathscr{L}\)</span> に対し, 以下の命題が成立する.</em></p>
+<ol>
+<li><p><em><span class="math inline">\(A\cup B \in
+\mathscr{L}\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(\mathbb{R} \setminus A \in
+\mathscr{L}\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(A\cap B \in
+\mathscr{L}\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(A \setminus B \in
+\mathscr{L}\)</span>.</em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(M \in
+\mathcal{P}(\mathbb{R})\)</span>を任意に取る. 劣加法性より, <span
+class="math inline">\(\lambda^*\left(M \cap (A\cup B)\right) +
+\lambda^*\left( M \setminus (A \setminus B) \right) \geq
+\lambda^*(M)\)</span>が明らかで, 逆向きの不等号を示せば良い.</p>
+<p><span class="math inline">\(M \cap \left( A \cup B \right) = \left(
+(M \cap A) \sqcup \left( M \cap B \right) \setminus A   \right)\)</span>
+より,</p>
+<p><span class="math display">\[\label{eq:AuB}
+    \begin{aligned}
+    \lambda^*\left( M \cap (A\cup B)  \right) &amp;= \lambda^*\left(
+\left( M \cap A \right) \sqcup \left( M \cap B \right) \setminus A
+\right)  \\
+                          &amp; \leq \lambda^*\left( M \cap A \right) +
+\lambda^*\left( (M \cap B)\setminus A \right) \\
+                          &amp; = \lambda^*\left( M \cap A \right) +
+\lambda^*\left( M \cap B \right) - \lambda^* \left( M \cap B \cap A
+\right).
+    \end{aligned}\]</span></p>
+<p><span class="math inline">\(M\setminus \left( A \cup B \right) =
+\left( M \setminus B \right) \setminus A\)</span>より, <span
+class="math display">\[\label{eq:minus-AuB}
+    \begin{aligned}
+        \lambda^*\left( M \setminus (A \cup B) \right) &amp;= \lambda^*
+\left( \left( M \setminus B \right) \setminus A \right) \\
+                                   &amp;= \lambda^*\left( M \setminus B
+\right) - \lambda^*\left( (M \setminus B ) \cap A \right) \\
+                                   &amp;= \lambda^*\left( M \setminus B
+\right) - \lambda^*\left( (M \cap A)\setminus B \right)
+    .\end{aligned}\]</span></p>
+<p>また, <span class="math inline">\(\lambda^*\left( M \cap A \right) =
+\lambda^*\left( M \cap A \cap B) \right) +\lambda^*\left( (M \cap A)
+\setminus B \right)\)</span>より, 式<a href="#eq:AuB"
+data-reference-type="ref" data-reference="eq:AuB">[eq:AuB]</a>, <a
+href="#eq:minus-AuB" data-reference-type="ref"
+data-reference="eq:minus-AuB">[eq:minus-AuB]</a>の両辺を足して,
+次式が得られる.</p>
+<p><span class="math display">\[\begin{aligned}
+        \lambda^*\left( M \cap \left( A \cup B \right)  \right) +
+\lambda^*\left( M \setminus \left( A\cup B \right)  \right) &amp; \leq
+\lambda^*(M)
+    \end{aligned}\]</span></p>
+<p>従って, <span class="math inline">\(A\cup B \in \mathscr{L}\)</span>
+が成立する.</p>
+<p><span class="math inline">\(\mathbb{R} \setminus A \in
+\mathscr{L}\)</span> が明らかで, <span class="math inline">\(A \cap B =
+\mathbb{R} \setminus \left( \left( \mathbb{R} \setminus A \right) \cup
+\left( \mathbb{R} \setminus B \right)   \right)\)</span> より, <span
+class="math inline">\(A \cap B \in \mathscr{L}\)</span> が得られる.
+<span class="math inline">\(A \setminus B = A \cap \left( \mathbb{R}
+\setminus B \right)\)</span> より, <span class="math inline">\(A
+\setminus B \in \mathscr{L}\)</span>. ◻</p>
+</div>
+<div id="lem:finite-additive" class="lemma">
+<p><strong>Lemma 1.14</strong>. <em><span
+class="math inline">\(n\)</span>を正の整数, <span
+class="math inline">\(A_1, \ldots , A_n\)</span>が互いに素なLebesgue
+可測集合, <span class="math inline">\(X \in
+\mathcal{P}(\mathbb{R})\)</span>とする. この時, <span
+class="math display">\[\begin{aligned}
+     \sum_{k=1}^{n} \lambda^*(X \cap A_k) \leq \lambda^*\left( X \cap
+\bigcup_{k=1}^n A_k  \right)
+        \end{aligned}\]</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span
+class="math inline">\(n=1\)</span>の時は明らかである. <span
+class="math inline">\(n=k\)</span>の時に成立すると 仮定すると, <span
+class="math inline">\(n = k+1\)</span>の時, <span
+class="math display">\[\begin{aligned}
+            \sum_{k=1}^{n+1} \lambda^*\left( X \cap A_k \right) &amp;=
+\sum_{k=1}^{n} \lambda^*\left(X \cap A_k \right) + \lambda^*\left(X \cap
+A_{n+1} \right) \\
+                                     &amp;\leq \lambda^*\left(X \cap
+\bigcup_{k=1} ^n A_k \right) + \lambda^*\left( X \cap A_{n+1} \cap
+\bigcup_{k=1} ^{n+1}A_k  \right) \\
+                                     &amp;=  \lambda^*\left(X \cap
+\bigcup_{k=1} ^n A_k \right)
++ \lambda^*\left(X \cap \bigcup_{k=1} ^{n+1}A_k \right)
+-  \lambda^*\left( X \cap \bigcup_{k=1} ^n A_k \right) \\
+                                     &amp;= \lambda^*\left( X \cap
+\bigcup_{k=1} ^{n+1}A_k \right)
+        \end{aligned}\]</span> ◻</p>
+</div>
+<div class="theorem">
+<p><strong>Theorem 1.15</strong> (Lebesgue 可測集合族が<span
+class="math inline">\(\sigma\)</span>-加法族). <em>Lebesgue
+可測集合族が<span
+class="math inline">\(\sigma\)</span>-加法族である.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(\mathbb{R} \in
+\mathscr{L}\)</span> が明らかで, <span class="math inline">\(A \in
+\mathscr{L}\)</span> に対し, <span class="math inline">\(\mathbb{R}
+\setminus A \in \mathscr{L}\)</span> がLemma <a
+href="#lem:lebesgue-sigma-finite" data-reference-type="ref"
+data-reference="lem:lebesgue-sigma-finite">1.13</a>で既に示された.
+以下可算個の可測集合列<span class="math inline">\(\left( A_k \right) _{k
+\in \mathbb{N}}\)</span> に対し, <span class="math inline">\(\bigcup_{k
+\in \mathbb{N}} A_k \in \mathscr{L}\)</span> が成立することを示す.
+簡単のため, 集合列が互いに素な前提で話を進める.</p>
+<p><span class="math inline">\(X \in \mathcal{P}\left( \mathbb{R}
+\right)\)</span> を任意に取る. <span
+class="math display">\[\begin{aligned}
+     \lambda^*\left(X \cap \bigcup_{k \in \mathbb{N}} A_k \right) +
+\lambda^*\left(X \setminus \bigcup_{k \in \mathbb{N}} A_k \right) =
+\lambda^*\left(X \right)
+    \end{aligned}\]</span> を示せばよい, さらに劣加法性が成立するので,
+左辺が右辺以下であることを示せば十分である. <span
+class="math inline">\(B_n = \bigcup_{k \in \mathbb{N} \land k \leq
+n}  A_k\)</span>と定める, 任意の<span class="math inline">\(n \in
+\mathbb{N}\)</span>に対し, <span class="math display">\[\begin{aligned}
+\lambda^*\left(X \right) = \lambda^*\left(X \cap B_n \right)+
+\lambda^*\left(X \setminus B_n \right)
+    \end{aligned}\]</span> が成立する. この時, <span
+class="math display">\[\begin{aligned}
+        \lambda^*\left(X \right) &amp; \geq \lambda^*\left(X \cap B_n
+\right) + \lambda^*\left(X \setminus \bigcup_{k \in \mathbb{N}} A_k
+\right) \\ 
+                     &amp;\geq \sum_{k \in \mathbb{N} \land k \leq n}
+\lambda^*\left(A_k \right) + \lambda^*\left(X \setminus \bigcup_{k \in
+\mathbb{N}} A_k \right) \\
+                     &amp;\geq \sum_{k\in \mathbb{N} } \lambda^*\left( X
+\cap A_k \right) + \lambda^*\left(X \setminus \bigcup_{k \in \mathbb{N}}
+A_k \right) \\
+                     &amp;\geq \lambda^*\left(X \cap \bigcup_{k \in
+\mathbb{N}} A_k \right) + \lambda^*\left(X \setminus \bigcup_{k \in
+\mathbb{N}} A_k \right) 
+    
+\end{aligned}\]</span> 以上より, <span
+class="math inline">\(\lambda^*\left(X \right)=
+\lambda^*\left(X\cap  \bigcup_{k \in \mathbb{N}} A_k \right) +
+\lambda^*\left(X \setminus \bigcup_{k\in \mathbb{N}} A_k
+\right)\)</span>が示された.</p>
+<p>一般の場合, <span class="math inline">\(E_n \coloneqq A_n \setminus
+\bigcup_{k \in \mathbb{N}\land k&lt;n}A_k\)</span> と定めれば, <span
+class="math inline">\(\left( E_k \right) _{k \in \mathbb{N}}\)</span>
+が互いに素なLebesgue 可測集合列で, <span
+class="math inline">\(\bigcup_{k \in \mathbb{N}} A_k = \bigcup_{k \in
+\mathbb{N}} E_k\)</span>で, 先程の結果が適用される. ◻</p>
+</div>
+<div id="prop:open-measurable" class="proposition">
+<p><strong>Proposition 1.16</strong> (任意の開集合がLebesgue可測である).
+<em><span class="math inline">\(\mathbb{R}\)</span>の任意の開集合<span
+class="math inline">\(O\)</span>に対し, <span class="math inline">\(O
+\in \mathscr{L}\)</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> まず区間<span class="math inline">\(K \coloneqq [a,
+\infty), a \in \mathbb{R}\)</span>について考えよう.</p>
+<p>任意の<span class="math inline">\(X \in
+\mathcal{P}(\mathbb{R})\)</span>に対し, 任意の正の実数<span
+class="math inline">\(\varepsilon\)</span> に対し, ある開区間列<span
+class="math inline">\(\left( I_k \right) _{k \in \mathbb{N}}\)</span>
+が存在し, <span class="math inline">\(X \subseteq \bigcup_{k \in
+\mathbb{N}} I_k\)</span>かつ<span class="math inline">\(\sum_{k \in
+\mathbb{N}} |I_k| \leq \lambda^*\left(X\right) + \varepsilon\)</span>
+が成立する. <span class="math inline">\(J \coloneqq (- \infty,
+a)\)</span>と定める. 任意の<span class="math inline">\(k \in
+\mathbb{N}\)</span>に対し, <span class="math inline">\(J_k \coloneqq J
+\cap I_k , \  K_k \coloneqq K \cap I_k\)</span>とする. <span
+class="math inline">\(X\cap K \subseteq \bigcup_{k \in \mathbb{N}} K_k,
+X \setminus K \subseteq \bigcup_{k \in \mathbb{N}} J_k\)</span>,
+劣加法性より, <span class="math display">\[\begin{aligned}
+\lambda^*\left(X \cap K \right) + \lambda^*\left(X \setminus K \right)
+\leq \sum_{k \in \mathbb{N}} |J_k| + |K_k| = \sum_{k\in \mathbb{N}}
+|I_k| \leq \lambda^*\left(X \right) + \varepsilon
+    \end{aligned}\]</span> が成立する. <span
+class="math inline">\(\varepsilon\)</span>が任意なので, <span
+class="math inline">\(\lambda^*\left(X \cap  K \right) +
+\lambda^*\left(X \setminus K \right) \leq \lambda^*\left(X
+\right)\)</span>. よって, <span class="math inline">\([a , \infty) \in
+\mathscr{L}\)</span>が成立する. <span
+class="math inline">\(\mathscr{L}\)</span>が<span
+class="math inline">\(\sigma\)</span>-加法族なので, <span
+class="math inline">\((a,b) = (\mathbb{R} \setminus [b , \infty) ) \cap
+\bigcup_{k \in \mathbb{N}}[a+\frac{1}{2^k} ,\infty)\)</span> より, <span
+class="math inline">\(\forall a,b \in \mathbb{R}; (a,b) \in
+\mathscr{L}\)</span>が成立する. <span
+class="math inline">\(\mathbb{R}\)</span>は<span
+class="math inline">\(\{(a,b) \in \mathcal{P}(\mathbb{R}) \mid a,b \in
+\mathbb{Q}\}\)</span> で第2可算なので, <span
+class="math inline">\(\mathbb{R}\)</span>の任意の開集合<span
+class="math inline">\(O\)</span>に対し, <span class="math inline">\(O
+\in \mathscr{L}\)</span>が成立する. ◻</p>
+</div>
+<p>位相の話を思い出してください. 何らかの集合族が与えられた時,
+それを含む包含関係における最小の位相が存在する. その類似として, 集合
+<span class="math inline">\(X\)</span>の部分集合族が与えられた時に,
+それを含む最小な <span
+class="math inline">\(\sigma\)</span>-加法族が存在するか?
+という疑問に興味を持たなきゃいけないでしょう.</p>
+<div class="proposition">
+<p><strong>Proposition 1.17</strong> (<span
+class="math inline">\(\sigma\)</span>-加法族の生成). <em>任意の集合<span
+class="math inline">\(X\)</span>に対し, 以下のことが成立する.</em></p>
+<ol>
+<li><p><em><span class="math inline">\(\mathcal{P}(X)\)</span>が<span
+class="math inline">\(X\)</span>上 <span
+class="math inline">\(\sigma\)</span>-加法族である.</em></p></li>
+<li><p><em>任意の<span class="math inline">\(A \in
+\mathcal{P}(X)\)</span>に対し, <span class="math inline">\(\sigma (A)
+\coloneqq \bigcap \{\mathcal{S} \subseteq \mathcal{P}(X)  \mid A
+\subseteq \mathcal{S},\ S \text{が$\sigma$-加法族}\}\)</span>が<span
+class="math inline">\(X\)</span>上 <span
+class="math inline">\(\sigma\)</span>-加法族である.</em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 簡単すぎるので省略. ◻</p>
+</div>
+<div class="definition">
+<p><strong>Definition 1.18</strong> (最小な<span
+class="math inline">\(\sigma\)</span>-加法族). <em><span
+class="math inline">\(X\)</span>と<span class="math inline">\(A
+\subseteq X\)</span>に対し, <span class="math inline">\(\sigma (A )
+\coloneqq \bigcap \{ \mathcal{S} \subseteq \mathcal{P}(X)  \mid  A
+\subseteq \mathcal{S}, \ \mathcal{S} \text{が$X$上の
+$\sigma$-加法族}\}\)</span> を<span
+class="math inline">\(A\)</span>の生成する最小の <span
+class="math inline">\(\sigma\)</span>-加法族と呼ぶ.</em></p>
+</div>
+<div class="definition">
+<p><strong>Definition 1.19</strong> (Borel 集合族). <em><span
+class="math inline">\(\mathbb{R}\)</span>の開集合系を<span
+class="math inline">\(\mathcal{O}_{\mathbb{R}}\)</span> とする. <span
+class="math inline">\(\mathcal{B}(\mathbb{R}) \coloneqq \sigma \left(
+\mathcal{O}_{\mathbb{R}} \right)\)</span> を<span
+class="math inline">\(\mathbb{R}\)</span>のBorel集合族といい, <span
+class="math inline">\(\mathcal{B}(\mathbb{R})\)</span>の元をBorel集合と呼ぶ.</em></p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 1.20</strong> (Borel集合がLebesgue可測集合).
+<em><span class="math inline">\(\mathcal{B} (\mathbb{R}) \subseteq
+\mathscr{L}\)</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 定義とProposition <a href="#prop:open-measurable"
+data-reference-type="ref"
+data-reference="prop:open-measurable">1.16</a>に従う. ◻</p>
+</div>
+<div class="definition">
+<p><strong>Definition 1.21</strong> (拡張された実数). <em><span
+class="math inline">\(\mathbb{R}\cup \{\pm
+\infty\}\)</span>上の順序と四則演算を次のように 拡張する. <span
+class="math inline">\(\forall a \in \mathbb{R}\)</span>に対して, <span
+class="math inline">\(0 \cdot \pm \infty \coloneqq 0\)</span> これを<span
+class="math inline">\(\overline{\mathbb{R}}\)</span>
+と表記する.</em></p>
+</div>
+<div class="definition">
+<p><strong>Definition 1.22</strong> (拡張されたBorel 集合). <em><span
+class="math inline">\(\mathcal{\overline{\mathbb{R}}} \coloneqq \{B \in
+\mathcal{P}(\mathbb{R})  \mid B \cap \mathbb{R} \in
+\mathcal{B}(\mathbb{R})\}\)</span> を拡張されたBorel 集合と呼ぶ.
+これが<span class="math inline">\(\overline{\mathbb{R}}\)</span>
+上の<span
+class="math inline">\(\sigma\)</span>-加法族であることは割と明らかである.</em></p>
+</div>
+<div class="definition">
+<p><strong>Definition 1.23</strong> (可測函数). <em>可測空間<span
+class="math inline">\((X,\mathcal{S}), (Y,
+\mathcal{T})\)</span>と写像<span class="math inline">\(f : X
+\to  Y\)</span>に対し, <span class="math inline">\(\forall T \in
+\mathcal{T}; f^{-1}(T) \in \mathcal{S}\)</span> を満たすならば, <span
+class="math inline">\(f\)</span>を <span
+class="math inline">\(\mathcal{S}\)</span>-可測写像と呼ぶ. <span
+class="math inline">\((Y, \mathcal{T}) = (\mathbb{R} ,
+\mathcal{B}(\mathbb{R}))\)</span> の時,
+単に可測函数と呼ぶこともある.</em></p>
+</div>
+<div class="remark">
+<p><em>Remark 1.1</em>. 定義を見ればわかると思うが,
+可測性は定義域と終域両方に依存する性質で, <span
+class="math inline">\((\mathcal{S},
+\mathcal{T})\)</span>-可測函数と呼ぶのは合理的だけど,
+終域は実数軸でBorel集合が装備される可測空間で考えるのは一般的なので,
+終域の情報を捨てて, 簡略化した呼び方が上記のものになる.</p>
+</div>
+<div id="prop:measurable" class="proposition">
+<p><strong>Proposition 1.24</strong> (可測の特徴づけ). <em><span
+class="math inline">\(\left( X , \mathcal{S} \right)\)</span>, <span
+class="math inline">\(\left( Y , \mathcal{T} \right)\)</span>を可測空間,
+<span class="math inline">\(A \subseteq \mathcal{P}\left(
+Y\right)\)</span>に対し, <span class="math inline">\(\sigma (A) =
+\mathcal{T}\)</span>とする. 写像<span class="math inline">\(f: X \to
+Y\)</span>について, 以下の2つの命題が同値である.</em></p>
+<ol>
+<li><p><em><span class="math inline">\(\forall C \in A; f^{-1} (C) \in
+\mathcal{S}\)</span></em></p></li>
+<li><p><em><span class="math inline">\(f\)</span>が <span
+class="math inline">\(\mathcal{S}\)</span>-可測である.</em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span
+class="math inline">\(\impliedby\)</span>が明らかで, <span
+class="math inline">\(\implies\)</span>を示す. <span
+class="math inline">\(\mathcal{M} \coloneqq \{E \in \mathcal{T} \mid
+f^{-1}(E) \in \mathcal{S}\}\)</span> とする. 逆像の性質より, <span
+class="math inline">\(\mathcal{M}\)</span> が<span
+class="math inline">\(Y\)</span>上 <span
+class="math inline">\(\sigma\)</span>-加法族になる. 最小性より, <span
+class="math inline">\(\sigma (A) \subseteq \mathcal{M}\)</span>で,
+証明完了. ◻</p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 1.25</strong> (可測函数の言い換え).
+<em>可測空間<span class="math inline">\(\left( X, \mathcal{S}
+\right)\)</span> と写像<span class="math inline">\(f : X
+\to  \mathbb{R}\)</span>に対し, 以下の命題が同値である.</em></p>
+<ol>
+<li><p><em><span class="math inline">\(f\)</span>が <span
+class="math inline">\(\mathcal{S}\)</span> 可測である.</em></p></li>
+<li><p><em><span class="math inline">\(\forall a \in \mathbb{R};
+f^{-1}((a, \infty)) \in \mathcal{S}\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(\forall a \in \mathbb{R};
+f^{-1}([a, \infty)) \in \mathcal{S}\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(\forall a \in \mathbb{R};
+f^{-1}((-\infty, a)) \in \mathcal{S}\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(\forall a \in \mathbb{R};
+f^{-1}((-\infty, a ]) \in \mathcal{S}\)</span>.</em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(\sigma\left(
+\{(a,\infty)  \mid a \in \mathbb{R}\}  \right) = \sigma\left(
+\{[a,\infty)  \mid a \in \mathbb{R}\}  \right)= \sigma\left( \{(-
+\infty, a)  \mid a \in \mathbb{R}\}  \right) = \sigma\left( \{(-\infty,
+a]  \mid a \in \mathbb{R}\}  \right) =
+\mathcal{B}(\mathbb{R})\)</span>とProposition <a href="#prop:measurable"
+data-reference-type="ref"
+data-reference="prop:measurable">1.24</a>に従う. ◻</p>
+</div>
+<div class="definition">
+<p><strong>Definition 1.26</strong> (可測空間の制限). <em>可測空間<span
+class="math inline">\(\left( X , \mathcal{S} \right)\)</span> と<span
+class="math inline">\(E \subseteq X\)</span>に対し, <span
+class="math inline">\(E \tilde{\cap} \mathcal{S} \coloneqq \{E \cap
+S   \in \mathcal{P}(E)\mid S \in \mathcal{S}\}\)</span> とする.
+これが<span class="math inline">\(E\)</span>上 <span
+class="math inline">\(\sigma\)</span>-加法族であり, <span
+class="math inline">\(\mathcal{S}\)</span> の<span
+class="math inline">\(E\)</span>への制限と呼ぶ.</em></p>
+</div>
+<div id="prop:constriction" class="proposition">
+<p><strong>Proposition 1.27</strong> (生成系の制限は本質的に一意である).
+<em>集合<span class="math inline">\(E \subseteq X\)</span>と<span
+class="math inline">\(X\)</span>上の集合族<span
+class="math inline">\(\mathcal{A}\)</span>と可測空間<span
+class="math inline">\((X , \sigma (\mathcal{A}))\)</span>に対し, <span
+class="math inline">\(E \tilde{\cap }\mathcal{A} \coloneqq  \{E \cap C
+\in \mathcal{P}(E)  \mid C \in \mathcal{A}\}\)</span>とする. この時,
+<span class="math inline">\(\sigma(E \tilde{\cap} \mathcal{A})  = E
+\tilde{\cap} \sigma (\mathcal{A})\)</span>が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(\sigma (E \tilde{\cap}
+\mathcal{A}) \subseteq E \tilde{\cap} \sigma (\mathcal{A)}\)</span>
+が成立することが生成される<span
+class="math inline">\(\sigma\)</span>-加法族の最小性に従う.</p>
+<p><span class="math inline">\(\mathcal{M} \coloneqq \{B \in
+\mathcal{P}(X)  \mid E \cap B \in \sigma (E\tilde{\cap}
+\mathcal{A})\}\)</span> として, <span
+class="math inline">\(\mathcal{M}\)</span> が<span
+class="math inline">\(X\)</span>上 <span
+class="math inline">\(\sigma\)</span>-加法族であり, <span
+class="math inline">\(\mathcal{A} \subseteq M\)</span> より, <span
+class="math inline">\(E \tilde{\cap} \sigma (\mathcal{A}) \subseteq
+\sigma(E \tilde{\cap} \mathcal{A})\)</span> が得られる. ◻</p>
+</div>
+<div class="remark">
+<p><em>Remark 1.2</em>. <span
+class="math inline">\(\sigma\)</span>-加法族の制限で登場する <span
+class="math inline">\(\tilde{\cap}\)</span>が通常の意味での共通集合ではなくただの記号の濫用である.</p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 1.28</strong> (連続函数が可測函数である).
+<em>Borel集合<span class="math inline">\(X\)</span>上で定義される函数
+<span class="math inline">\(f: X \to
+\mathbb{R}\)</span>が連続函数ならば, <span
+class="math inline">\(f\)</span>は可測函数である. ただし,
+可測空間を<span class="math inline">\(\left( X, X \cap
+\mathcal{B}(\mathbb{R})\right)\)</span>とする.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(f\)</span>が連続函数<span
+class="math inline">\(\iff \forall O \in \mathcal{O}_{\mathbb{R}};
+f^{-1}(O) \in \mathcal{O}_{X \cap \mathbb{R}} \subseteq X
+\cap  \mathcal{B}(\mathbb{R})\)</span>. Proposition <a
+href="#prop:measurable" data-reference-type="ref"
+data-reference="prop:measurable">1.24</a>より証明が完了. ◻</p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 1.29</strong> (単調函数が可測函数である).
+<em>Borel集合<span
+class="math inline">\(X\)</span>で定義される単調函数<span
+class="math inline">\(f\)</span>は可測函数である.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\((a,
+\infty)\)</span>に対し, <span class="math inline">\(b \coloneqq \inf
+f^{-1}((a, \infty))\)</span>とすれば, <span
+class="math inline">\(f^{-1}((a,\infty)) = (b , \infty) \cap
+X\)</span>で, 可測性が確認された. ◻</p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 1.30</strong> (可測函数の合成も可測函数).
+<em><span class="math inline">\(\left( X, \mathcal{S} \right)\)</span>
+を可測空間, <span class="math inline">\(g\)</span>をBorel
+集合上で定義される可測函数, <span class="math inline">\(f\)</span>が
+<span class="math inline">\(X\)</span> 上の可測函数で, <span
+class="math inline">\(f\)</span> の像が<span
+class="math inline">\(g\)</span>の定義域に含まれるとする. この時, <span
+class="math inline">\(g\circ f\)</span>が <span
+class="math inline">\(\mathcal{S}\)</span>-可測である.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 位相空間論で同じタイプの問題をやっていたため,
+省略. ◻</p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 1.31</strong> (四則演算が可測である). <em><span
+class="math inline">\((X, \mathcal{S})\)</span> を可測空間, <span
+class="math inline">\(f,g : X \to  \mathbb{R}\)</span>を可測函数とする.
+この時,</em></p>
+<ol>
+<li><p><em><span class="math inline">\(f+g, f-g,
+fg\)</span>が可測函数である.</em></p></li>
+<li><p><em><span class="math inline">\(\forall x \in X; g(x) \neq
+0\)</span>ならば, <span
+class="math inline">\(\frac{f}{g}\)</span>も可測函数である.</em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(f-g = f+ (-g), fg
+=\frac{1}{2}\left( (f+g)^2 - f^2 - g^2\right), \frac{f}{g} = f
+\frac{1}{g}\)</span>
+と連続函数が可測であることと可測函数の合成が可測であることより, <span
+class="math inline">\(f+g\)</span>の可測性を示せば十分である.</p>
+<p><span class="math inline">\(a \in \mathbb{R}\)</span>を任意にとり,
+<span class="math inline">\((f+g)^{-1}((a,\infty)) = \bigcup_{r \in
+\mathbb{Q}}\left( f^{-1}((r, \infty )) \cap g^{-1}(a-r, \infty))
+\right)\)</span> より, <span class="math inline">\((f+g)^{-1}((a,
+\infty)) \in \mathcal{S}\)</span> が成立する. ◻</p>
+</div>
+<p>これから函数列の収束に関連する議論に入るので, ここで<span
+class="math inline">\(\overline{\mathbb{R}}\)</span> の世界で,
+可測性を議論する.</p>
+<div class="proposition">
+<p><strong>Proposition 1.32</strong> (<span
+class="math inline">\(\overline{\mathbb{R}}\)</span> への可測函数).
+<em>可測空間<span class="math inline">\(\left( X, \mathcal{S}
+\right)\)</span> と写像<span class="math inline">\(f:X \to
+\overline{\mathbb{R}}\)</span> に対し, <span
+class="math display">\[\forall a \in \mathbb{R}; f ^{-1}((a,\infty ])
+\in \mathcal{S}\]</span> ならば<span class="math inline">\(f\)</span>が
+<span class="math inline">\(\mathcal{S}\)</span>-可測である.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span
+class="math inline">\(\mathcal{B}(\overline{\mathbb{R}}) = \sigma \left(
+\{(a, \infty]  \mid a \in \mathbb{R}\}  \right)\)</span>
+であることとProposition <a href="#prop:measurable"
+data-reference-type="ref"
+data-reference="prop:measurable">1.24</a>より直ちに従う. ◻</p>
+</div>
+<div class="remark">
+<p><em>Remark 1.3</em>. これより, 終域が<span
+class="math inline">\(\mathbb{R}\)</span>の可測函数の終域を<span
+class="math inline">\(\overline{\mathbb{R}}\)</span>
+へ拡張しても可測であることが変わらない. これを以て,
+可測函数の終域を特に明言しない限り, <span
+class="math inline">\(\overline{\mathbb{R}}\)</span> と思ってもよい.
+また今まで<span
+class="math inline">\(\mathbb{R}\)</span>で議論して得られた結論は<span
+class="math inline">\(\overline{\mathbb{R}}\)</span> でも成立する.
+各自確認せよ.</p>
+</div>
+<div id="prop:limit-measurable" class="proposition">
+<p><strong>Proposition 1.33</strong> (可測函数の列から得られる可測函数).
+<em>可測空間<span class="math inline">\(\left( X , \mathcal{S}
+\right)\)</span> と<span
+class="math inline">\(\mathcal{S}\)</span>-可測函数列<span
+class="math inline">\(f_k : X \to \overline{\mathbb{R}}, \ k \in
+\mathbb{N}\)</span>に対し, <span class="math inline">\(g , h : X \to
+\overline{\mathbb{R}}\)</span> を次のように定める: <span
+class="math display">\[\begin{aligned}
+            g(x)&amp; \coloneqq \inf \{f_k(x)  \mid  k \in
+\mathbb{N}\}\\
+            h(x) &amp;\coloneqq \sup \{f_k(x)  \mid k \in \mathbb{N}\}
+        .\end{aligned}\]</span> この時, <span
+class="math inline">\(g,h\)</span>がどちらも <span
+class="math inline">\(\mathcal{S}\)</span>-可測である.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(h\)</span>について,
+任意の<span class="math inline">\(a \in \mathbb{R}\)</span>に対し, <span
+class="math display">\[\begin{aligned}
+            h^{-1}\left((a, \infty] \right) = \bigcup_{k \in
+\mathbb{N}}f_k^{-1}\left( (a, \infty] \right),  
+        \end{aligned}\]</span> が成立するので, <span
+class="math inline">\(h\)</span>が可測函数であることが得られる.</p>
+<p>また, <span class="math display">\[\begin{aligned}
+    g(x)  = - \sup \{-f_k(x)  \mid k \in \mathbb{N}\}
+        \end{aligned}\]</span> が成立するから, <span
+class="math inline">\(g\)</span>の可測性も得られる. ◻</p>
+</div>
+<div class="corollary">
+<p><strong>Corollary 1.34</strong> (可測函数列の各点収束先が可測函数).
+<em>可測空間<span class="math inline">\(\left( X, \mathcal{S}
+\right)\)</span> 上で定義される可測函数列<span class="math inline">\(f_k
+: X \to \overline{\mathbb{R}}\)</span> が<span
+class="math inline">\(f\)</span>に各点収束する時, <span
+class="math inline">\(f\)</span>も可測函数になる.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math display">\[g_k \coloneqq \sup
+\{f_i(x)  \mid i \geq k , i \in \mathbb{N}\}\]</span> と定義する.
+任意の<span class="math inline">\(k \in \mathbb{N}\)</span>に対し, <span
+class="math inline">\(g_k\)</span>がProposition <a
+href="#prop:limit-measurable" data-reference-type="ref"
+data-reference="prop:limit-measurable">1.33</a> より可測である. <span
+class="math inline">\(f(x) = \inf_{k \in \mathbb{N}} g_k (x)\)</span>
+より, <span class="math inline">\(f\)</span>の可測性が得られる. ◻</p>
+</div>
+<h2 id="測度との初エンカ">測度との初エンカ</h2>
+<div class="definition">
+<p><strong>Definition 1.35</strong> (測度, 測度空間). <em><span
+class="math inline">\(\left( X , \mathcal{S} \right)\)</span>
+を可測空間とする. 以下の2つの条件を満たす時, <span
+class="math inline">\(\mu : \mathcal{S} \to [0, \infty]\)</span> が<span
+class="math inline">\((X, \mathcal{S})\)</span> 上の測度といい, <span
+class="math inline">\(\left( X , \mathcal{S}, \mu \right)\)</span>
+を測度空間と呼ぶ.</em></p>
+<ol>
+<li><p><em><span class="math inline">\(\mu (\emptyset) =
+0\)</span>;</em></p></li>
+<li><p><em><span class="math inline">\(\mathcal{S}\)</span>
+上の任意の互いに素な集合列<span class="math inline">\(\left( E_k \right)
+_{k \in \mathbb{N}}\)</span> に対し, <span class="math display">\[\mu
+\left( \bigcup_{k \in \mathbb{N}}E_k  \right) = \sum_{k\in \mathbb{N}}
+\mu (E_k).\]</span></em></p></li>
+</ol>
+<p><em>二番目の条件を測度の完全加法性と呼ぶ.</em></p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 1.36</strong> (単調性と差集合の測度).
+<em>測度空間<span class="math inline">\(\left( X, \mathcal{S}, \mu
+\right)\)</span>と<span class="math inline">\(D \subseteq
+E\)</span>を満たす<span class="math inline">\(D, E \in
+\mathcal{S}\)</span>に対し,</em></p>
+<ol>
+<li><p><em><span class="math inline">\(\mu (D) \leq \mu
+(E)\)</span>;</em></p></li>
+<li><p><em><span class="math inline">\(\mu (E\setminus D) + \mu (D) =
+\mu (E)\)</span></em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(E = D \cup (E \setminus
+D)\)</span>, <span class="math inline">\(D \cap (E \setminus D)=
+\emptyset\)</span>に対し, 測度の完全加法性を適用すれば良い. ◻</p>
+</div>
+<div id="prop:sub-add" class="proposition">
+<p><strong>Proposition 1.37</strong> (測度の劣加法性). <em>測度空間<span
+class="math inline">\(\left( X, \mathcal{S}, \mu \right)\)</span>
+と可測集合列<span class="math inline">\(\left( E_k \right) _{k \in
+\mathbb{N}}\)</span>に対し, <span class="math display">\[\begin{aligned}
+    \mu \left( \bigcup_{k \in \mathbb{N}} E_k \right) \leq \sum_{k\in
+\mathbb{N}} \mu \left( E_k \right)
+        \end{aligned}\]</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(F_{\min \mathbb{N}}
+\coloneqq \emptyset\)</span>, <span class="math inline">\(F_{k+1}
+\coloneqq \bigcup_{i \in \mathbb{N} \land i \leq k} E_i\)</span> とする.
+この時, <span class="math inline">\(\left( E_k \setminus F_k \right)_{k
+\in \mathbb{N}}\)</span> が互いに素な可測集合列で, <span
+class="math display">\[\begin{aligned}
+            \mu \left( \bigcup_{k \in \mathbb{N}} E_k \right) &amp;= \mu
+\left( \bigcup_{k \in \mathbb{N}}(E_k \setminus F_k )  \right) \\
+
+                                      &amp;= \sum_{k\in \mathbb{N}}\mu
+(E_k \setminus F_k ) \\ 
+                                      &amp;\leq \sum_{k\in \mathbb{N}}
+\mu (E_k) 
+    .   
+\end{aligned}\]</span> ◻</p>
+</div>
+<div id="prop:measure-continuity" class="proposition">
+<p><strong>Proposition 1.38</strong> (測度の連続性). <em>測度空間<span
+class="math inline">\(\left( X , \mathcal{S}, \mu \right)\)</span>
+と包含関係について単調増大な可測集合の鎖<span
+class="math inline">\(\left( E_k \right)_{k \in \mathbb{N}}\)</span>
+に対し, <span class="math display">\[\begin{aligned}
+    \mu\left( \bigcup_{k\in \mathbb{N}} E_k \right) = \lim_{k \to
+\infty} \mu (E_k)
+        \end{aligned}\]</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(E_{\min \mathbb{N} -1} =
+\emptyset\)</span>として, 単調増大性より, <span
+class="math display">\[\begin{aligned}
+    \bigcup_{k=\min \mathbb{N}}^{\infty} E_k = \bigcup_{k = \min
+\mathbb{N}}^{\infty}\left( E_k \setminus E_{k-1} \right)   
+        \end{aligned}\]</span> が成立し,
+右辺は互いに素な集合の直和になる. これについて完全加法性を適用すると</p>
+<p><span class="math display">\[\begin{aligned}
+            \mu \left( \bigcup_{k \in \mathbb{N}} E_k \right) &amp;=
+\lim_{k \to \infty} \sum_{n= \min \mathbb{N}}^{k} \mu \left( E_n
+\setminus E_{n-1}\right) \\
+                                      &amp;=    \lim_{k\to \infty}
+\sum_{n=\min \mathbb{N}}^{k} \mu \left( E_n \right) - \mu \left( E_{n-1}
+\right) \\
+                                      &amp;= \lim_{k \to \infty} \mu
+\left( E_k \right)
+        \end{aligned}\]</span> ◻</p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 1.39</strong> (減少列の測度). <em>測度空間<span
+class="math inline">\(\left( X, \mathcal{S}, \mu \right)\)</span>
+と包含関係について単調減少な可測集合の鎖<span
+class="math inline">\(\left( E_k \right) _{k \in \mathbb{N}}\)</span>
+に対し, <span class="math inline">\(\exists N \in \mathbb{N}; \mu (E_N)
+&lt; \infty\)</span>ならば, <span class="math display">\[\begin{aligned}
+    \mu \left( \bigcap_{k \in \mathbb{N}}E_k  \right) = \lim_{k \to
+\infty} \mu (E_k)
+        \end{aligned}\]</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(k \in
+\mathbb{N}\)</span>に対し, <span class="math inline">\(F_k \coloneqq E_N
+\setminus F_k\)</span>と定める. この時, <span
+class="math inline">\(\left( F_k \right) _{k\in \mathbb{N}}\)</span>
+が集合の包含関係について単調増大列になる. Proposition <a
+href="#prop:measure-continuity" data-reference-type="ref"
+data-reference="prop:measure-continuity">1.38</a>を適用すると, <span
+class="math display">\[\begin{aligned}
+\mu \left( E_N \setminus \bigcap_{k \in \mathbb{N}}E_k  \right)  =
+\lim_{k \to \infty} \mu \left( E_N \setminus E_k \right)
+    \end{aligned}\]</span></p>
+<p><span class="math inline">\(\bigcap_{k \in \mathbb{N}} E_k \subseteq
+E_N\)</span>より, <span class="math inline">\(\mu\left( \bigcap_{k \in
+\mathbb{N}} E_k \right) \leq \mu (E_N) &lt; \infty\)</span>. 上式から,
+<span class="math display">\[\begin{aligned}
+        \mu (E_N) - \mu \left( \bigcap_{k\in \mathbb{N}} E_k \right) =
+\lim_{k \to \infty, \land k \geq N } \mu (E_N) - \mu (E_k)
+    \end{aligned}\]</span> が得られ, 両辺から<span
+class="math inline">\(\mu(E_N)\)</span>を引いて <span
+class="math inline">\(-1\)</span>を掛けると, <span
+class="math display">\[\begin{aligned}
+\mu \left( \bigcap_{k \in \mathbb{N}} E_k \right) = \lim_{k \to \infty}
+\mu (E_k)
+    \end{aligned}\]</span> が成立する. ◻</p>
+</div>
+<div id="prop:measure-union" class="proposition">
+<p><strong>Proposition 1.40</strong>. <em>測度空間<span
+class="math inline">\(\left( X, \mathcal{S}, \mu \right)\)</span>
+と<span class="math inline">\(D,E \in \mathcal{S}\)</span> に対し, <span
+class="math display">\[\begin{aligned}
+    \mu \left( D \cup E  \right) + \mu \left( D \cap E \right) = \mu (D)
++ \mu (E)
+        \end{aligned}\]</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math display">\[\begin{aligned}
+            \mu \left( D \cup E \right) + \mu \left( D \cap E \right)
+&amp;= \mu \left( (D \setminus E) \sqcup (E \setminus D) \sqcup \left( E
+\cap D  \right)   \right) + \mu \left( D \cap E \right) \\
+                            &amp;= \mu \left( D \setminus E \right) +
+\mu \left( D \cap E \right) + \mu \left( E \setminus D \right) + \mu
+\left( D \cap E \right) \\
+                            &amp;= \mu(D) + \mu (E).
+        \end{aligned}\]</span> ◻</p>
+</div>
+<div class="definition">
+<p><strong>Definition 1.41</strong> (零集合). <em>測度空間<span
+class="math inline">\(\left( X , \mathcal{S}, \mu \right)\)</span>
+とする. <span class="math display">\[\begin{aligned}
+    \mathcal{N}_X \coloneqq \{A \subseteq X \mid \exists B \in
+\mathcal{S}; A \subseteq B \land \mu (B) = 0\}
+        \end{aligned}\]</span> が零集合族といい, <span
+class="math inline">\(\mathcal{N}_X\)</span>
+の元を零集合と呼ぶ.</em></p>
+</div>
+<div id="def:complete" class="definition">
+<p><strong>Definition 1.42</strong> (測度の完備化). <em>測度空間<span
+class="math inline">\(\left( X , \mathcal{S}, \mu \right)\)</span>
+とする. <span class="math display">\[\begin{aligned}
+            \overline{\mathcal{S}} \coloneqq \{M \cup N  \mid M \in
+\mathcal{S}\land N \in \mathcal{N}_X\}
+        
+\end{aligned}\]</span> とおき, 写像<span
+class="math inline">\(\overline{\mu} : \overline{\mathcal{S}} \to
+[0,\infty]\)</span> を <span class="math inline">\(M \in \mathcal{S}; N
+\in \mathcal{N}_X\)</span> に対し, <span
+class="math display">\[\begin{aligned}
+            \overline{\mu}(M \cup N) \coloneqq \mu (M)
+        
+\end{aligned}\]</span> と定める. <span class="math inline">\(\left( X ,
+\overline{\mathcal{S}}, \overline{\mu} \right)\)</span> が<span
+class="math inline">\(\left( X , \mathcal{S}, \mu \right)\)</span>
+の完備化という.</em></p>
+</div>
+<div id="prop:measure-complete" class="proposition">
+<p><strong>Proposition 1.43</strong> (完備化のwell-defined性).
+<em>測度空間<span class="math inline">\(\left( X , \mathcal{S}, \mu
+\right)\)</span> の完備化<span class="math inline">\(\left( X,
+\overline{\mathcal{S}}, \overline{\mu} \right)\)</span> に対し,
+以下のことが成立する.</em></p>
+<ol>
+<li><p><em><span class="math inline">\(\overline{\mathcal{S}}\)</span>
+が<span
+class="math inline">\(\sigma\)</span>-加法族である.</em></p></li>
+<li><p><em><span class="math inline">\(\overline{\mu}\)</span>
+がwell-definedである.</em></p></li>
+<li><p><em><span class="math inline">\(\forall E \in \mathcal{S};
+\overline{\mu}(E) = \mu(E)\)</span>, これにより, <span
+class="math inline">\(\left( X, \overline{\mathcal{S}}, \overline{\left(
+\mu  \right) } \right)\)</span> が測度空間になる.</em></p></li>
+<li><p><em><span class="math inline">\(\forall M \in
+\overline{\mathcal{S}}; \forall N \in \mathcal{P}(X); \left( \mu (M) = 0
+\land N \subseteq M \implies N \in \overline{\mathcal{S}}
+\right)\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(\tilde{S}\coloneqq \{A \subseteq
+X \mid \exists D,E \in \mathcal{S}; E \subseteq A \subseteq D \land
+\mu(D\setminus E) = 0\}\)</span> とすると, <span
+class="math inline">\(\tilde{S} = \overline{S}\)</span>
+が成立する.</em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 1. <span class="math inline">\(X = X \cup
+\emptyset\)</span> より, <span class="math inline">\(X \in
+\overline{\mathcal{S}}\)</span> が成立する. <span
+class="math inline">\(M, O\in \mathcal{S}, N \in \mathcal{N}_X, \mu(O) =
+0, N \subseteq O\)</span> に対し, <span class="math inline">\(X
+\setminus \left( M \cup N \right) = \left( X \setminus (M \cup O)
+\right) \cup \left( O \setminus \left( M \cup N
+\right)   \right)\)</span> が成立するので, <span class="math inline">\(X
+\setminus \left( M \cup N \right) \in \overline{\mathcal{S}}\)</span>
+が成立する. <span class="math inline">\(\left( M_k , N_k, O_k \right)
+_{k \in \mathbb{N}}; \forall k \in \mathbb{N}; \left( M_k, O_k \in
+\mathcal{S}\land N_k \subseteq O_k \land \mu(O_k) =0 \right)\)</span>
+とする. <span class="math inline">\(\bigcup_{k \in \mathbb{N}} \left(
+M_k \cup N_k \right) = \bigcup_{k \in \mathbb{N}} M_k \cup \bigcup_{k
+\in \mathbb{N}} N_k, \mu\left( \bigcup_{k \in \mathbb{N}} O_k \right) =
+0\)</span> より, 完全加法性が成立する. よって, <span
+class="math inline">\(\overline{\mathcal{S}}\)</span> が<span
+class="math inline">\(\sigma\)</span>-加法族である.</p>
+<p>2. <span class="math inline">\(M_1,M_2, O_1,O_2 \in \mathcal{S}, N_1
+\subseteq O_1, N_2 \subseteq O_2, \mu (O_1) = \mu (O_2) =0, M_1\cup N_1
+= M_2 \cup N_2\)</span>とする. <span
+class="math inline">\(\overline{\mu}(M_1 \cup N_1) = \mu (M_1) = \mu
+(M_1 \cup O_1 \cup O_2) = \mu \left( M_2 \cup O_1 \cup O_2 \right) = \mu
+(M_2) = \overline{\mu}\left( M_2\cup N_2 \right)\)</span>. したがって,
+<span
+class="math inline">\(\overline{\mu}\)</span>がwell-definedである.</p>
+<p>3. <span class="math inline">\(E \in \mathcal{S}\)</span>に対し,
+<span class="math inline">\(\overline{\mu}(E)= \overline{\mu}(E \cup
+\emptyset) = \mu (E)\)</span>. このあとの議論はroutineなので省略.</p>
+<p>4. <span class="math inline">\(\forall M \in \overline{\mathcal{S}};
+\forall N \in \mathcal{P}(X); \left(\mu (M) = 0 \land N \subseteq
+M\right)\)</span>に対し, <span class="math inline">\(E ,F\in
+\mathcal{S}, G \in \mathcal{N}_X, M = E \cup G, G \subseteq F, \mu (F) =
+0\)</span> を満たす<span class="math inline">\(E,F,G\)</span>を取り,
+<span class="math inline">\(N \subseteq E \cup F, \mu (E \cup F) =
+0\)</span>より, <span class="math inline">\(N \in \mathcal{N}_X, N =
+\emptyset \cup N\)</span> より, <span class="math inline">\(N \in
+\overline{\mathcal{S}}\)</span> が成立する.</p>
+<p>5. <span class="math inline">\(D, E \in \mathcal{S}, E \subseteq A
+\subseteq D, \mu (D\setminus E) = 0\)</span> とすると, <span
+class="math inline">\(A = E \cup \left( D \setminus E \right)\)</span>
+で, <span class="math inline">\(A \in \overline{\mathcal{S}}\)</span>
+が成立し, <span class="math inline">\(\tilde{\mathcal{S}} \subseteq
+\overline{\mathcal{S}}\)</span> が得られた. 一方, <span
+class="math inline">\(M , O\in \mathcal{S}; N \subseteq O; \mu (O) =
+0\)</span> に対し, <span class="math inline">\(M \setminus O \subseteq M
+\cup N \subseteq M \cup O, \mu\left( \left( M \cup O \right) \setminus
+\left( M \setminus O \right)  \right) = \mu \left( O \right) =
+0\)</span>より, <span class="math inline">\(M\cup N \in
+\tilde{\mathcal{S}}\)</span> が成立し, <span
+class="math inline">\(\overline{\mathcal{S}} \subseteq
+\tilde{\mathcal{S}}\)</span> が得られる. ◻</p>
+</div>
+<div class="definition">
+<p><strong>Definition 1.44</strong> (<span
+class="math inline">\(G_{\delta}, F_{\sigma}\)</span> 集合).
+<em>位相空間<span class="math inline">\(\left( X , \mathcal{O}_{X}
+\right)\)</span> に対し, 可算個の開集合の共通部分で表せるものを<span
+class="math inline">\(G_{\delta}\)</span> 集合,
+可算個の閉集合の和集合で表せるものを<span
+class="math inline">\(F_{\sigma}\)</span> 集合と呼ぶ.</em></p>
+</div>
+<div id="prop:L-regularity" class="proposition">
+<p><strong>Proposition 1.45</strong>
+(Lebesgue可測集合のBorel集合による近似). <em>任意のLebesgue可測集合<span
+class="math inline">\(A \in \mathscr{L}\)</span>に対し,
+以下のことが成立する:</em></p>
+<ol>
+<li><p><em>任意の<span class="math inline">\(\varepsilon &gt;
+0\)</span>に対し, ある開集合 <span class="math inline">\(B\)</span>
+が存在し, <span class="math inline">\(A \subseteq B \land \lambda*(B
+\setminus A) &lt; \varepsilon\)</span>.</em></p></li>
+<li><p><em>任意の<span class="math inline">\(\varepsilon &gt;
+0\)</span>に対し, ある閉集合<span
+class="math inline">\(B\)</span>が存在し, <span class="math inline">\(B
+\subseteq A \land \lambda^*\left(A \setminus B \right)&lt;
+\varepsilon\)</span>.</em></p></li>
+<li><p><em>ある<span class="math inline">\(G_{\delta}\)</span> 集合<span
+class="math inline">\(G\)</span>が存在し, <span class="math inline">\(A
+\subseteq G \land \lambda^*\left(G \setminus A \right)=
+0\)</span>.</em></p></li>
+<li><p><em>ある<span class="math inline">\(F_{\sigma}\)</span> 集合<span
+class="math inline">\(F\)</span>が存在し, <span class="math inline">\(F
+\subseteq A \land \lambda^*\left(A \setminus F \right) =
+0\)</span>.</em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 1. <span class="math inline">\(\lambda^*\left(A
+\right)&lt; \infty\)</span>の時, ある<span
+class="math inline">\(A\)</span>を被覆する開区間の列<span
+class="math inline">\(\left( I_k \right) _{k \in \mathbb{N}}\)</span>
+が存在し, <span class="math inline">\(\sum_{k \in \mathbb{N}}|I_k| &lt;
+\lambda^*\left(A \right)+ \varepsilon\)</span>が成立する. この時, <span
+class="math inline">\(B \coloneqq \bigcup_{k \in \mathbb{N}}
+I_k\)</span>と定めると, <span class="math inline">\(A \in
+\mathscr{L}\)</span> より <span class="math inline">\(\lambda^*\left(B
+\setminus A \right)= \lambda^*\left(B \right) - \lambda^*\left(A \right)
+\leq \sum_{k\in \mathbb{N}}|I_k| - \lambda^*\left(A \right)&lt;
+\varepsilon\)</span> が得られる.</p>
+<p><span class="math inline">\(\lambda^*\left(A \right) =
+\infty\)</span> の時, <span class="math inline">\(k \in
+\mathbb{Z}\)</span>に対し, <span class="math inline">\(E_k \coloneqq [k,
+k+1) , \ A_k \coloneqq A \cap E_k, \ \varepsilon_k =
+\frac{\varepsilon}{3 \cdot 2^{|k|}}\)</span>と定める. 各<span
+class="math inline">\(k \in \mathbb{Z}\)</span>に対し,
+前半の結論を適用すると, 開集合<span class="math inline">\(B_k \supseteq
+A_k\)</span>が存在し, <span class="math inline">\(\lambda^*\left(B_k
+\setminus A_k \right) &lt; \varepsilon_k\)</span>が成立する. <span
+class="math inline">\(B \coloneqq \bigcup_{k \in
+\mathbb{Z}}B_k\)</span>とすれば, <span
+class="math inline">\(\lambda^*\left(B \setminus A \right) \leq
+\lambda^*\left(\bigcup_{k \in \mathbb{Z}}\left( B_k \setminus A_k
+\right)   \right) \leq \sum_{k\in \mathbb{Z}}  \lambda^*\left(B_k
+\setminus A_k \right) &lt; \sum_{k\in \mathbb{Z}} \varepsilon_k =
+\varepsilon\)</span>.</p>
+<p>2. <span class="math inline">\(A \in \mathscr{L}\)</span> より, <span
+class="math inline">\(\mathbb{R} \setminus A \in  \mathscr{L}\)</span>
+が成立する. <span class="math inline">\(\mathbb{R} \setminus
+A\)</span>に対し, 1. の結論を適用すると開集合<span
+class="math inline">\(\mathbb{R} \setminus B\)</span>が存在し, <span
+class="math inline">\(\mathbb{R}  \setminus A \subseteq \mathbb{R}
+\setminus B \land \lambda^*\left(\left( \mathbb{R} \setminus B \right)
+\setminus \left( \mathbb{R} \setminus A \right)      \right) &lt;
+\varepsilon\)</span>が成立する. この時, 集合<span
+class="math inline">\(B\)</span>が望む閉集合である.</p>
+<p>3. 各自然数<span class="math inline">\(k\)</span>に対し, <span
+class="math inline">\(\varepsilon_k \coloneqq \frac{1}{2^k}\)</span>
+と定めて, 1. を適用して, <span class="math inline">\(A \subseteq
+B_k\land \lambda^*\left(B_k \setminus A_k \right) &lt;
+\varepsilon_k\)</span> を満たす開集合<span
+class="math inline">\(B_k\)</span>を取り, <span class="math inline">\(B
+\coloneqq \bigcap_{k \in \mathbb{N}} B_k\)</span>とすれば良い.</p>
+<p>4. 各自然数<span class="math inline">\(k\)</span>に対し, <span
+class="math inline">\(\varepsilon_k \coloneqq \frac{1}{2^k}\)</span>
+とおく, 2.を適用して, <span class="math inline">\(B_k \subseteq A \land
+\lambda^*\left(A \setminus B_k \right)&lt;
+\varepsilon_k\)</span>を満たす閉集合<span
+class="math inline">\(B_k\)</span>を取り, <span class="math inline">\(B
+\coloneqq \bigcup_{k \in \mathbb{N}} B_k\)</span>とすれば良い. ◻</p>
+</div>
+<div class="definition">
+<p><strong>Definition 1.46</strong> (Lebesgue測度とBorel測度).
+<em>Lebesgue 外測度 <span
+class="math inline">\(\lambda^*\)</span>をLebesgue
+可測集合族に制限したもの<span class="math inline">\(\lambda :
+\mathscr{L}\to [0,\infty]\)</span>をLebesgue 測度といい, Borel
+集合族に制限したもの<span class="math inline">\(\lambda_B :
+\mathcal{B}(\mathbb{R}) \to  [0,
+\infty]\)</span>をBorel測度という.</em></p>
+</div>
+<div id="prop:L-B-C" class="proposition">
+<p><strong>Proposition 1.47</strong> (Lebesgue測度はBorel測度の完備化).
+<em><span class="math inline">\(\left( \mathbb{R}, \mathscr{L}, \lambda
+\right)\)</span>が<span class="math inline">\(\left( \mathbb{R},
+\mathcal{B}(\mathbb{R}), \lambda_B \right)\)</span>
+の完備化である.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> Proposition <a href="#prop:measure-complete"
+data-reference-type="ref"
+data-reference="prop:measure-complete">1.43</a>より, <span
+class="math inline">\(\forall A \in \mathscr{L}; \exists D,E \in
+\mathcal{B}(\mathbb{R}); \left(E \subseteq A \subseteq  D \land
+\lambda_B(D\setminus E) = 0 \right)\)</span> を示せば十分である.
+この事実はProposition <a href="#prop:L-regularity"
+data-reference-type="ref"
+data-reference="prop:L-regularity">1.45</a>に従う. ◻</p>
+</div>
+<div class="corollary">
+<p><strong>Corollary 1.48</strong> (Lebesgue 可測集合族の正体).
+<em><span class="math inline">\(\mathscr{L} = \sigma \left(
+\mathcal{B}(\mathbb{R}) \cup \mathcal{N}_{\mathbb{R}}  \right)\)</span>
+が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 完備化の5番目の性質の帰結である. ◻</p>
+</div>
+<h2 id="おまけ">おまけ</h2>
+<p>この節では, 今までの議論を振り返り,
+Lebesgue測度という概念を拡張することを目指す.
+Lebesgue測度で出てきた<span
+class="math inline">\(\sigma\)</span>-加法族に関連する議論は,
+外測度の基本性質しか使われていないと いうことに気をつけてください.
+それは何を表しているかというと, 完全加法性を満たす <span
+class="math inline">\(\sigma\)</span>-加法族を考えて測度を作り出す前に,
+外測度を先に構成して, それで自ずから測度が 生まれてくるわけ. ここで,
+定義と主張だけ述べておいて, 証明は今までの議論をそのままコピーすれば
+できるのだ.</p>
+<div id="def:out-measure" class="definition">
+<p><strong>Definition 1.49</strong> (外測度). <em><span
+class="math inline">\(X\)</span>を集合, 集合 <span
+class="math inline">\(X\)</span>上の外測度 <span
+class="math inline">\(\mu ^* : \mathcal{P}(X) \to [0, \infty
+]\)</span>は以下の3つの性質を満たす写像である.
+(ドヤ顔をしているのはわかるよw)</em></p>
+<ol>
+<li><p><em><span class="math inline">\(\mu ^* (\emptyset ) =
+0\)</span>,</em></p></li>
+<li><p><em><span class="math inline">\(A \subseteq B \subseteq
+X\)</span>ならば, <span class="math inline">\(\mu ^*(A) \le \mu
+^*(B)\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(\{A_{i} \}_{i \in \mathbb{N}}
+\subseteq \mathcal{P}(X)\)</span>に対し, <span class="math inline">\(\mu
+*\left(\bigcup_{i \in \mathbb{N}} A_{i }\right) \leq \sum_{i \in
+\mathbb{N} }^{}  \mu ^* (A_i)\)</span></em></p></li>
+</ol>
+</div>
+<div class="definition">
+<p><strong>Definition 1.50</strong> (外測度による完全加法族). <em><span
+class="math inline">\(X\)</span>に外測度 <span class="math inline">\(\mu
+^*\)</span>が装備される時, 以下の集合族<span
+class="math inline">\(\mathcal{S}\)</span>は<span
+class="math inline">\(\sigma\)</span>-加法族であり, <span
+class="math inline">\((X , \mathcal{S} , \mu ^*
+|_{\mathcal{S}})\)</span> を外測度<span class="math inline">\(\mu
+^*\)</span>に誘導される測度空間と呼ぶ. <span
+class="math display">\[\begin{aligned}
+      \mathcal{S} \coloneqq \{A \subseteq X  \mid \forall E \subseteq X;
+\mu ^* (A \cap E) + \mu ^* (A \setminus E) = \mu ^* (A) \}
+    \end{aligned}\]</span></em></p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 1.51</strong>. <em><span
+class="math inline">\(\left( \mathbb{R}, \mathcal{B}(\mathbb{R}),
+\lambda   \right)\)</span>を今まで構成したBorel 可測 空間とする.
+測度空間<span class="math inline">\(\left( \mathbb{R},
+\mathcal{B}(\mathbb{R}) ,\mu  \right)\)</span> に対し, <span
+class="math inline">\(\forall (a,b) \subseteq \mathbb{R}; \mu ((a,b)) =
+\lambda  ((a,b))\)</span>ならば, <span class="math inline">\(\mu \equiv
+\lambda\)</span>が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(\mathcal{E}\coloneqq \{C
+\in \mathcal{B}(\mathbb{R}) \mid \mu (C) = \lambda (C)\}\)</span>
+が<span class="math inline">\(\mathbb{R}\)</span>上の<span
+class="math inline">\(\sigma\)</span>-加法族であるか? ◻</p>
+</div>
+<p>Borel 集合上で一致するならば, 完備化の理論で,
+可測集合族全体で一致することが直ちに従う.</p>
+<h1 id="cha:積分">積分</h1>
+<p>今章から測度に基づく積分論を展開する.
+流れとしては単函数と呼ばれるものを用いて, 可測函数を近似し,
+単函数の積分の極限をもって可測函数の積分を与える単調収束定理とそれから発生するFatouの補題とLebesgueの優収束定理を紹介する予定である.</p>
+<h2 id="sec:積分の定義と簡単な性質">積分の定義と簡単な性質</h2>
+<div class="definition">
+<p><strong>Definition 2.1</strong> (単函数). <em>可測空間<span
+class="math inline">\(\left( X , \mathcal{S} \right)\)</span>
+上で定義される有限個の値しか取らない可測函数<span
+class="math inline">\(f: X \to \mathbb{R}\)</span> を単函数と呼ぶ. <span
+class="math display">\[\begin{aligned}
+            \mathcal{E}\coloneqq \{f:X \to  \mathbb{R} \mid f
+\text{が単函数である}\}
+        \end{aligned}\]</span> これを単函数全体の集合と呼び, <span
+class="math display">\[\begin{aligned}
+\mathcal{E}^{+}\coloneqq \{f \in \mathcal{E} \mid \forall x \in X; f(x)
+\geq 0\}
+    \end{aligned}\]</span> を非負単函数全体の集合と呼ぶ.</em></p>
+</div>
+<div class="definition">
+<p><strong>Definition 2.2</strong> (非負単函数の積分). <em>測度空間<span
+class="math inline">\(\left( X, \mathcal{S}, \mu \right)\)</span>
+上で定義される非負単函数<span class="math inline">\(f: X \to [0, \infty
+)\)</span> に対し, ある<span class="math inline">\(\left( E_k \right)
+_{k =1}^n\)</span>が<span
+class="math inline">\(\mathcal{S}\)</span>-可測集合列と非負実数列<span
+class="math inline">\((c_k)_{k =1}^n\)</span>が存在し, <span
+class="math display">\[\begin{aligned}
+            f(x) = \sum_{k=1}^{n} c_k \chi_{E_k}(x)
+        \end{aligned}\]</span> の時, <span
+class="math display">\[\begin{aligned}
+    I_{\mu }(f) \coloneqq \sum_{k=1}^{n} c_k \mu(E_k)
+        \end{aligned}\]</span></em></p>
+<p><em>を単函数の積分と呼ぶ.</em></p>
+</div>
+<div id="prop:convert" class="proposition">
+<p><strong>Proposition 2.3</strong> (単函数の表示変換).
+<em>測度空間<span class="math inline">\(\left( X, \mathcal{S}, \mu
+\right)\)</span>上のある<span class="math inline">\(a_1,a_2,\ldots,a_m
+\in  [0 , \infty )\)</span>と<span
+class="math inline">\(\mathcal{S}\)</span>-可測集合列<span
+class="math inline">\(A_1,A_2, \ldots ,A_m\)</span>に対し, ある<span
+class="math inline">\(c_1,c_2,\ldots,c_n \in [0, \infty
+)\)</span>と互いに素な可測集合列<span
+class="math inline">\(C_1,C_2,\ldots,C_n, \bigcup_{i =1}^n C_i =
+\bigcup_{i = 1}^m A_i\)</span>を満たすものが存在し, <span
+class="math display">\[\begin{aligned}
+            \sum_{k=1}^{m} a_k \chi_{A_k}(x) = \sum_{k=1}^{n} c_k
+\chi_{C_k}(x) \\
+    \sum_{k=1}^{m} a_k \mu(A_k) = \sum_{k=1}^{n} c_k \mu (C_k)
+        \end{aligned}\]</span> を満たす.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(a_2,
+A_2\)</span>について, <span class="math display">\[\begin{aligned}
+        a_1\chi_{A_1}(x) + a_2\chi_{A_2}(x) =       a_1
+\chi_{a_1 \setminus A_2} (x) + a_2 \chi_{A_2 \setminus
+A_1}(x) + (a_1+a_2) \chi_{A_1\cap A_2}(x)\\
+a_1\mu(A_1) +a_2\mu(A_2) =  a_1 \mu (A_1 \setminus  A_2)+ a_2\mu (A_2
+\setminus A_1) +(a_1+a_2) \mu(A_1 \cap A_2)
+    \end{aligned}\]</span> が成立し,
+右辺の3つの互いに素な集合の測度の一次結合を<span
+class="math inline">\(b_1\mu(B_1)+ b_2 \mu (B_2) + b_3 \mu
+(B_3)\)</span>として, これらに, <span class="math inline">\(a_3,
+A_3\)</span>との対称差を考えて新しい互いに素な集合の測度の一次結合を作り,
+有限回繰り返すと, <span class="math inline">\(a_m ,
+A_m\)</span>による対称差での列が望む結果である. ◻</p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 2.4</strong> (単函数の積分がwell-defined).
+<em>測度空間<span class="math inline">\(\left( X, \mathcal{S}, \mu
+\right)\)</span>と<span class="math inline">\(a_1,a_2,\ldots ,a_m,
+b_1,b_2,\ldots,b_n \in [0,\infty ]\)</span> と<span
+class="math inline">\(\mathcal{S}\)</span>-可測集合<span
+class="math inline">\(A_1, A_2, \ldots, A_m , B_1, B_2,
+\ldots,B_n\)</span>に対し, <span class="math inline">\(\sum_{k=1}^{m}
+a_k \chi_{A_k} = \sum_{k=1}^{n} b_k\chi_{B_k}\)</span>
+ならば, <span class="math display">\[\begin{aligned}
+    \sum_{k=1}^{m} a_{k} \mu (A_k) = \sum_{k=1}^{n} b_k \mu (B_k).
+        \end{aligned}\]</span></em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> Proposition <a href="#prop:convert"
+data-reference-type="ref" data-reference="prop:convert">2.3</a>より,
+<span class="math inline">\(A_1, \ldots ,A_m\)</span>が互いに素, <span
+class="math inline">\(B_1, \ldots
+,B_n\)</span>が互いに素であると仮定してもよい. この時, <span
+class="math display">\[\begin{aligned}
+            \sum_{k=1}^{m} a_k \mu(A_k) = \sum_{k=1}^{m} \sum_{l =1}^{n}
+a_k \mu (A_k \cap B_l) \\
+            \sum_{l = 1}^{n} b_l \mu (B_l) = \sum_{l =1}^n\sum_{k=1}^{m}
+b_l \mu (B_l \cap A_k)
+        \end{aligned}\]</span></p>
+<p>単函数が一致するので, <span class="math inline">\(\forall 1\leq k
+\leq m, 1 \leq l \leq n\)</span>に対し, <span class="math inline">\(a_k
+\mu(A_k \cap B_l) = b_l \mu \left( B_l \cap A_k \right)\)</span>
+が成立する. よって積分値が一致する. ◻</p>
+</div>
+<div id="prop:sim-prop" class="proposition">
+<p><strong>Proposition 2.5</strong> (非負単関数の積分の性質).
+<em>測度空間<span class="math inline">\(\left(X , \mathcal{S} , \mu
+\right)\)</span> について,</em></p>
+<ol>
+<li><p><em><span class="math inline">\(A \in \mathcal{S},
+I_{\mu}(\chi_A) = \mu (A)\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(f + g \in \mathcal{E}^{+},
+I_{\mu}(f+g) = I_{\mu}(f) + I_{\mu}(g)\)</span></em></p></li>
+<li><p><em><span class="math inline">\(\forall a \geq 0; \forall f \in
+\mathcal{E}^{+}; I_{\mu}(af) = a I_{\mu}(f)\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(f,g \in \mathcal{E}^{+};(f \geq g
+\implies I_{\mu}(f) \geq I_{\mu}(g))\)</span>.</em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 1,2,3は定義を確認するで明らか, 4は<span
+class="math inline">\(I_{\mu}(f) - I_{\mu}(g)\)</span>
+を定義通りに展開して非負単函数<span
+class="math inline">\(f-g\)</span>の積分になるから <span
+class="math inline">\(0\)</span>以上になる. ◻</p>
+</div>
+<div class="definition">
+<p><strong>Definition 2.6</strong> (非負函数の積分). <em><span
+class="math inline">\(\left( X, \mathcal{S}, \mu \right)\)</span>
+上で定義される非負値函数<span class="math inline">\(f: X \to [0,\infty
+]\)</span>に対し, <span class="math display">\[\begin{aligned}
+    \int_X f d\mu \coloneqq \sup \{I_{\mu}(g)  \mid g \in
+\mathcal{E}^{+}; \forall x \in X; g(x) \leq f(x)\}
+        \end{aligned}\]</span> を函数<span
+class="math inline">\(f\)</span>の <span
+class="math inline">\(\mu\)</span>に関する積分と呼ぶ. <span
+class="math inline">\(\int_X f(x) d \mu
+(x)\)</span>と表すことがある.</em></p>
+</div>
+<div class="definition">
+<p><strong>Definition 2.7</strong>. <em>函数<span
+class="math inline">\(f,g:X \to \overline{\mathbb{R}}\)</span> に対し,
+<span class="math display">\[\begin{aligned}
+            f \leq g\overset{\text{def}} \iff \forall x \in X; f(x) \leq
+g(x) \\
+            f &lt; g \overset{\text{def}} \iff \forall x \in X; f(x)
+&lt; g(x) \\
+            f \geq g \overset{\text{def}} \iff \forall x \in X; f(x)
+\geq g(x) \\
+            f &gt; g \overset{\text{def}} \iff \forall x \in X; f(x)
+&gt; g(x)
+        \end{aligned}\]</span> とする.</em></p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 2.8</strong> (非負函数の積分の基本性質).
+<em>測度空間<span class="math inline">\(\left( X, \mathcal{S}, \mu
+\right)\)</span> 上の非負値函数<span
+class="math inline">\(f,g\)</span>について,</em></p>
+<ol>
+<li><p><em><span class="math inline">\(f\)</span>が単函数ならば, <span
+class="math inline">\(I_{\mu} (f) = \int_X fd\mu\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(\forall x \in X; f(x) \geq
+g(x)\)</span>ならば, <span class="math inline">\(\int_X fd\mu \geq
+\int_X g d\mu\)</span>.</em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(f\)</span>
+が単函数の場合, <span class="math inline">\(g \leq
+f\)</span>を満たす単函数 <span class="math inline">\(g\)</span>に対し,
+<span class="math inline">\(I_{\mu}(g) \leq I_{\mu}(f)\)</span>
+が成立する. <span class="math inline">\(I_{\mu}(f) = \max \{I_{\mu} (g)
+\mid g \in \mathcal{E}^{+}; \forall x \in X; g(x) \leq f(x)\}\)</span>
+が成立する.</p>
+<p><span class="math inline">\(f\leq g\)</span>の場合, <span
+class="math inline">\(\{I_{\mu}(h) \mid h\in \mathcal{E}^{+}; h \leq g\}
+\subseteq \{I_{\mu} (h)  \mid h \in \mathcal{E}^{+}; h \leq f\}\)</span>
+より, 両辺<span class="math inline">\(\sup\)</span>を取ればよい. ◻</p>
+</div>
+<div class="theorem">
+<p><strong>Theorem 2.9</strong> (単調収束定理). <em>測度空間<span
+class="math inline">\(\left( X, \mathcal{S}, \mu
+\right)\)</span>上の非負単調可測函数列<span class="math inline">\(\left(
+f_k \right) _{k\in \mathbb{N}}\)</span> に対し, <span
+class="math inline">\(\forall x \in X; f(x) \coloneqq \lim_{k \to
+\infty}f_k(x)\)</span> と定めると, <span
+class="math display">\[\begin{aligned}
+    \lim_{k \to \infty} \int_X f_k d \mu = \int_X f d\mu
+        \end{aligned}\]</span></em></p>
+<p><em>が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(\lim_{k \to \infty}
+\int_X f_k d\mu \leq \int_X f
+d\mu\)</span>が成立することが積分が函数の大小関係を保つことから得られる.</p>
+<p><span class="math inline">\(\lim_{k \to \infty} \int_X f_k \geq
+\int_X f d\mu\)</span>を示せば十分. 以下, <span class="math inline">\(g
+\in \mathcal{E}^{+}; g\leq f\)</span> を満たす<span
+class="math inline">\(g\)</span>を任意に取り, <span
+class="math inline">\(\lim_{k \to \infty} \int_X f_k d\mu \geq
+I_{\mu}(g)\)</span> を示す. 互いに素な可測集合列と非負実数列が存在し,
+<span class="math inline">\(g = \sum_{k=1}^{n} a_k
+\chi_{A_k}\)</span> とする. <span class="math inline">\(t \in
+(0,1)\)</span>を任意に取り, <span class="math display">\[\begin{aligned}
+            E_k = \{ x \in X \mid  f_k(x) \geq t \sum_{k=1}^{n} a_k
+\chi_{A_k}(x)\}
+        \end{aligned}\]</span> とする. <span
+class="math inline">\(\left( f_k \right) _{k \in \mathbb{N}}\)</span>
+の単調性と<span
+class="math inline">\(g\)</span>の像が有限であることより<span
+class="math inline">\(\left( E_k \right) _{k \in \mathbb{N}}\)</span>
+が単調増大列で, <span class="math inline">\(\bigcup_{k \in \mathbb{N}}
+E_k =X\)</span>が成立する. よって, <span
+class="math display">\[\begin{aligned}
+    \int_X f_k d\mu \geq t \sum_{l=1}^{n} a_l \mu \left( A_l \cap E_k
+\right)
+        \end{aligned}\]</span> が成立し, <span class="math inline">\(k
+\to \infty\)</span>とすると, Proposition <a
+href="#prop:measure-continuity" data-reference-type="ref"
+data-reference="prop:measure-continuity">1.38</a>より, <span
+class="math display">\[\begin{aligned}
+            \lim_{k \to \infty} \int_X f_k d\mu \geq t \sum_{l=1}^{n}
+a_l \mu\left( A_l \right)
+        \end{aligned}\]</span> <span class="math inline">\(t\to
+1\)</span>とすれば, <span class="math display">\[\begin{aligned}
+    \lim_{k \to \infty} \int_X f_k d\mu \geq I_{\mu }(g)
+        \end{aligned}\]</span> が成立し, <span
+class="math display">\[\begin{aligned}
+    \lim_{k \to \infty} \int_X f_k d\mu = \int_X f d\mu
+        \end{aligned}\]</span> が得られる. ◻</p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 2.10</strong> (単函数近似). <em><span
+class="math inline">\(\left( X, \mathcal{S} \right)\)</span>
+上の任意の非負可測函数<span class="math inline">\(f: X \to [0, \infty
+]\)</span>に対し, <span
+class="math inline">\(f\)</span>に各点収束する単調増加非負単函数列<span
+class="math inline">\(\left( g_k \right) _{k\in \mathbb{N}}\)</span>
+が存在する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 各<span class="math inline">\(k \in
+\mathbb{N}\)</span>に対し, <span class="math display">\[\begin{aligned}
+E_{k,l} \coloneqq   \begin{cases}
+    f^{-1}\left( [l 2^{-k}, \left( l+1 \right) 2^{-k}) \right) \ &amp;(l
+= 0, 1, 2, \ldots, k2^k -1) \\
+    f^{-1}\left( [k , \infty] \right) \ &amp; (l = k2^k)
+    \end{cases}
+        \end{aligned}\]</span> <span class="math inline">\(g_k(x)
+\coloneqq \sum_{l =0}^{k 2^k} l 2^{-k}\chi_{E_{k,l}}(x)\)</span>
+とすれば良い. ◻</p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 2.11</strong> (積分の性質). <em>測度空間<span
+class="math inline">\(\left( X, \mathcal{S}, \mu \right)\)</span>
+上の非負可測函数<span class="math inline">\(f,g :X \to
+\overline{\mathbb{R}}\)</span> に対し,</em></p>
+<ol>
+<li><p><em><span class="math inline">\(\forall A \in \mathcal{S}; \int_X
+\chi_{A}d\mu = \mu (A)\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(\forall a \geq 0\)</span>に対し,
+<span class="math inline">\(\int_X af d\mu = a \int_X f
+d\mu\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(\int_X(f+g) d\mu = \int_X f d\mu
++ \int_X gd\mu\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(f\leq g \implies \int_X f d\mu
+\leq \int_X g d\mu\)</span>.</em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 1,4は明らかで,
+2,3は単調収束定理と可測函数の単函数近似を併用すれば出てくる. ◻</p>
+</div>
+<div class="theorem">
+<p><strong>Theorem 2.12</strong> (Fatou’s Lemma). <em>測度空間<span
+class="math inline">\(\left( X, \mathcal{S}, \mu
+\right)\)</span>上の非負可測函数の列<span class="math inline">\(f_k : X
+\to [0,\infty]\)</span>に対し, <span
+class="math display">\[\begin{aligned}
+    \liminf_{k \to  \infty}\int_X f_k d\mu \geq \int_X \left(
+\liminf_{k\to \infty}f_k \right) d\mu
+        \end{aligned}\]</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(g_k \coloneqq \inf_{n
+\geq k} f_n\)</span> として, <span class="math inline">\(\left( g_k
+\right)_{k \in \mathbb{N}}\)</span> が非負単調増大可測函数となり,
+単調収束定理より, <span class="math display">\[\begin{aligned}
+    \int_X \left( \liminf_{k\to \infty} f_k \right) d\mu = \lim_{k
+\to  \infty}\int_X g_k d\mu \leq \liminf_{k \to \infty} \int_X f_k d\mu
+        \end{aligned}\]</span> が得られる.
+右辺の不等号は函数の大小関係による積分の単調性に従う. ◻</p>
+</div>
+<div class="definition">
+<p><strong>Definition 2.13</strong> (Positive Part and Negative Part).
+<em><span class="math inline">\(\left( X, \mathcal{S}
+\right)\)</span>上の可測函数<span class="math inline">\(f: X \to
+\overline{\mathbb{R}}\)</span> に対し, <span
+class="math display">\[\begin{aligned}
+            f^{+}(x) &amp;\coloneqq \max \{f(x), 0\}, \\
+            f^{-}(x) &amp;\coloneqq \max \{-f(x), 0\}
+        \end{aligned}\]</span></em></p>
+<p><em>と定める. <span class="math inline">\(f^{+}\)</span> を<span
+class="math inline">\(f\)</span>のpositive part, <span
+class="math inline">\(f^-\)</span>を <span
+class="math inline">\(f\)</span>のnegative partと呼ぶ.</em></p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 2.14</strong>. <em><span
+class="math inline">\(\left( X, \mathcal{S} \right)\)</span>
+上の可測函数<span class="math inline">\(f\)</span>のpositive part と
+negative part両方とも可測函数である.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span
+class="math inline">\(\max\)</span>函数が連続なので, 可測であり,
+可測関数の合成が可測である. ◻</p>
+</div>
+<div class="definition">
+<p><strong>Definition 2.15</strong> (一般な積分). <em><span
+class="math inline">\(\left( X, \mathcal{S}, \mu \right)\)</span>
+上の可測函数<span class="math inline">\(f:X \to
+\overline{\mathbb{R}}\)</span> に対し, <span
+class="math display">\[\begin{aligned}
+    \int_X f^+ d\mu, \quad \int_X f^- d\mu
+        \end{aligned}\]</span> の少なくとも一方が有限の場合に限って,
+<span class="math display">\[\begin{aligned}
+            \int_X f d\mu \coloneqq \int_X f^+ d\mu - \int_X f^- d\mu
+        \end{aligned}\]</span> と定め, <span
+class="math inline">\(\int_X f d\mu\)</span>を<span
+class="math inline">\(f\)</span>の <span
+class="math inline">\(\mu\)</span>に関する <span
+class="math inline">\(X\)</span>上の積分と呼ぶ.</em></p>
+</div>
+<div class="definition">
+<p><strong>Definition 2.16</strong> (可積分). <em>測度空間<span
+class="math inline">\(\left( X, \mathcal{S}, \mu
+\right)\)</span>上の可測函数<span class="math inline">\(f:X \to
+\overline{\mathbb{R}}\)</span>に対し, <span class="math inline">\(\int_X
+|f| d\mu &lt; \infty\)</span>の時, <span
+class="math inline">\(f\)</span>が <span
+class="math inline">\(\mu\)</span>に関して, <span
+class="math inline">\(X\)</span>上で可積分という.</em></p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 2.17</strong> (可積分函数の性質).
+<em>測度空間<span class="math inline">\(\left( X, \mathcal{S}, \mu
+\right)\)</span>上の可測函数<span class="math inline">\(f,g :X \to
+\overline{\mathbb{R}}\)</span> に対し,</em></p>
+<ol>
+<li><p><em><span class="math inline">\(\forall a \in
+\mathbb{R}\)</span>に対し, <span
+class="math inline">\(af\)</span>も可積分で, <span
+class="math display">\[\begin{aligned}
+            \int_{X}afd\mu = a \int_X f d\mu.
+                \end{aligned}\]</span></em></p></li>
+<li><p><em><span class="math inline">\(\forall x \in X\)</span>, <span
+class="math inline">\(f(x) + g(x)\)</span>が定義される時, <span
+class="math inline">\(f+g\)</span>も可積分で, <span
+class="math display">\[\begin{aligned}
+            \int_X(f+g) d\mu = \int_X f d\mu + \int_X g d\mu.
+                \end{aligned}\]</span></em></p></li>
+<li><p><em><span class="math inline">\(f\leq g \implies \int_X f d\mu
+\leq \int_X g d\mu.\)</span></em></p></li>
+<li><p><em><span class="math inline">\(\left| \int_X f d\mu \right| \leq
+\int_X |f| d\mu.\)</span></em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 定義通り確認すれば良い. ◻</p>
+</div>
+<div class="definition">
+<p><strong>Definition 2.18</strong> (除外集合). <em><span
+class="math inline">\(\forall x \in X\)</span>に応じて定まる性質<span
+class="math inline">\(P(x)\)</span>が <span
+class="math inline">\(\mu\)</span>の下で, 測度 <span
+class="math inline">\(0\)</span>の集合を除いて成立する時, <span
+class="math display">\[\begin{aligned}
+            \text{$\mu$-a.a. $x \in X$に対し, $P(x)$ が成立する.}
+        \end{aligned}\]</span> または, <span
+class="math display">\[\begin{aligned}
+            \text{$\mu$-a.e. で$P$が成立する.}
+        \end{aligned}\]</span> という.</em></p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 2.19</strong>. <em>測度空間<span
+class="math inline">\(\left( X, \mathcal{S}, \mu
+\right)\)</span>上の2つの可測函数<span class="math inline">\(f,g :
+\to  \overline{\mathbb{R}}\)</span>に対し, <span class="math inline">\(N
+\in \mathcal{S}, \mu(N) =0\)</span> とする. この時,</em></p>
+<ol>
+<li><p><em><span class="math inline">\(\chi_{N}f\)</span>
+は可積分で, <span class="math display">\[\begin{aligned}
+                \int_X \chi_N f d\mu = 0
+          . \end{aligned}\]</span> また, <span
+class="math display">\[\begin{aligned}
+            \int_X \chi_{X \setminus  N}|f| d\mu = \int_X |f| d\mu
+\in [0,\infty ]
+        \end{aligned}\]</span> が成立.</em></p></li>
+<li><p><em><span class="math inline">\(f\)</span>が可積分の時, <span
+class="math inline">\(\chi_{X \setminus N}f\)</span> も可積分で,
+<span class="math display">\[\begin{aligned}
+            \int_X \chi_{X \setminus N}f d\mu = \int_X f d\mu
+        \end{aligned}\]</span> が成立する.</em></p></li>
+<li><p><em><span class="math inline">\(f\)</span>が可積分かつ<span
+class="math inline">\(\mu\)</span>-a.e. <span
+class="math inline">\(f=g\)</span>ならば, <span
+class="math inline">\(g\)</span>も可積分で, <span
+class="math display">\[\begin{aligned}
+      \int_X f d\mu = \int_X g d\mu
+        \end{aligned}\]</span> が成立する.</em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 1. <span class="math inline">\(\forall k \in
+\mathbb{N}\)</span>に対し, <span class="math display">\[\begin{aligned}
+    h_k(x) \coloneqq \min \{|f(x)|, k\}, \ x \in X
+        \end{aligned}\]</span> とおく. <span
+class="math inline">\(\left( h_k \right) _{k \in \mathbb{N}}\)</span>
+が非負可測単調列になる. 単調収束定理より, <span
+class="math display">\[\begin{aligned}
+            \lim_{k \to \infty} \int_X \chi_{N}h_k d\mu = \int_X
+\chi_N |f| d\mu
+        \end{aligned}\]</span> が得られ, 左辺は<span
+class="math inline">\(0\)</span> であり (<span
+class="math inline">\(\because \forall k \in \mathbb{N}; \int_X
+\chi_N h_k d\mu \leq k \int_X \chi_N d\mu = k \mu (N) =
+0\)</span>), 従って, <span class="math inline">\(\chi _N
+f\)</span>が可積分であり, 三角不等式より, <span
+class="math display">\[\begin{aligned}
+            |\int_X \chi_N f d\mu | \leq \int_X |\chi_N f|
+d\mu = 0
+        \end{aligned}\]</span> で, また, <span
+class="math display">\[\begin{aligned}
+            \int_X |f| d \mu  = \int_X \chi_N |f| + \chi_{X
+\setminus N}|f| d\mu = \int_X \chi_{X \setminus N}|f| d\mu
+        \end{aligned}\]</span> が成立する. よって,
+<em>1</em>.が示された.</p>
+<p><em>2</em>. まず可積分性は <span
+class="math display">\[\begin{aligned}
+            |\chi_{X \setminus N}f| \leq |f|
+        \end{aligned}\]</span> が成立し, 単調性より, <span
+class="math display">\[\begin{aligned}
+            \int_X |\chi_{X \setminus N}f| d\mu \leq  \int_X |f|
+d\mu
+        \end{aligned}\]</span> が得られ, 可積分性が従う.
+可積分函数の積分の線型性より, <span
+class="math display">\[\begin{aligned}
+            \int_{X} f d\mu = \int_X \chi_{N}f d\mu + \int_X
+\chi_{X \setminus N} f d\mu= \int_X \chi_{X \setminus
+N}fd\mu
+        \end{aligned}\]</span></p>
+<p><em>3</em>. <span class="math inline">\(N \coloneqq {f \neq
+g}\)</span>とする. <span class="math display">\[\begin{aligned}
+            \int_X |g| d\mu = \int_X \chi_{X \setminus N}|g| d\mu
+= \int_X \chi_{X \setminus N}|f| d\mu \leq \int_X |f| d\mu &lt;
+\infty
+        \end{aligned}\]</span> より, <span
+class="math inline">\(g\)</span>の可積分性が従う. よって, <span
+class="math display">\[\begin{aligned}
+            \int_X g d\mu = \int_X \chi_{X \setminus N}g d\mu =
+\int_X \chi_{X \setminus N} f d\mu = \int_X f d\mu
+        \end{aligned}\]</span></p>
+<p>が得られる. ◻</p>
+</div>
+<div class="theorem">
+<p><strong>Theorem 2.20</strong> (Lebesgue 優収束定理).
+<em>測度空間<span class="math inline">\(\left( X, \mathcal{S}, \mu
+\right)\)</span> 上の可測函数の列<span class="math inline">\((f_k) _{k
+\in \mathbb{N}}\)</span>, <span class="math inline">\(f_k: X \to
+\overline{\mathbb{R}}\)</span>に対し,
+以下の2条件を満たすとする.</em></p>
+<ol>
+<li><p><em><span class="math inline">\((f_k) _{k \in
+\mathbb{N}}\)</span> が<span
+class="math inline">\(f\)</span>に各点収束する.</em></p></li>
+<li><p><em>ある非負可測函数 <span class="math inline">\(g: X \to [0,
+\infty ]\)</span>が存在し, <span class="math inline">\(\sup_{k \in
+\mathbb{N}}|f_k| \leq g\)</span>, <span class="math inline">\(\int_X g
+d\mu &lt; \infty\)</span> が成立する.</em></p></li>
+</ol>
+<p><em>この時, <span class="math inline">\(f\)</span>も可積分で, <span
+class="math display">\[\begin{aligned}
+\lim_{k \to \infty} \int_X f_k d\mu = \int_X f d\mu
+    \end{aligned}\]</span> が成立.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 可積分性は<span class="math inline">\(\sup_{k \in
+\mathbb{N}}|f_k| \leq g\)</span> に従う. 同様に, 各<span
+class="math inline">\(f_k\)</span>も可積分. 以下, <span
+class="math inline">\(\forall k \in \mathbb{N}; \forall x \in X; |f_k
+(x) | &lt; \infty , |f(x) | &lt; \infty\)</span>と仮定する. <span
+class="math inline">\(g+f \geq 0, g - f \geq 0\)</span>となる. Fatou’s
+lemma より, <span class="math display">\[\begin{aligned}
+\int_X g \pm f d\mu = \int_X \liminf_{k \to \infty}(g \pm f_k) d\mu \leq
+\liminf_{k \to \infty} \int_X g \pm f_k d\mu
+        \end{aligned}\]</span></p>
+<p><span class="math inline">\(+\)</span>の部分では, <span
+class="math display">\[\begin{aligned}
+     \int_X g d\mu + \int_X f d\mu \leq \int_X g d\mu + \liminf_{k
+\to  \infty} \int_X f_k d\mu
+        \end{aligned}\]</span></p>
+<p><span class="math inline">\(-\)</span>の部分では <span
+class="math display">\[\begin{aligned}
+     - \int_X f d\mu \leq \liminf_{k\to  \infty}\int_X -f_k d\mu = -
+\limsup_{k \to  \infty}\int_X f_k d\mu
+        \end{aligned}\]</span></p>
+<p>以上より, <span class="math display">\[\begin{aligned}
+    \int_X f d\mu \leq \liminf_{k \to \infty} \int_X f_k d\mu \leq
+\limsup_{k \to \infty} \int_X f_k d\mu \leq \int_X f d\mu
+        \end{aligned}\]</span> が得られ, <span
+class="math display">\[\begin{aligned}
+        \liminf_{k \to  \infty } \int_X f_k d\mu = \limsup_{k \to
+\infty} \int_X f_k d\mu = \lim_{k \to \infty} \int_X f_k d\mu = \int_X f
+d\mu
+    
+\end{aligned}\]</span>となる.</p>
+<p>各<span class="math inline">\(f_k\)</span>と <span
+class="math inline">\(f\)</span>の可積分性より, <span
+class="math inline">\(\mu \left( \{|f_k| =\infty\}  \right) = \mu \left(
+\{|f| = \infty\}  \right)
+=0\)</span>その集合を除いたところで上記の議論をすれば良い. ◻</p>
+</div>
+<div class="theorem">
+<p><strong>Theorem 2.21</strong> (有界収束定理). <em>有限測度空間<span
+class="math inline">\(\left( X, \mathcal{S}, \mu \right)\)</span>, <span
+class="math inline">\(\mu(X) &lt; \infty\)</span>上の可測函数列<span
+class="math inline">\(\left( f_k \right) _{k \in \mathbb{N}}\)</span>,
+<span class="math inline">\(f_k : X \to \overline{\mathbb{R}}\)</span>
+に対し, <span class="math inline">\((f_k)_{k \in \mathbb{N}}\)</span>
+が<span class="math inline">\(f\)</span>に各点収束し, <span
+class="math inline">\(\exists c \in [0, \infty )\)</span>, <span
+class="math inline">\(\sup_{k \in \mathbb{N}}f \leq c\)</span> とする.
+この時, <span class="math display">\[\begin{aligned}
+    \lim_{k \to \infty} \int_X f_k d\mu = \int_X f d\mu
+        \end{aligned}\]</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> Lebesgueの優収束定理に従う. ◻</p>
+</div>
+<div class="theorem">
+<p><strong>Theorem 2.22</strong>. <em><span
+class="math inline">\(\mathbb{R}\)</span>のLebesgue可測集合<span
+class="math inline">\(L\)</span>上で定義される函数<span
+class="math inline">\(f\)</span>の不連続点が測度<span
+class="math inline">\(0\)</span>ならば, <span
+class="math inline">\(f\)</span>がLebesgue 可測函数である.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span
+class="math inline">\(f\)</span>の連続点全体の集合を <span
+class="math inline">\(C\)</span>とする. 任意の<span
+class="math inline">\(\mathbb{R}\)</span>の開集合<span
+class="math inline">\(O\)</span>に対して, <span
+class="math inline">\(f^{-1}(O) = (f^{-1}(O) \cap C ) \cup \left(
+f^{-1}(O) \cap L \setminus C\right)\)</span> で, <span
+class="math inline">\(f^{-1}\left( O \right) \cap L\setminus C= f|_{L
+\setminus C}^{-1}(O)\)</span>がLebesgue可測集合,
+左の部分は零集合で明らかにLebesgue可測集合で, 証明終了. ◻</p>
+</div>
+<div class="theorem">
+<p><strong>Theorem 2.23</strong>. <em><span
+class="math inline">\(\mathbb{R}\)</span>の閉区間<span
+class="math inline">\([a,b]\)</span>で定義される有界函数 <span
+class="math inline">\(f\)</span>がRiemann積分できるならば,
+Lebesgue積分可能で, 積分の値がRiemann積分と一致する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(\mu\)</span>を<span
+class="math inline">\([a,b]\)</span> 上のLebesgue測度とする. <span
+class="math inline">\(f\)</span>が非負可測函数としても一般性を失わない.
+<span class="math display">\[\begin{aligned}
+      \mathcal{U}_{\mu }(f) &amp;\coloneqq \sup \{I_{\mu }(g)  \mid g
+\in \mathcal{E}^{+}, g \le f\} , \\
+  \mathcal{L}_{\mu }(f) &amp;\coloneqq  \inf \{I_{\mu }(g)  \mid g \in
+\mathcal{E}^{+}, f \le g \}
+    \end{aligned}\]</span> とする. <span
+class="math inline">\(f\)</span>の上界 <span
+class="math inline">\(M\)</span>を一つ取る. 任意の正の整数<span
+class="math inline">\(n\)</span>を取る. <span class="math inline">\(E_k
+\coloneqq [1,n] \cap \mathbb{Z}, \psi _n : [a,b] \to \mathbb{R}, \varphi
+_n: [a,b]\to \mathbb{R}\)</span> を次のように定義する:</p>
+<p><span class="math display">\[\begin{aligned}
+      E_k \coloneqq f^{-1}\left( [\frac{k-1}{n}M, \frac{k}{n}M )\right)
+, \\
+      \psi _n(x) \coloneqq \sum_{k=1}^{n} \frac{k}{n}M
+\chi_{E_k}  , \\
+      \varphi _n (x) \coloneqq \sum_{k=1}^{n} \frac{k-1}{n}M
+\chi_{E_k}(x).
+    \end{aligned}\]</span> この構成より, <span
+class="math inline">\(\varphi \le f \le \psi\)</span>が成立し, <span
+class="math inline">\(\lim_{n \to \infty} \int_{[a,b]}|\varphi _n
+-\psi_n |\le \lim_{n \to \infty} \frac{M(b-a)}{n} = 0\)</span> より,
+<span class="math inline">\(\mathcal{U}_{\mu }(f) = \mathcal{L}_{\mu
+}(f)\)</span>が成立する. またRiemann 積分の上限和<span
+class="math inline">\(\mathcal{L}^R(f)\)</span>と下限和<span
+class="math inline">\(\mathcal{E}^R\)</span>の分割による定義より, <span
+class="math display">\[\mathcal{E}^R \le \mathcal{E}_{\mu } \le
+\mathcal{L}_{\mu }\le \mathcal{L}^R\]</span> が成立する. Riemann
+積分可能ならば, 上式が等号で結ばれる. ◻</p>
+</div>
+<h2 id="微分記号下での微分">微分記号下での微分</h2>
+<p><span class="math inline">\(\left( X,
+\mathcal{S},\mu  \right)\)</span>を測度空間とする.</p>
+<div class="theorem">
+<p><strong>Theorem 2.24</strong>. <em><span class="math inline">\(I \neq
+\emptyset\)</span> を開区間とする. <span class="math inline">\(f:
+I\times X \to \mathbb{R}\)</span>を次の条件を満たす とする.</em></p>
+<ol>
+<li><p><em><span class="math inline">\(\forall t \in I\)</span>
+に対して, <span class="math inline">\(x \mapsto
+f(t,x)\)</span>は可積分である.</em></p></li>
+<li><p><em><span class="math inline">\(\forall x \in X\)</span>に対して,
+<span class="math inline">\(t \mapsto
+f(t,x)\)</span>は連続である.</em></p></li>
+<li><p><em><span class="math inline">\(\exists g: X \to [0,
+\infty]\)</span> s.t. <span
+class="math inline">\(g\)</span>が可積分な可測函数, <span
+class="math inline">\(\forall (t,x) \in I \times X;
+      |f(t,x)| \le g(x)\)</span>.</em></p></li>
+</ol>
+<p><em>この時, 函数 <span class="math inline">\(h: I \to \mathbb{R},  t
+\mapsto \int_X f(t,x) d \mu (x)\)</span> は連続である.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 性質1より, <span
+class="math inline">\(h\)</span>がwell-definedである. <span
+class="math inline">\(\forall t \in I\)</span>を固定する. <span
+class="math inline">\(t\)</span>に収束する任意の <span
+class="math inline">\(I\)</span>上の点列 <span
+class="math inline">\((t_k)_{k \in \mathbb{N} }\)</span> を取り, <span
+class="math inline">\(\lim_{k \to \infty} h(t_k) =
+h(t)\)</span>を示せばよい. 性質2より, <span
+class="math inline">\(\forall x \in X; \lim_{k \to \infty} f(t_k, x) =
+f(t,x )\)</span>が成立する. 優収束定理より, <span
+class="math display">\[\begin{aligned}
+      \lim_{k \to \infty} h(t_k) =
+      \lim_{k \to \infty} \int_X f(t_k , x) d \mu (x)
+      = \int_X \lim_{k \to \infty} f(t_k, x) d \mu (x)
+      = h(t)
+    \end{aligned}\]</span> が成立する. ◻</p>
+</div>
+<div class="theorem">
+<p><strong>Theorem 2.25</strong>. <em><span
+class="math inline">\(I\)</span>を空でない開区間とする. <span
+class="math inline">\(f: I \times X \to
+\mathbb{R}\)</span>は次の条件を満たすものとする.</em></p>
+<ol>
+<li><p><em><span class="math inline">\(\forall t \in I\)</span>に対して,
+<span class="math inline">\(x \mapsto  f(t,x)\)</span>
+は可積分である.</em></p></li>
+<li><p><em><span class="math inline">\(\forall x \in X\)</span>に対し,
+<span class="math inline">\(t \mapsto
+f(t,x)\)</span>は微分可能である.</em></p></li>
+<li><p><em><span class="math inline">\(\exists g: X \to [0,
+\infty]\)</span> s.t. 可積分な可測函数, <span
+class="math inline">\(\forall (t,x ) \in I \times X;
+\left|\frac{\partial f}{\partial t}(t,x)\right| \le g(x)\)</span>
+が成立する.</em></p></li>
+</ol>
+<p><em>この時, 函数<span class="math inline">\(t \mapsto h(t) \coloneqq
+\int_X f(t,x) d \mu (x)\)</span> も微分可能であり, <span
+class="math display">\[ \label{eq:3.14}
+    \begin{aligned}
+      \frac{d}{dt}h(t) = \int_{X}\frac{\partial f}{\partial t}(t,x) d
+\mu (x)
+    \end{aligned}\]</span> が成立する.</em></p>
+</div>
+<div class="remark">
+<p><em>Remark 2.1</em>. 式<a href="#eq:3.14" data-reference-type="ref"
+data-reference="eq:3.14">[eq:3.14]</a>がwell-definedである. 各<span
+class="math inline">\(t\)</span>に対して, <span
+class="math inline">\(\forall x \in X\)</span>に対し,</p>
+<p><span class="math display">\[\begin{aligned}
+      \frac{\partial f}{\partial t}(t,x) = \lim_{n \to \infty}
+n(f(t+\frac{1}{n})- f(t,x))
+    \end{aligned}\]</span> なので, <span
+class="math inline">\(t\)</span>を固定するごとに, <span
+class="math inline">\(x\)</span>の可測函数になる.</p>
+<p>性質3より, <span class="math inline">\(\frac{\partial f}{\partial
+t}(t,x)\)</span>は可積分である.</p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(\forall t \in
+I\)</span>を固定する. <span class="math inline">\(t\)</span>に収束する
+<span class="math inline">\(I\)</span>上の <span
+class="math inline">\(t\)</span>を持たない点列 <span
+class="math inline">\((t_k)_{k \in \mathbb{N}}\)</span> を任意に取り,
+<span class="math display">\[\begin{aligned}
+      \frac{h(t_k) - h(t)}{t_k - t} \overset{k\to \infty} \longrightarrow \int_X
+\frac{\partial f}{\partial t}(t,x) d \mu (x)
+    \end{aligned}\]</span> を示せば良い. 各<span
+class="math inline">\(k\)</span>に対して, <span
+class="math display">\[\begin{aligned}
+      f_k(x) \coloneqq \frac{f(t_k,x) -f(t,x)}{t_k - t}
+    \end{aligned}\]</span> と定める. 性質2より, <span
+class="math inline">\(f_k\)</span>が <span
+class="math inline">\(\partial_tf\)</span>に収束する.</p>
+<p>積分の線形性より, <span class="math display">\[\begin{aligned}
+      \frac{h(t_k) - h(t)}{t_k - t} = \int_X f_k d \mu
+    \end{aligned}\]</span> が成立する.</p>
+<p>また, <span class="math inline">\(\sup_{k \in \mathbb{N}}|f_k| \le
+g\)</span>が平均値の定理より得られる (<span
+class="math inline">\(\because\)</span>性質3より, 偏導函数は <span
+class="math inline">\(t\)</span>によらずに一様に <span
+class="math inline">\(g\)</span>で抑えられる). よって, <span
+class="math display">\[\begin{aligned}
+      \frac{d}{dt}h(t) = \lim_{k \to \infty} \int_X f_k d \mu = \int_X
+\left( \lim_{k \to \infty} f_k \right) d \mu = \int_X \frac{\partial
+f}{\partial t}(t,x) d \mu (x)
+    \end{aligned}\]</span> が優収束定理より得られる. ◻</p>
+</div>
+<h2 id="riemann-積分との関係">Riemann 積分との関係</h2>
+<p><u>記法</u> <span class="math inline">\(f: X \to
+\overline{\mathbb{R}}\)</span> を測度空間 <span
+class="math inline">\(\left( X, \mathcal{S}, d \mu  \right)\)</span>
+上の非負可測または可積分な函数とし, <span class="math inline">\(A \in
+\mathcal{S}\)</span> として, <span
+class="math display">\[\begin{aligned}
+    \int_A f d \mu \coloneqq \int_X \chi_Af d \mu
+  \end{aligned}\]</span> と定める.</p>
+<div class="theorem">
+<p><strong>Theorem 2.26</strong>. <em><span
+class="math inline">\(f\)</span>を有界閉区間 <span
+class="math inline">\([a,b]\)</span>上の有界函数, <span
+class="math inline">\(f\)</span>は <span
+class="math inline">\([a,b]\)</span>上Riemann 可積分とする.
+この時,</em></p>
+<ol>
+<li><p><em><span
+class="math inline">\(f\)</span>はLebesgue可測である.</em></p></li>
+<li><p><em><span class="math inline">\(F\coloneqq \{x \in [a,b] \mid
+\text{$f$は $x$で不連続}\}\)</span> がLebesgue測度<span
+class="math inline">\(0\)</span>.</em></p></li>
+<li><p><em><span class="math inline">\(f\)</span>は <span
+class="math inline">\(\lambda\)</span> に関して可積分で, <span
+class="math display">\[\begin{aligned}
+          \int_{[a,b]}f d \lambda = \int_a^b f(x) dx
+        \end{aligned}\]</span> が成立する.</em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 各<span class="math inline">\(n\)</span>に対し, <span
+class="math inline">\(\Delta_n = \{x_{n,0}, \ldots , x_{n,
+2^{n}}\}\)</span> を<span class="math inline">\([a,b]\)</span>の
+等分割とする. これで, <span class="math inline">\(\forall n \in
+\mathbb{N}; \Delta_n \subseteq \Delta_{n+1}\)</span> が成立する. <span
+class="math inline">\(k = 1, \ldots ,2^n\)</span>に対し, <span
+class="math display">\[\begin{aligned}
+      m_{n,k}&amp;\coloneqq \inf \{f(x) \mid x \in [x_{n,k-1}, x_{n,
+k}]\}, \\
+      M_{n,k}&amp;\coloneqq \inf \{f(x) \mid x \in [x_{n,k-1}, x_{n,
+k}]\}
+    \end{aligned}\]</span> とおく. <span
+class="math display">\[\begin{aligned}
+      \underline{S}(f; \Delta_n) &amp;\coloneqq \sum_{k= 1}^{2^n}
+m_{n,k} |\Delta_n|, \\
+      \overline{S}(f; \Delta_n) &amp;\coloneqq \sum_{k= 1}^{2^n} M_{n,k}
+|\Delta_n|  
+    \end{aligned}\]</span> 仮定より, <span
+class="math display">\[\begin{aligned}
+      \lim_{n \to \infty} \underline{S}(f;\Delta_n) = \lim_{n \to
+\infty} \overline{S}(f;\Delta_n) = \int_a^b f(x) dx
+    \end{aligned}\]</span> <span class="math display">\[\begin{aligned}
+      \varphi _n(x) = f(a) + \chi_{\{a\} }(x) + \sum_{k=1}^{2^n}
+m_{n,k} \chi_{(x_{n, k-1}, x_{n,k}]}(x) \\
+      \psi _n (x) = f(a) + \chi_{\{a\} }(x) + \sum_{k=1}^{2^n}
+M_{n,k} \chi_{(x_{n, k-1}, x_{n,k}]}(x) \\
+    \end{aligned}\]</span> と定めると, <span
+class="math inline">\(\{\varphi _n\}_{n \in \mathbb{N}}, \{\psi _n\}_{n
+\in  \mathbb{N}}\)</span> は<span
+class="math inline">\([a,b]\)</span>上の Lebesgue可測な単函数列である.
+<span class="math display">\[\begin{aligned}
+      \varphi (x) \coloneqq \lim_{n \to \infty} \varphi _n (x) \\
+      \psi (x) \coloneqq \lim_{n \to \infty} \psi _n (x)
+    \end{aligned}\]</span> とする. 可測な函数列の収束先が可測函数である.
+この時, <span class="math display">\[\begin{aligned}
+      m &amp;\coloneqq \inf \{f(x)  \mid x \in [a,b]\} &gt; -\infty \\
+      M &amp; \coloneqq \sup \{f(x)  \mid x \in [a,b]\} &lt; \infty
+    \end{aligned}\]</span> とおくと, 構成と有界収束定理より, <span
+class="math display">\[\begin{aligned}
+      m \leq \varphi _n(x)  \leq \varphi (x) \leq  f(x) &amp; \leq \psi
+(x) \leq \psi _n(x) \leq M, \forall n,x \\
+      \lim_{n \to \infty} \int_{[a,b]} \varphi _n d \lambda &amp;=
+\int_{[a,b]}\varphi d \lambda \\
+      \lim_{n \to \infty} \int_{[a,b]} \psi _n d \lambda &amp;=
+\int_{[a,b]}\psi d \lambda
+    \end{aligned}\]</span> が成立する. ここで, <span
+class="math display">\[\begin{aligned}
+      \int_{[a,b]} \varphi _n d \lambda  &amp; =  \underline{S}(f;
+\Delta_n) \\
+      \int_{[a,b]} \psi _n d \lambda  &amp; =  \overline{S}(f; \Delta_n)
+    \end{aligned}\]</span> よって, <span
+class="math display">\[\begin{aligned}
+      &amp;\int_{[a,b]} \varphi d\lambda  = \int_{[a,b]}\psi  d\lambda
+\\
+      \iff &amp;\int_{[a,b]} | \psi  - \varphi | d\lambda = 0
+    \end{aligned}\]</span> よって, <span class="math inline">\(\varphi =
+\psi = f\)</span> (<span
+class="math inline">\(\lambda\)</span>-a.e.)が成立する. 従って, <span
+class="math inline">\(\lambda \left( \{f \neq \varphi \}  \right) =
+0\)</span>. 以上より, <span
+class="math inline">\(f\)</span>がLebesgue可測函数である.</p>
+<p><span class="math inline">\(D \coloneqq \bigcup_{n \in \mathbb{N}}
+\Delta_n\)</span> とおくと, <span
+class="math inline">\(D\)</span>が高々可算であり, <span
+class="math inline">\(\lambda (D) =0\)</span>が成立する. <span
+class="math inline">\(F\setminus D \subseteq \{\varphi &lt; \psi
+\}\)</span> が成立するとしたら, <span
+class="math display">\[\begin{aligned}
+       0 \le \lambda (F) &amp;= \lambda (F \cap D) + \lambda (F
+\setminus D) \\
+                         &amp; \leq \lambda (D) + \lambda \left(
+\{\varphi  &lt; \psi \}  \right) \\
+                         &amp; = 0
+     \end{aligned}\]</span> 以下, <span class="math inline">\(F
+\setminus D \subseteq \{\varphi &lt; \psi \}\)</span>
+が成立することを示す. <span class="math inline">\(x_0 \in F \setminus
+D\)</span>とすると, <span class="math inline">\(\forall n, \exists k=1,
+\ldots , 2^n\)</span> s.t. <span class="math display">\[\begin{aligned}
+       x_{n,k-1} &lt;x_0&lt;x_{n,k}
+     \end{aligned}\]</span> すると, <span class="math inline">\(\varphi
+_n (x_0) = m_{n,k} \leq f(x_0) \leq M_{n,k} = \psi _n(x_0)\)</span>
+が成立する. この関係式で, <span
+class="math inline">\(n\)</span>に関する極限を考えると, <span
+class="math inline">\(\varphi (x_0) \leq f(x_0) \leq \psi
+(x_0)\)</span>が得られる. 等号が成立するとしたら, <span
+class="math inline">\(f\)</span>は <span
+class="math inline">\(x_0\)</span>で連続となる. よって, <span
+class="math inline">\(\varphi (x_0) &lt; \psi
+(x_0)\)</span>が得られる.</p>
+<p><span class="math inline">\(f\)</span>が <span
+class="math inline">\([a,b]\)</span>上で可積分であることが簡単に確認できる.
+積分の単調性より, <span class="math display">\[\begin{aligned}
+       \int_{[a,b]}\varphi d\lambda =\int_{[a,b]}f d\lambda =
+\int_{[a,b]}\psi d\lambda = \int_a^b f dx
+     \end{aligned}\]</span> ◻</p>
+</div>
+<h1 id="cha:$L^p$空間"><span class="math inline">\(L^p\)</span>空間</h1>
+<p><span class="math inline">\(\left( X, \mathcal{S},
+\mu  \right)\)</span> を測度空間とする.</p>
+<h2 id="lp空間の定義と基本性質"><span
+class="math inline">\(L^p\)</span>空間の定義と基本性質</h2>
+<div class="definition">
+<p><strong>Definition 3.1</strong>. <em><span class="math inline">\(p
+\in [1, \infty )\)</span>とする. <span
+class="math display">\[\begin{aligned}
+      \mathscr{L}^p(\mu ) \coloneqq\left\{f:X \to \mathbb{R};
+\text{$f$は $\mathcal{S}$-可測で$\int_X |f|^p d \mu &lt;
+\infty$}\right\}
+    \end{aligned}\]</span> <span class="math inline">\(f-g= 0\)</span>,
+<span class="math inline">\(\mu\)</span>-a.e.を満たす<span
+class="math inline">\(f,g \in \mathscr{L}^p(\mu )\)</span>を<span
+class="math inline">\(f\sim g\)</span>とする. <span
+class="math inline">\(\sim\)</span>が同値関係であり, <span
+class="math inline">\(L^p(\mu ) \coloneqq \mathscr{L}^(\mu
+)/\sim\)</span> を<span class="math inline">\(L^p\)</span>-空間と呼ぶ.
+また, <span class="math inline">\(f \in L^p(\mu )\)</span>に対し,
+(ここで<span class="math inline">\(f\)</span>を代表元として取る) <span
+class="math display">\[\begin{aligned}
+      \|f\|_p \coloneqq \left( \int_X |f|^p d \mu  \right)
+^{\frac{1}{p}}
+    \end{aligned}\]</span> を<span class="math inline">\(f\)</span>の
+<span class="math inline">\(L^p\)</span>-ノルムと呼ぶ.
+(函数としてwell-definedである)</em></p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 3.2</strong>. <em><span
+class="math inline">\(L^p(\mu )\)</span>は<span
+class="math inline">\(\mathbb{R}\)</span>線形空間である.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(\forall \alpha ,
+\beta  \leq 0\)</span>に対して, <span
+class="math inline">\(x^p\)</span>の凸性より, <span
+class="math inline">\((\alpha +\beta )^p \leq 2^{p-1}(\alpha ^{p}+\beta
+^p)\)</span> が成立する. これを利用して, <span
+class="math display">\[\begin{aligned}
+       \int_X |f+g|^p d \mu \leq 2^{p-1}\left( \int_X |f|^p d\mu  +
+\int_X |g|^p d \mu  \right) &lt; \infty
+     \end{aligned}\]</span> 定数倍に関する議論は明らかである. ◻</p>
+</div>
+<div id="lemma:Young" class="lemma">
+<p><strong>Lemma 3.3</strong>. <em><span class="math inline">\(p \in (1,
+\infty)\)</span>とし, <span class="math inline">\(q\in (1,
+\infty)\)</span>を<span
+class="math inline">\(\frac{1}{p}+\frac{1}{q}=1\)</span>
+となるように取る. <span class="math inline">\(q\)</span>を <span
+class="math inline">\(p\)</span>の共役指数と呼ぶ. この時, <span
+class="math inline">\(\forall \alpha ,\beta  \ge 0\)</span>に対し, <span
+class="math display">\[\begin{aligned}
+      \alpha \beta \leq \frac{\alpha ^p}{p}+ \frac{\beta ^q}{q}
+    \end{aligned}\]</span> が成立する. 等号成立は<span
+class="math inline">\(\iff \beta = \alpha ^{p-1}\)</span>
+である.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(a&gt;0,
+b&gt;0\)</span>とする. この時, <span
+class="math inline">\(\ln\)</span>の凸性と単調性より<span
+class="math inline">\(\ln(ab) \leq \ln\left(\frac{1}{p}\alpha ^{p} +
+\frac{1}{q}\beta ^q\right)\)</span> を示せば良い. <span
+class="math display">\[\ln \left(\frac{1}{p}\alpha ^p + \frac{1}{q}\beta
+^{q}\right) \geq \frac{1}{p}\ln (\alpha ^p) + \frac{1}{q}\ln (\beta ^q)
+= \ln (\alpha \beta ).\]</span> ◻</p>
+</div>
+<div id="theorem:Holder" class="theorem">
+<p><strong>Theorem 3.4</strong>. <em><span class="math inline">\(p,q \in
+(1, \infty)\)</span>を互いに共役指数とする. <span
+class="math inline">\(f \in L^p(\mu ), g \in L^q(\mu )\)</span>に対し,
+<span class="math inline">\(fg \in L^1(\mu )\)</span>が成立し, かつ
+<span class="math display">\[\begin{aligned}
+      \int_X |fg| d \mu \leq  \|f\|_p \|g\|_q
+    \end{aligned}\]</span> が成立する. 等号の成立条件<span
+class="math inline">\(\iff  \|g\|^q_q|f(x)|^p =
+\|f\|_p^p|g(x)|^q\)</span>, <span
+class="math inline">\(\mu\)</span>-a.e. で成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(\|f\|_p, \|g\|_q
+&gt;0\)</span>とする. <span class="math display">\[\begin{aligned}
+      \int_X \frac{|f|}{\|f\|_p} \frac{|g|}{\|g\|_q} d \mu
+      \leq \int_X \frac{1}{p}\left(\frac{|f|}{\|f\|_p}\right)^{p} +
+      \frac{1}{q}\left(\frac{|g|}{\|g\|_q}\right)^{q} d \mu =
+      \frac{1}{p}\frac{\|f\|_p^p}{\|f\|_p^p} + \frac{1}{q}
+\frac{\|g\|_q^q}{\|g\|_q^q} =1
+    \end{aligned}\]</span> よって, <span
+class="math display">\[\begin{aligned}
+      \|fg\|_1 \leq \|f\|_p \|g\|_q
+    \end{aligned}\]</span> が成立する. ◻</p>
+</div>
+<div id="theorem:Minkowski" class="theorem">
+<p><strong>Theorem 3.5</strong>. <em><span class="math inline">\(p \in
+[1, \infty)\)</span>とし, <span class="math inline">\(f,g \in L^p \left(
+\mu  \right)\)</span> とする. この時, <span
+class="math display">\[\begin{aligned}
+      \|f+g\|_p \leq \|f\|_p + \|g\|_p
+    \end{aligned}\]</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(p&gt;1\)</span>とする.
+<span class="math inline">\(q = \frac{p}{p-1}\)</span> として, Theorem
+<a href="#theorem:Holder" data-reference-type="ref"
+data-reference="theorem:Holder">3.4</a>の不等式を適用すると, <span
+class="math display">\[\begin{aligned}
+     \|f+g\|_p^p &amp;= \int_X |f+g| |f+g|^{p-1} d \mu  \leq \int_X |f|
+|f+g|^{p-1} d \mu  
+     + \int_X |g| |f+g|^{p-1} d \mu  \\
+                 &amp;\leq   \|f\|_p \| \left( |f + g| \right)^{p-1}
+\|_{q} + \|g\|_p \| \left( |f+g| \right) ^{p-1}\|_q \\
+                 &amp; \leq \left( \|f\|_p + \|g\|_p \right)
+\|f+g\|_p^{p-1}
+   \end{aligned}\]</span> これより, <span
+class="math inline">\(\|f+g\|_p \leq \|f\|_p +
+\|g\|_p\)</span>が得られる. ◻</p>
+</div>
+<h2 id="lp空間の完備性"><span
+class="math inline">\(L^p\)</span>空間の完備性</h2>
+<p>以下, <span class="math inline">\(p \in
+[1,\infty)\)</span>とする.</p>
+<div class="definition">
+<p><strong>Definition 3.6</strong>. <em><span
+class="math inline">\(\{f_k\} _{k \in \mathbb{N}} \subseteq L^p ( \mu
+)\)</span>が<span class="math inline">\(f \in L^p ( \mu
+)\)</span>に<span class="math inline">\(L^p\)</span>-収束 <span
+class="math inline">\(\longleftrightarrow{\mathrm{def}} \lim_{k \to
+\infty} \|f_k -f \|_p =0\)</span></em></p>
+</div>
+<div id="lemma:4.13" class="lemma">
+<p><strong>Lemma 3.7</strong>. <em><span class="math inline">\(\{g_k\}
+_{k \in \mathbb{N}} \subseteq L^p (\mu )\)</span>を非負列とする. この時,
+<span class="math display">\[\begin{aligned}
+     \int_X \left( \sum_{m=1}^{\infty} g_m \right)^p d \mu \leq \left(
+\sum_{m =1}^{\infty}  \|g_m\|_{p} \right) ^p
+    \end{aligned}\]</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 三角不等式と単調収束定理を適用すれば良い. ◻</p>
+</div>
+<div id="proposition:L^p-complete" class="proposition">
+<p><strong>Proposition 3.8</strong>. <em><span
+class="math inline">\(L^p( \mu )\)</span>が完備である.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(\{f_k\} _{k \in
+\mathbb{N}} \subseteq L^p(\mu )\)</span> をCauchy列とする. この時,
+ある部分列<span class="math inline">\(\{f_{n(k)}\} _{k \in
+\mathbb{N}}\)</span> が存在して, <span
+class="math display">\[\begin{aligned}
+      \sum_{m = 1}^{\infty} \| f_{n(m+1)} - f_{n(m)}\|_p &lt; \infty
+    \end{aligned}\]</span> を満たす. すると, Lemma <a href="#lemma:4.13"
+data-reference-type="ref" data-reference="lemma:4.13">3.7</a>より, <span
+class="math display">\[\begin{aligned}
+    \int_X \left( \sum_{m=1}^{\infty} |f_{n(m+1)} - f_{n(m)}| \right) ^p
+d \mu \leq \left(\sum_{m=1}^{\infty} \|f_{n(m+1)} - f_{n(m)} \|_p
+\right)^p &lt;\infty
+    \end{aligned}\]</span></p>
+<p>従って, <span class="math inline">\(\sum_{m =1}^{\infty} |f_{n(m+1)}
+- f_{n(m)}| &lt; \infty \quad \mu\)</span>-a.e., つまり, ある測度<span
+class="math inline">\(0\)</span>の集合<span
+class="math inline">\(N\)</span> が存在して, <span
+class="math display">\[\begin{aligned}
+    \sum_{m=1}^{\infty} |f_{n(m+1)}(x) - f_{n(m)}(x) | &lt;\infty, \quad
+\forall x \in X \setminus N
+  \end{aligned}\]</span> 絶対収束性より, <span class="math inline">\(f_0
+(x) \coloneqq  f_{n(1)}(x)+ \sum_{m =1}^{\infty} (f_{n(m+1)}(x) -
+f_{n(m)}(x) ), \forall x \in X \setminus N\)</span> <span
+class="math inline">\(f_0(x) \coloneqq 0 , \forall x \in
+N\)</span>とする.</p>
+<p><span class="math inline">\(\forall x \in X\)</span>に対して, <span
+class="math display">\[\begin{aligned}
+    |f_0(x)| \leq \sum_{m=1}^{\infty} |f_{n(m+1)}(x) - f_{n(m) }(x)|  +
+|f_{n(1)}(x)|
+  \end{aligned}\]</span> が成立するので, 積分が順序を保つので, <span
+class="math inline">\(f_0 \in  L^p( \mu )\)</span>.</p>
+<p><span class="math inline">\(\forall M = 1, 2,
+\ldots\)</span>に対して, <span class="math display">\[\begin{aligned}
+    \int_X |f_{n(M)} - f_0| ^p d \mu  &amp;= \int_X \left| \sum_{m=
+M+1}^{\infty} \left( f_{n(m+1)} -f_{n(m)} \right) \right|^p d \mu \\
+&amp;\leq
+    \int_X \left( \sum_{m = M+1}^{\infty} |f_{n(m+1) }- f_{n(m)}|
+\right) ^p d \mu \\
+                                      &amp;\leq \left( \sum_{m = M +1
+}^{\infty} \|f_{n(m+1) }-f_{n(m)}\|_p \right) ^p
+  \end{aligned}\]</span></p>
+<p>よって, <span class="math inline">\(\lim_{M \to \infty} \| f_{n(M)
+}-f_0\|_p = 0\)</span>, さらに, 収束部分列を持つCauchy列が 収束列なので,
+完備性の証明が終了. ◻</p>
+</div>
+<div class="definition">
+<p><strong>Definition 3.9</strong>. <em><span class="math inline">\(f,
+f_k : X \to \overline{\mathbb{R}}, k =1 ,2,\ldots\)</span> を<span
+class="math inline">\(\left( X , \mathcal{S} \right)\)</span> 上の
+可測函数とする. <span class="math inline">\(\{f_k\}
+_{k=1}^{\infty}\)</span> が<span class="math inline">\(f\)</span>に
+<span
+class="math inline">\(\mu\)</span>の下でほとんど至る所収束(概収束)する
+<span class="math inline">\(\longleftrightarrow{\mathrm{def}} f_k \to f
+\quad \mu\)</span>-a.e.</em></p>
+</div>
+<div class="remark">
+<p><em>Remark 3.1</em>. <span class="math inline">\(f, f_k \in L^p ( \mu
+), k = 1,2,\ldots\)</span>とする. 一般的に,</p>
+<ol>
+<li><p><span class="math inline">\(f_k \to f, \ \mu\)</span>-a.e. <span
+class="math inline">\(\centernot\implies f_k \to f\)</span> in <span
+class="math inline">\(L^p\)</span></p></li>
+<li><p><span class="math inline">\(f_k \to f\)</span> in <span
+class="math inline">\(L^p\)</span> <span
+class="math inline">\(\centernot \implies f_k \to f\)</span> <span
+class="math inline">\(\mu\)</span>-a.e.</p></li>
+</ol>
+<p>前者として <span class="math inline">\(f_k (x) \coloneqq k^2 x
+\chi_{[0, 1/k]}(x) + k(2- kx) \chi_{[1/k, 2/k]}(x)\)</span>,
+後者として <span class="math inline">\([0,1]\)</span> を<span
+class="math inline">\(n =1\)</span>の時, <span class="math inline">\(A_1
+\coloneqq [0,1]\)</span>, <span class="math inline">\(n =2\)</span>の時,
+<span class="math inline">\(A_2\coloneqq [0,1/2], A_3 \coloneqq
+[1/2,1]\)</span>とする. このように, <span
+class="math inline">\([0,1]\)</span>を等分して, <span
+class="math inline">\(A_n\)</span>の列を構成して, <span
+class="math inline">\(f_k\coloneqq \chi_{A_k}\)</span>
+とすれば良い.</p>
+</div>
+<div class="corollary">
+<p><strong>Corollary 3.10</strong>. <em><span
+class="math inline">\(\{f_k\} _{k=1}^{\infty} \subseteq L^p(\mu
+)\)</span>が<span class="math inline">\(f \in L^p(\mu )\)</span>に<span
+class="math inline">\(L^p\)</span>-収束する時, <span
+class="math inline">\(f\)</span>に概収束する<span
+class="math inline">\(\{f_k\} _{k=1}^{\infty}\)</span>
+の部分列が存在する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> Proposition <a href="#proposition:L^p-complete"
+data-reference-type="ref"
+data-reference="proposition:L^p-complete">3.8</a>の証明の中ですでに証明した. ◻</p>
+</div>
+<div id="theorem:pwc+nc=lc" class="theorem">
+<p><strong>Theorem 3.11</strong>. <em>概収束かつ<span
+class="math inline">\(L^p\)</span>-norm収束 <span
+class="math inline">\(\implies\)</span> <span
+class="math inline">\(L^p\)</span>-収束.</em></p>
+<p><em>すなわち, <span class="math inline">\(f,f_k \in L^p(\mu ), k
+=1,2\ldots\)</span>が<span class="math inline">\(f_k \to f,\
+\mu\)</span>-a.e. かつ <span class="math inline">\(\lim_{n \to \infty}
+\|f_n\|_p = \|f\|_p\)</span>を満たせば, <span
+class="math display">\[\begin{aligned}
+      \lim_{n \to \infty} \|f_n -f\|_p = 0
+    \end{aligned}\]</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(k
+=1,2,\ldots\)</span>に対し, <span class="math display">\[\begin{aligned}
+      g_k = 2^{p-1}\left( |f_k|^p + |f|^p \right) - |f_k-f|^p
+    \end{aligned}\]</span> と置くと, <span class="math inline">\(g_k
+\geq 0\)</span>, かつ <span class="math inline">\(g_k \to  2^p |f| \
+\mu\)</span>-a.e. が成立する. よって, Fatouの補題より, <span
+class="math display">\[\begin{aligned}
+2^p \int_X |f|^p d \mu &amp;= \int_X \liminf_{k \to  \infty}g_k d
+\mu  \leq \liminf_{k\to  \infty} \int_X g_k d \mu \\
+                             &amp;= \liminf_{k\to  \infty} \left(2^p
+\left( \int_X |f_k|^p d \mu  + \int_X |f|^p d \mu  \right) - \int_X |f_k
+-f|^p d \mu \right) \\
+                             &amp;= 2^p \int_X |f|^p  \mu -
+\limsup_{k\to \infty}\int_X |f_k-f|^p  d \mu
+    \end{aligned}\]</span> 従って, <span class="math inline">\(\lim_{k
+\to \infty} \|f_k -f\|_p = 0\)</span>. ◻</p>
+</div>
+<div class="corollary">
+<p><strong>Corollary 3.12</strong>. <em><span
+class="math inline">\(\mathcal{E} \cap L^p( \mu )\)</span>は<span
+class="math inline">\(L^p( \mu )\)</span>において稠密である. つまり,
+<span class="math inline">\(\forall  f \in L^p( \mu ) , \exists  \{f_k\}
+_{k=1}^{\infty} \subseteq \mathcal{E}\cap L^p(\mu )\)</span> s.t. <span
+class="math display">\[\begin{aligned}
+     \lim_{k \to \infty} \|f_k -f\|_p = 0
+    \end{aligned}\]</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(f\)</span>が非負の時,
+<span class="math inline">\(\{f_k\} _{k=1}^{\infty} \subseteq
+\mathcal{E}^+\)</span>で, <span
+class="math inline">\(f\)</span>に単調的に各点収束するものが取れる.
+すると, <span class="math inline">\(0 \leq f_k \leq f\)</span> から,
+<span class="math display">\[\begin{aligned}
+      \int_X |f_k|^p d\mu \leq \int_X |f|^p d \mu &lt; \infty,
+    \end{aligned}\]</span> よって, <span class="math inline">\(f_k \in
+L^p (\mu )\)</span>が得られ, 単調収束定理より, <span
+class="math display">\[\begin{aligned}
+      \lim_{k \to \infty} \|f_k\|_p^p = \int_{X}|f|^p d \mu = \|f\|_p^p
+    \end{aligned}\]</span> よって, <span
+class="math inline">\(L^p\)</span>-norm 収束が言えた. Theorem <a
+href="#theorem:pwc+nc=lc" data-reference-type="ref"
+data-reference="theorem:pwc+nc=lc">3.11</a>より, 命題が従う.</p>
+<p>一般の<span class="math inline">\(f\)</span>に対して, <span
+class="math inline">\(f = f^+ - f^-\)</span>と分解するとする. <span
+class="math inline">\(f^+, f^-\)</span>に対して,
+上記の議論を行えばよい. ◻</p>
+</div>
+<h2 id="linftyの諸性質"><span
+class="math inline">\(L^{\infty}\)</span>の諸性質</h2>
+<p>以下, <span class="math inline">\(p =
+\infty\)</span>の場合を扱う.</p>
+<div class="definition">
+<p><strong>Definition 3.13</strong>. <em><span
+class="math inline">\(L^{\infty}( \mu ) \coloneqq \mathcal{L}^{\infty}
+(\mu ) /I\)</span>. (ただし, <span
+class="math inline">\(\mathcal{L}^{\infty}( \mu ) \coloneqq \{ f: X \to
+\mathbb{R} \mid \text{$f$ は可測函数で, 本質的に有界.}\}\)</span> <span
+class="math inline">\(I \coloneqq \{f
+\text{は本質的に有界な可測函数であり, $f =0 $  $\mu $-a.e.}\}\)</span>)
+<span class="math display">\[\begin{aligned}
+      \|f\|_{\infty} \coloneqq \inf \{ C \geq 0  \mid |f| \leq C \ \mu
+\text{-a.e.}\}
+    \end{aligned}\]</span>
+これがノルム空間になることが明らかである.</em></p>
+</div>
+<div class="theorem">
+<p><strong>Theorem 3.14</strong>. <em><span class="math inline">\(q
+=1\)</span>を <span class="math inline">\(p =
+\infty\)</span>の共役とみなせば, <span class="math inline">\(\forall f
+\in L^{\infty}(\mu ),\forall g \in L^1(\mu )\)</span>に対し, <span
+class="math display">\[\begin{aligned}
+      \int_X |fg| d\mu  \leq \|f\|_{\infty}\|g\|_1
+    \end{aligned}\]</span></em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(|f| \leq \|f\|_{\infty} \
+\mu\)</span>-a.e.より明らか. ◻</p>
+</div>
+<div class="theorem">
+<p><strong>Theorem 3.15</strong>. <em><span
+class="math inline">\(L^{\infty}( \mu )\)</span>が完備である.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span
+class="math inline">\(L^{\infty}\)</span>-Cauchy列<span
+class="math inline">\((f_k)_{k \in \mathbb{N}}\)</span> を任意に取る.
+<span class="math inline">\(k,l \in \mathbb{N}\)</span>に対して, <span
+class="math inline">\(E_{k,l}\coloneqq \{|f_k| &gt; \|f_k\|_{\infty}\}
+\cup \{|f_k -f_l| &gt; \|f_k - f_l\|_{\infty}\}\)</span> と定める.
+よって, <span class="math display">\[\begin{aligned}
+    E \coloneqq \bigcup_{k,l \in \mathbb{N}} E_{k,l}
+  \end{aligned}\]</span> とすれば, <span class="math inline">\(\mu (E)
+=0\)</span>が成立する. <span class="math inline">\(X \setminus
+E\)</span>上では, <span class="math display">\[\begin{aligned}
+    |f_k| &amp;\leq \|f_k\|_{\infty}, \\
+    |f_k - f_l| &amp;\leq \|f_k - f_l\|_{\infty}, \ \forall k, l \in
+\mathbb{N}.
+  \end{aligned}\]</span> が成立し, そこで, <span
+class="math display">\[\begin{aligned}
+    f(x) \coloneqq \begin{cases}
+      \lim_{k \to \infty} f_k(x) \ &amp;(x \in X \setminus E) \\
+      0 \ &amp;(x \in E)
+    \end{cases}
+  \end{aligned}\]</span> と定めればよい. ◻</p>
+</div>
+<div class="remark">
+<p><em>Remark 3.2</em>. <span class="math inline">\(f, f_k \in
+L^{\infty}(\mathbb{R}, \mathcal{B}(\mathbb{R}) , \lambda )\)</span>,
+<span class="math inline">\(k \in \mathbb{N}\)</span>として, <span
+class="math inline">\(f_k(x) = e^{-|x| /k}, f(x) = 1\)</span> とする.
+<span class="math inline">\(f_k\)</span>が <span
+class="math inline">\(f\)</span>に各点収束する. <span
+class="math inline">\(\|f_k\|_{\infty}=
+\|f\|_{\infty}=1\)</span>となるが, <span class="math inline">\(\|f_k
+-f\|_{\infty} =1\)</span>. よって, 概収束かつノルム収束から<span
+class="math inline">\(L^{\infty}\)</span>-収束を導くことができない.</p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 3.16</strong>. <em><span
+class="math inline">\(\mathcal{E}\cap L^{\infty}(\mu ) =
+\mathcal{E}\)</span> が<span class="math inline">\(L^{\infty}(\mu
+)\)</span>において稠密である.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(f \in L^{\infty}(\mu
+)\)</span>を非負とする. この時, <span
+class="math display">\[\begin{aligned}
+      \tilde{f} (x)\coloneqq \begin{cases}
+        f(x)  \ &amp;(x \in  \{ f \leq \|f\|_{\infty}\} \\
+        0 \ &amp;(x \not\in \{f &gt; \|f\|_{\infty}\}
+      \end{cases}
+    \end{aligned}\]</span> と定めると<span
+class="math inline">\(\tilde{f}\)</span>は有界で, <span
+class="math inline">\(\|g_k - \tilde{f}\|_{\infty} \leq
+\frac{1}{2^k}\)</span> を満たす非負単函数列が取れる. 一般の<span
+class="math inline">\(f\)</span>に対して, <span class="math inline">\(f
+= f^+ - f^-\)</span>と分解してそれぞれの近似列を考えれば良い. ◻</p>
+</div>
+<h1 id="cha:積測度とFubiniの定理">積測度とFubiniの定理</h1>
+<p>この節ではLebesgue積分論における極めて重要なFubiniの定理を紹介する.</p>
+<h2 id="測度の一意性">測度の一意性</h2>
+<div class="definition">
+<p><strong>Definition 4.1</strong> (<span
+class="math inline">\(\pi\)</span>-system, <span
+class="math inline">\(\lambda\)</span>-system). <em>集合<span
+class="math inline">\(X\)</span>に対して,</em></p>
+<ol>
+<li><p><em><span class="math inline">\(\mathcal{G}\subseteq
+\mathcal{P}(X)\)</span>が<span class="math inline">\(\pi\)</span>-system
+<span class="math inline">\(\longleftrightarrow{\mathrm{def}} \forall
+A,B \in \mathcal{G}, A \cap B \in \mathcal{G}\)</span></em></p></li>
+<li><p><em><span class="math inline">\(\mathcal{D}\subseteq
+\mathcal{P}(X)\)</span>が <span class="math inline">\(X\)</span>
+上の<span class="math inline">\(\lambda\)</span>-system <span
+class="math inline">\(\longleftrightarrow{\mathrm{def}}\)</span>
+以下の3つの性質を満たす:</em></p>
+<ol>
+<li><p><em><span class="math inline">\(X \in
+\mathcal{D}\)</span></em></p></li>
+<li><p><em><span class="math inline">\(A,B \in \mathcal{D}, A \subseteq
+B \implies B \setminus A \in \mathcal{D}\)</span></em></p></li>
+<li><p><em><span class="math inline">\(\{A_k\} _{k \in \mathbb{N}}
+\subseteq \mathcal{D}\)</span> が単調増大列 <span
+class="math inline">\(\implies \bigcup_{k \in \mathbb{N}} A_k \in
+\mathcal{D}\)</span></em></p></li>
+</ol></li>
+</ol>
+</div>
+<div id="proposition:4.1.2" class="proposition">
+<p><strong>Proposition 4.2</strong>. <em><span
+class="math inline">\(\mathcal{D}\subseteq \mathcal{P}(X)\)</span>
+を<span class="math inline">\(\lambda\)</span>-systemとする. この時,
+<span class="math display">\[\begin{aligned}
+      \mathcal{D} \text{ is a $\pi$-system} \iff \mathcal{D} \text{ is a
+$\sigma$-algebra}
+    \end{aligned}\]</span></em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> "<span
+class="math inline">\(\impliedby\)</span>"が明らかである. "<span
+class="math inline">\(\implies\)</span>"を示す. <span
+class="math inline">\(X \in \mathcal{D}\)</span> が明らかである. <span
+class="math inline">\(A \in \mathcal{D}\)</span> に対し, <span
+class="math inline">\(X \setminus A \in \mathcal{D}\)</span>.
+最後に可算和に対して閉じることを示す: <span
+class="math inline">\(\{A_n\}_{n \in \mathbb{N}} \subseteq
+\mathcal{D}\)</span> これを示すには, <span class="math inline">\(\forall
+A,B \in \mathcal{D}; A \cup B \in \mathcal{D}\)</span> を示せば十分.
+<span class="math inline">\(A \cup B = X \setminus \left( (X \setminus
+A) \cap (X \setminus B) \right)\)</span> より, <span
+class="math inline">\(\mathcal{D}\)</span>
+が補集合と共通部分で閉じるので, ok. ◻</p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 4.3</strong>. <em><span
+class="math inline">\(\pi\)</span>-system <span
+class="math inline">\(\mathcal{G} \subseteq \mathcal{P}(X)\)</span>
+と<span class="math inline">\(X\)</span>上の <span
+class="math inline">\(\lambda\)</span>-system <span
+class="math inline">\(\mathcal{D}\)</span> に対して, <span
+class="math display">\[\mathcal{G} \subseteq \mathcal{D}\]</span>
+を満たせば, <span class="math display">\[\sigma(\mathcal{G}) \subseteq
+\mathcal{D}\]</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> より強いことを示す: <span
+class="math inline">\(\delta (\mathcal{G}) \coloneqq \bigcap \{\Lambda
+\subseteq \mathcal{P}(X)  \mid \text{$\Lambda$は$X$上 $\mathcal{G}$
+を含む$\lambda$-system}\}\)</span> と定めると, 明らかに<span
+class="math inline">\(\delta(\mathcal{G})\)</span>が<span
+class="math inline">\(\lambda\)</span>-systemで, 以下これが<span
+class="math inline">\(\sigma\)</span>-algebraであること を示せば良い.
+Proposition <a href="#proposition:4.1.2" data-reference-type="ref"
+data-reference="proposition:4.1.2">4.2</a>より, <span
+class="math inline">\(\delta(\mathcal{G})\)</span>が<span
+class="math inline">\(\pi\)</span>-systemである ことを示せば十分. <span
+class="math inline">\(E \in \delta(\mathcal{G})\)</span> に対し, <span
+class="math inline">\(D_E \coloneqq \{A \in \delta(\mathcal{G}) \mid A
+\cap E \in \delta(\mathcal{G})\}\)</span> と する. <span
+class="math inline">\(\forall E \in \delta(\mathcal{G})\)</span> に対し,
+<span class="math inline">\(D_E\)</span>が <span
+class="math inline">\(\lambda\)</span>-systemであることを 示せば, <span
+class="math inline">\(\forall A ,B \in \delta(\mathcal{G}); A\cap B \in
+\delta(\mathcal{G})\)</span>が従う. 以下, このことを確かめる. <span
+class="math inline">\(X \cap E = E \in \delta(\mathcal{G})\)</span>より,
+<span class="math inline">\(X \in D_E\)</span>. <span
+class="math inline">\(\forall A \subseteq B \in D_E\)</span>に対し,
+<span class="math inline">\((B \setminus A) \cap E = (B \cap  E)
+\setminus (A \cap  E) \in \delta(\mathcal{G})\)</span>より, <span
+class="math inline">\(B \setminus A \in D_E\)</span> が従う. 最後に,
+<span class="math inline">\(D_E\)</span>上の単調列 <span
+class="math inline">\(\{A_n\} _{n \in \mathbb{N}}\)</span> に対し, <span
+class="math inline">\(\left(\bigcup_{n \in \mathbb{N}}A_n\right)\cap E =
+\bigcup_{n \in \mathbb{N}}(A_n \cap E) \in \delta(\mathcal{G})\)</span>
+(<span class="math inline">\(\because\)</span> <span
+class="math inline">\(\{A_n \cap E\}\)</span> が<span
+class="math inline">\(\delta(\mathcal{G})\)</span> 上の単調列) より,
+<span class="math inline">\(\bigcup_{n \in \mathbb{N}} A_n \in
+D_E\)</span>が成立する. 以上より, <span
+class="math inline">\(D_E\)</span>が <span
+class="math inline">\(X\)</span>上の <span
+class="math inline">\(\lambda\)</span>-systemである. ◻</p>
+</div>
+<div id="theorem:unique-product-measure" class="theorem">
+<p><strong>Theorem 4.4</strong>. <em>測度空間<span
+class="math inline">\(\left( X, \mathcal{S}, \mu  \right)\)</span>
+と<span class="math inline">\(\mathcal{G} \subseteq
+\mathcal{P}(X)\)</span>は以下の条件を満たすとする:</em></p>
+<ol>
+<li><p><em><span class="math inline">\(\mathcal{S} = \sigma
+(\mathcal{G})\)</span></em></p></li>
+<li><p><em><span class="math inline">\(\mathcal{G}\)</span> は<span
+class="math inline">\(\pi\)</span>-systemで, <span
+class="math inline">\(\exists \{G_n\} _{n \in \mathbb{N}} \subseteq
+\mathcal{G}\)</span> s.t. <span class="math inline">\(\{G_n\} _{n \in
+\mathbb{N}}\)</span> が単調増大列かつ<span
+class="math inline">\(\bigcup_{n \in \mathbb{N}} G_n =
+X\)</span></em></p></li>
+<li><p><em><span class="math inline">\(\forall n \in \mathbb{N};
+\mu(G_n) &lt; \infty\)</span></em></p></li>
+</ol>
+<p><em>この時, 別の測度<span
+class="math inline">\(\mu&#39;\)</span>に対して, <span
+class="math inline">\(\forall G \in \mathcal{G}\)</span> <span
+class="math display">\[\mu(G) = \mu&#39;(G)\]</span> を満たせば, <span
+class="math inline">\(\mu = \mu&#39;\)</span>が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 各<span class="math inline">\(n \in
+\mathbb{N}\)</span>に対して, <span
+class="math display">\[\begin{aligned}
+      \mathcal{D}_n \coloneqq \{ A \in \mathcal{S} \mid \mu(A\cap G_n) =
+\mu&#39;(A_n \cap G_n)\}
+    \end{aligned}\]</span> とおく. 以下, <span
+class="math inline">\(\mathcal{G} \subseteq \mathcal{D}_n\)</span>,
+<span class="math inline">\(\mathcal{D}_n\)</span>は<span
+class="math inline">\(X\)</span>上の <span
+class="math inline">\(\lambda\)</span>-systemが成立すると仮定すると,
+<span class="math inline">\(\sigma(\mathcal{G}) \subseteq
+\mathcal{D}_n\)</span>が成立する. つまり, <span
+class="math inline">\(\forall A \in \mathcal{S}, \forall n \in
+\mathbb{N}\)</span> に対して, <span
+class="math display">\[\begin{aligned}
+      \mu(A\cap G_n) = \mu&#39;(A\cap G_n)
+    \end{aligned}\]</span> が成立する. 測度の連続性より, <span
+class="math inline">\(\mu(A) = \mu&#39;(A)\)</span>が得られる.</p>
+<p>以下 <span class="math inline">\(\mathcal{G} \subseteq
+\mathcal{D}_n\)</span>と<span
+class="math inline">\(\mathcal{D}_n\)</span>が<span
+class="math inline">\(X\)</span>上の <span
+class="math inline">\(\lambda\)</span>-systemであることを示す:</p>
+<p><span class="math inline">\(G \in \mathcal{G}\)</span> とすると,
+<span class="math inline">\(G \cap G_n \in \mathcal{G}\)</span>
+が成立するので, <span class="math inline">\(\mu(G \cap G_n) = \mu&#39;(G
+\cap G_n)\)</span>が得られ, <span class="math inline">\(G
+\in  \mathcal{D}_n\)</span>が従う.</p>
+<p>また, <span class="math inline">\(\mu (X \cap G_n) = \mu&#39;(X \cap
+G_n)\)</span>が成立するので, <span class="math inline">\(X \in
+\mathcal{D}_n\)</span>が成立. <span class="math inline">\(A,B \in
+\mathcal{D}_n\)</span>, <span class="math inline">\(A \subseteq
+B\)</span>とすると, <span class="math display">\[\begin{aligned}
+      \mu\left( (B \setminus A) \cap G_n \right) &amp;= \mu (B \cap G_n)
+- \mu(A \cap G_n) \\
+                                                 &amp;= \mu&#39;(B\cap
+G_n) - \mu(A\cap G_n) \\
+                                                 &amp;= \mu&#39;\left(
+(B\setminus A) \cap G_n \right)
+    \end{aligned}\]</span> が成立し, <span class="math inline">\(B
+\setminus A \in \mathcal{D}_n\)</span>が従う. さらに, <span
+class="math inline">\(\{A_k\} _{k \in \mathbb{N}} \subseteq
+\mathcal{D}_n\)</span> を単調増大列とすると, 測度の連続性より, <span
+class="math display">\[\begin{aligned}
+      \mu \left( \left( \bigcup_{k \in \mathbb{N}} A_k \right) \cap G_n
+\right) &amp;= \lim_{k \to \infty} \mu(A_k \cap G_n) \\
+                                                                                &amp;=
+\lim_{k \to \infty} \mu&#39;(A_k \cap G_n) \\
+                                                                                &amp;=
+\mu&#39;\left( \left( \bigcup_{k \in \mathbb{N}} A_k \right) \cap G_n
+\right)
+    \end{aligned}\]</span> が成立し, <span
+class="math inline">\(\bigcup_{k \in \mathbb{N}} A_k \in
+\mathcal{D}_n\)</span>が成立する. ◻</p>
+</div>
+<div class="remark">
+<p><em>Remark 4.1</em>. 上記の集合列<span class="math inline">\(\{G_n\}
+_{n \in \mathbb{N}} \subseteq \mathcal{P}(X)\)</span> を<span
+class="math inline">\(X\)</span>の exhausting sequence と呼んで, <span
+class="math display">\[G_n \nearrow X\]</span> と記す.</p>
+</div>
+<div class="definition">
+<p><strong>Definition 4.5</strong>. <em>測度空間 <span
+class="math inline">\(\left( X, \mathcal{S}, \mu \right)\)</span>
+に対して, 単調増大列 <span class="math inline">\(\{G_n\} _{n \in
+\mathbb{N}}\subseteq \mathcal{S}\)</span> s.t. <span
+class="math inline">\(X = \bigcup_{n \in \mathbb{N}}G_n\)</span>
+を満たすものを<span class="math inline">\(X\)</span>の
+取り尽くし列と呼び, 各 <span class="math inline">\(n \in
+\mathbb{N}\)</span>に対して, <span class="math inline">\(\mu(G_n) &lt;
+\infty\)</span>を満たすものを 有限測度の取り尽くし列という.</em></p>
+</div>
+<h2 id="直積測度">直積測度</h2>
+<p>測度空間<span class="math inline">\(\left( X, \mathcal{S}, \mu
+\right) , \left( Y, \mathcal{T}, \nu \right)\)</span> を固定する.</p>
+<div class="definition">
+<p><strong>Definition 4.6</strong>. <em><span
+class="math inline">\(\mathcal{S} \times \mathcal{T}\coloneqq \{A \times
+B  \mid A \in \mathcal{S}, B \in \mathcal{T}\}\)</span> をrectangular
+set という.</em></p>
+<p><em><span class="math inline">\(\mathcal{S}\otimes
+\mathcal{T}\coloneqq \sigma(\mathcal{S}\times \mathcal{T)}\)</span>
+を直積<span class="math inline">\(\sigma\)</span>-加法族と呼ぶ. <span
+class="math inline">\(\left( X\times Y, \mathcal{S}\otimes \mathcal{T}
+\right)\)</span> を直積可測空間と呼ぶ.</em></p>
+</div>
+<div class="definition">
+<p><strong>Definition 4.7</strong>. <em>測度空間<span
+class="math inline">\(\left( X,\mathcal{S}, \mu  \right)\)</span>が<span
+class="math inline">\(\sigma\)</span>-有限であるとは <span
+class="math inline">\(X\)</span>の有限測度の取り尽くし列が存在する時をいう.</em></p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 4.8</strong>. <em><span
+class="math inline">\(\sigma\)</span>-有限な測度空間の直積で,
+rectangular
+setの測度をものの測度の積となる直積測度が一意に存在する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(\mathcal{G}\)</span>
+と置くと, <span class="math inline">\(\mathcal{G}\)</span> が<span
+class="math inline">\(\pi\)</span>-systemである. <span
+class="math inline">\(X,Y\)</span>の有限測度の取り尽くし列をそれぞれ
+<span class="math inline">\(\{A_n\}_{n \in \mathbb{N}}, \{B_n\} _{n \in
+\mathbb{N}}\)</span> とする. 各<span class="math inline">\(n \in
+\mathbb{N}\)</span>に対し, <span class="math display">\[\begin{aligned}
+     G_n \coloneqq A_n \times B_n
+   \end{aligned}\]</span> と置くと, <span class="math inline">\(G_n
+\nearrow X \times Y\)</span>となる. ここでTheorem <a
+href="#theorem:unique-product-measure" data-reference-type="ref"
+data-reference="theorem:unique-product-measure">4.4</a>より一意性が従う. ◻</p>
+</div>
+<p>以下, <span class="math inline">\(X,Y\)</span>の取り尽くし集合を
+<span class="math inline">\(\{A_n\} _{n \in  \mathbb{N}}, \{B_n\} _{n
+\in \mathbb{N}}\)</span> と, <span class="math inline">\(G_n\coloneqq
+A_n \times B_n\)</span>を固定する.</p>
+<div id="proposition:ex-of-p" class="proposition">
+<p><strong>Proposition 4.9</strong>. <em><span
+class="math inline">\(\forall E \in \mathcal{S}\otimes
+\mathcal{T}\)</span> に対して, 次が成立する:<br />
+<span class="math inline">\(\forall y \in Y\)</span>に対して, <span
+class="math inline">\(X \ni x \mapsto \chi_{E}(x,y)\)</span>
+は<span class="math inline">\(\mathcal{S}\)</span>-可測,<br />
+<span class="math inline">\(\forall x \in X\)</span>に対して, <span
+class="math inline">\(Y \ni y \mapsto \chi_{E}(x,y)\)</span>
+は<span class="math inline">\(\mathcal{T}\)</span>-可測,<br />
+<span class="math inline">\(X \ni x \mapsto \int_Y \chi_E(x,y) d
+\nu (y)\)</span>は<span
+class="math inline">\(\mathcal{S}\)</span>-可測,<br />
+<span class="math inline">\(Y \ni x \mapsto \int_X \chi_E(x,y) d
+\mu (x)\)</span>は<span
+class="math inline">\(\mathcal{T}\)</span>-可測,<br />
+<span class="math display">\[\begin{aligned}
+      \int_Y \left(\int_X  \chi_E(x,y)d \mu(x)\right) d\nu (y) =
+\int_X \left( \int_Y \chi_E(x,y) d\nu (y) \right) d\mu(x)
+    \end{aligned}\]</span></em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 各<span class="math inline">\(n \in
+\mathbb{N}\)</span>に対して, <span
+class="math display">\[\begin{aligned}
+      \mathcal{D}_n \coloneqq \{D \in \mathcal{S}\otimes \mathcal{T}
+\mid  E = D \cap G_n \text{として示したい条件を満たす. }\}
+    \end{aligned}\]</span> <span class="math inline">\(\mathcal{S}\times
+\mathcal{T} \subseteq \mathcal{D}_n\)</span>, <span
+class="math inline">\(\mathcal{D}_n\)</span>は<span
+class="math inline">\(X\times Y\)</span>上の<span
+class="math inline">\(\lambda\)</span>-systemが分かれば, <span
+class="math display">\[\begin{aligned}
+      \sigma(\mathcal{S}\times \mathcal{T}) \subseteq \mathcal{D}_n
+    \end{aligned}\]</span> が成立する. つまり, 任意の<span
+class="math inline">\(E \in \mathcal{S}\otimes\mathcal{T}\)</span>
+に対し, <span class="math display">\[\begin{aligned}
+      E_n \coloneqq E \cap G_n
+    \end{aligned}\]</span> は示したい条件を満たす. すると, <span
+class="math inline">\(\forall  y \in Y\)</span>に対して, <span
+class="math display">\[\begin{aligned}
+      X \ni x \mapsto \chi_E(x,y) = \lim_{n \to \infty}
+\chi_{E_n}(x,y)
+    \end{aligned}\]</span> が成立するので, 極限が可測性を保つので,
+最初の主張が示される. 同様に2番目の主張も成立する. 次に,
+単調収束定理より <span class="math display">\[\begin{aligned}
+    X \in x \mapsto \int_Y \chi_E(x,y) d \nu (y) = \lim_{n \to
+\infty} \int_Y \chi_{E_n}(x,y) d\nu (y)
+  \end{aligned}\]</span> が成立し, この函数が<span
+class="math inline">\(\mathcal{S}\)</span>-可測である.
+3番目の主張が従う. 同様に4番目の主張も成立する. 単調収束定理より,
+極限と積分の順序の入れ替えを行えば, 最後の主張が従う.</p>
+<p>これから<span class="math inline">\(\mathcal{S}\times \mathcal{T}
+\subseteq \mathcal{D}_n\)</span>と<span
+class="math inline">\(\mathcal{D}_n\)</span>が<span
+class="math inline">\(X\times Y\)</span>上の<span
+class="math inline">\(\lambda\)</span>-systemであることを示す: <span
+class="math inline">\(\forall A \times B \in \mathcal{S}\times
+\mathcal{T}\)</span> に対し, <span class="math inline">\(\left( A \times
+B\right) \cap G_n = (A \cap A_n) \times (B\cap B_n)\)</span> となる.
+よって, <span class="math inline">\(E = \left( A\times B \right) \cap
+G_n\)</span>として, <span class="math display">\[\begin{aligned}
+    \chi_E(x,y) = \chi_{A\cap A_n}(x) \chi_{B\cap
+B_n}(y)
+  \end{aligned}\]</span> となる. これより, <span class="math inline">\(E
+\in D_n\)</span>が明らかである.</p>
+<p>最後に, <span class="math inline">\(\mathcal{D}_n\)</span>が<span
+class="math inline">\(X\times Y\)</span>上の<span
+class="math inline">\(\lambda\)</span>-systemであることを示す: <span
+class="math inline">\(D,D&#39; \in \mathcal{D}_n, D \subseteq
+D&#39;\)</span>とする. この時, <span
+class="math display">\[\begin{aligned}
+    \chi_{(D&#39;\setminus D) \cap G_n} = \chi_{D&#39; \cap
+G_n} - \chi_{D\cap G_n}
+  \end{aligned}\]</span> が成立するので, <span
+class="math inline">\(D&#39; \setminus D \in \mathcal{D}_n\)</span>
+が簡単に確認できる. 増大列に関する議論は極限は可測性を保つことと
+単調収束定理より直ちに従う. ◻</p>
+</div>
+<p>上記の議論の帰結として, 次の定理が成立する.</p>
+<div id="theorem:p-m" class="theorem">
+<p><strong>Theorem 4.10</strong>. <em><span class="math inline">\(m:
+\mathcal{S}\otimes\mathcal{T}\to [0,\infty]\)</span>を, <span
+class="math display">\[\begin{aligned}
+      m(E) &amp;\coloneqq \int_Y\left( \int_X \chi_E(x,y) d\mu (x)
+\right) d\nu (y) \\
+           &amp;= \int_X \left( \int_Y \chi_E (x,y) d\nu (y)
+\right) d\mu (x)
+    \end{aligned}\]</span> が矩形集合を測度の積に対応させる<span
+class="math inline">\(\left( X \times Y, \mathcal{S}\otimes \mathcal{T}
+\right)\)</span> 上の唯一の測度.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 空集合の定義函数が恒等的に<span
+class="math inline">\(0\)</span>である. 次に, <span
+class="math inline">\(\{E_k\} _{k \in  \mathbb{N}}\subseteq
+\mathcal{S}\otimes \mathcal{T}\)</span> を互いに素とする.
+それぞれの集合の定義函数に対して単調収束定理を適用すればよい. ◻</p>
+</div>
+<div class="definition">
+<p><strong>Definition 4.11</strong>. <em>Theorem <a href="#theorem:p-m"
+data-reference-type="ref"
+data-reference="theorem:p-m">4.10</a>で定めた<span
+class="math inline">\(m\)</span>を <span
+class="math inline">\(\mu  \times \nu\)</span>の直積測度と呼び, <span
+class="math display">\[\mu \times \nu\]</span> と記す. <span
+class="math inline">\(\left( X \times Y, \mathcal{S}\otimes \mathcal{T},
+\mu \times \nu  \right)\)</span> を直積空間と呼ぶ.</em></p>
+</div>
+<h2 id="fubiniの定理">Fubiniの定理</h2>
+<p>以降, <span class="math inline">\(\left( X, \mathcal{S},\mu  \right)
+,  \left( Y,\mathcal{T}, \nu  \right)\)</span>を<span
+class="math inline">\(\sigma\)</span>-有限な測度空間とする.</p>
+<div id="theorem:Tonelli" class="theorem">
+<p><strong>Theorem 4.12</strong>. <em><span
+style="color: red">非負</span>で<span
+class="math inline">\(\mathcal{S}\otimes
+\mathcal{T}\)</span>-可測な<span class="math inline">\(\forall f : X
+\times Y \to [0, \infty]\)</span>に対し, 次が成立する: <span
+class="math inline">\(\forall y \in Y\)</span>に対して, <span
+class="math inline">\(X \ni x \mapsto f(x,y)\)</span> は<span
+class="math inline">\(\mathcal{S}\)</span>-可測,<br />
+<span class="math inline">\(\forall x \in X\)</span>に対して, <span
+class="math inline">\(Y \ni y \mapsto f(x,y)\)</span> は<span
+class="math inline">\(\mathcal{T}\)</span>-可測,<br />
+<span class="math inline">\(X \ni x \mapsto \int_Y f(x,y) d \nu
+(y)\)</span>は<span
+class="math inline">\(\mathcal{S}\)</span>-可測,<br />
+<span class="math inline">\(Y \ni x \mapsto \int_X f(x,y) d \mu
+(x)\)</span>は<span
+class="math inline">\(\mathcal{T}\)</span>-可測,<br />
+<span class="math display">\[\begin{aligned}
+      \int_{X \times Y} f d (\mu  \times \nu ) = \int_Y
+\left(\int_X  f(x,y)d \mu(x)\right) d\nu (y) = \int_X \left( \int_Y
+f(x,y) d\nu (y) \right) d\mu(x)
+    \end{aligned}\]</span></em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 非負可測関数の単函数による近似列を用いて,
+単調収束定理とProposition <a href="#proposition:ex-of-p"
+data-reference-type="ref"
+data-reference="proposition:ex-of-p">4.9</a>を適用すれば良い. ◻</p>
+</div>
+<div id="theorem:Fubini-2" class="theorem">
+<p><strong>Theorem 4.13</strong>. <em></em></p>
+<p><em><span class="math inline">\(f : X \times Y
+\to  \overline{\mathbb{R}}\)</span> を<span
+class="math inline">\(\mathcal{S}\otimes
+\mathcal{T}\)</span>-可測で,</em></p>
+<p><em><span class="math display">\[\begin{aligned}
+   &amp;  \int_{X \times Y}|f| d \left( \mu \times \nu  \right), \\
+    \int_Y\left( \int_X |f(x,y) | d \mu (x) \right)&amp; d\nu (y), \quad
+\int_X \left( \int_Y |f(x,y)| d\nu (y) \right) d \mu (x)
+  \end{aligned}\]</span> の少なくとも1つが有限となるものとする. この時,
+<span class="math inline">\(f \in L^1(\mu \times \nu
+)\)</span>であって,<br />
+<span class="math inline">\(\nu\)</span>-a.a. <span
+class="math inline">\(y \in Y\)</span>に対し, <span
+class="math inline">\(f(\cdot, y) \in L^1(\mu )\)</span>,<br />
+<span class="math inline">\(\mu\)</span>-a.a. <span
+class="math inline">\(x \in X\)</span>に対し, <span
+class="math inline">\(f(x, \cdot) \in L^1(\nu )\)</span>,<br />
+<span class="math inline">\(Y \ni y \mapsto \int_X f(x,y) d \mu
+(x)\)</span>は<span class="math inline">\(L^1(\nu )\)</span>の元,<br />
+<span class="math inline">\(X \ni x \mapsto \int_Y f(x,y) d \nu
+(x)\)</span>は<span class="math inline">\(L^1(\mu )\)</span>の元, <span
+class="math display">\[\begin{aligned}
+    \int_{X\times Y}f d(\mu \times \nu ) = \int_Y\left( \int_X f(x,y)
+d\mu (x) \right) d\nu (y) = \int_X \left( \int_Y f(x,y) d\nu (y) \right)
+d\mu (x)
+  \end{aligned}\]</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span
+class="math inline">\(|f|\)</span>は非負の可測函数であり, Theorem <a href="#theorem:Tonelli"
+data-reference-type="ref"
+data-reference="theorem:Tonelli">4.12</a>から,
+1つが有限ならば, <span class="math inline">\(\int_{X\times Y}|f| d (\mu
+\times \nu ) &lt; \infty\)</span> が得られる. 可積分性より, <span
+class="math inline">\(\nu\)</span>-a.a. <span class="math inline">\(y
+\in Y\)</span>に対し, <span class="math inline">\(f(\cdot, y) \in
+L^1(\mu )\)</span>と <span class="math inline">\(\mu\)</span>-a.a. <span
+class="math inline">\(x \in X\)</span>に対し, <span
+class="math inline">\(f(x, \cdot) \in L^1(\nu )\)</span> が従う. また,
+<span class="math inline">\(f^{\pm} \leq |f|\)</span> より, <span
+class="math display">\[\begin{aligned}
+    \int_X f^{\pm} (x,y)  d \mu (x) \leq \int_X |f(x,y)| d\mu (x), \
+\forall y \in Y
+  \end{aligned}\]</span> が<span
+class="math inline">\(y\)</span>について可積分なので, <span
+class="math display">\[\begin{aligned}
+    Y \ni y \mapsto \int_X f^{\pm} (x,y) d\mu (x)
+  \end{aligned}\]</span> はともに<span
+class="math inline">\(\mathcal{T}\)</span>-可測で, <span
+class="math inline">\(L^1(\nu )\)</span>の元, よって, <span
+class="math inline">\(Y \ni y \mapsto \int_X f(x,y) d \mu
+(x)\)</span>も<span class="math inline">\(L_1(\nu
+)\)</span>の元である.</p>
+<p><span class="math inline">\(f= f^+ - f^-\)</span>とTheorem <a
+href="#theorem:Tonelli" data-reference-type="ref"
+data-reference="theorem:Tonelli">4.12</a>より, <span
+class="math display">\[\begin{aligned}
+    \int_{X\times Y}f d(\mu \times \nu ) = \int_Y\left( \int_X f(x,y)
+d\mu (x) \right) d\nu (y) = \int_X \left( \int_Y f(x,y) d\nu (y) \right)
+d\mu (x)
+  \end{aligned}\]</span> が従う. ◻</p>
+</div>
+<div id="proposition:IBP" class="proposition">
+<p><strong>Proposition 4.14</strong>. <em><span
+class="math inline">\([a,b] \subseteq \mathbb{R}\)</span>として, <span
+class="math inline">\(f,g: [a,b] \to
+\mathbb{R}\)</span>をBorel可測函数で, <span
+class="math display">\[\begin{aligned}
+    \int_{[a,b]}|f| d\lambda &lt;\infty, \int_{[a,b]}|g| d\lambda &lt;
+\infty
+  \end{aligned}\]</span> とする. この時, <span class="math inline">\(x
+\in [a,b]\)</span>に対し, <span class="math display">\[\begin{aligned}
+    F(x) &amp;\coloneqq \int_{[a,x]}f(y) d\lambda(y), \\
+    G(x)&amp;\coloneqq \int_{[a,x]}g(y) d\lambda(y)
+  \end{aligned}\]</span> とおくと, <span
+class="math display">\[\begin{aligned}
+    F(b)G(b) = \int_{[a,b]}f(x) G(x) d \lambda(x) + \int_{[a,b]}F(x)
+g(x) d \lambda (x)
+  \end{aligned}\]</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> まず, <span class="math inline">\([a,b]^2 \ni (x,y)
+\mapsto f(x)g(y)\)</span>は可測函数である.
+非負の場合は単函数近似列を取り各点収束が可測性を保つことを用いれば良い.
+一般の場合は <span class="math inline">\(f= f^+ - f^-\)</span>, <span
+class="math inline">\(g = g^+ - g^-\)</span>について議論すれば良い.
+では, 可積分性に関する考察に入る. <span
+class="math display">\[\begin{aligned}
+    \int_{[a,b]^2}|f(x)g(y)| d (\lambda \times \lambda)(x,y) &amp;=
+\int_{[a,b]}\left( \int_{[a,b]}|f(x)| d \lambda(x) \right) |g(y)|
+d\lambda(y) \\
+    &amp;= \left(  \int_{[a,b]}|f(x)| d\lambda (x)  \right) \left(
+\int_{[a,b]}|g(y)| d\lambda(y) \right)  &lt; \infty
+  \end{aligned}\]</span> よって, <span
+class="math display">\[\begin{aligned}
+    \int_{[a,b]}f(x) G(x) d\lambda(x) &amp; = \int_{[a,b]}f(x) \left(
+\int_{[a,x]}g(y) d\lambda(y) \right) d\lambda(x) \\
+                                      &amp;=
+\int_{[a,b]^2\text{の下半三角形}} f(x)g(y) d(\lambda \times
+\lambda)(x,y) \\
+                                      &amp;= \int_{[a,b]}g(y) \left(
+\int_{[y,b]} f(x) d\lambda(x) \right) d\lambda(y) \\
+                                      &amp;= \int_{[a,b]}g(y) \left(
+F(b) - F(y) \right) d\lambda(y) \\
+                                      &amp;= F(b) G(b) -
+\int_{[a,b]}g(y) F(y) d\lambda(y).
+  \end{aligned}\]</span> ◻</p>
+</div>
+<div class="remark">
+<p><em>Remark 4.2</em>. <span
+class="math inline">\(\sigma\)</span>-有限の条件を外すとFubiniの定理が成立しない例がある.</p>
+<p><span class="math inline">\(\nu\)</span>を<span
+class="math inline">\([0,1]\)</span>上のcounting measure とし, <span
+class="math inline">\(E= \{(x,y) \in [0,1]^2  \mid x =y\} \in
+\mathcal{B}(\mathbb{R}) \otimes
+\mathcal{B}(\mathbb{R})\)</span>が成立し, <span
+class="math display">\[\begin{aligned}
+      \int_{[0,1]}\left( \int_{[0,1]}\chi_E(x,y)
+d\lambda(x)  \right) d\nu (y) &amp;= 0 \\
+      \int_{[0,1]}\left( \int_{[0,1]}\chi_E(x,y) d\nu (y) \right)
+d\lambda(x) &amp;= b-a
+    \end{aligned}\]</span> となり, Fubiniの定理が成立しない.</p>
+</div>
+<h2 id="lebesgue測度">Lebesgue測度</h2>
+<p><span class="math inline">\(\mathbb{R}\)</span>上の開区間全体を<span
+class="math inline">\(\mathcal{I}\)</span>とする.</p>
+<div class="theorem">
+<p><strong>Theorem 4.15</strong>. <em>Lebesgue測度<span
+class="math inline">\(\lambda\)</span>は任意の開区間<span
+class="math inline">\((a,b)\)</span>を <span
+class="math inline">\(b-a\)</span>に対応させる <span
+class="math inline">\(\mathbb{R}\)</span>のBorel集合族上の唯一の測度.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 開区間の全体が<span
+class="math inline">\(\pi\)</span>-system, それが生成する <span
+class="math inline">\(\sigma\)</span>-加法族はBorel集合全体で, <span
+class="math inline">\(\{(-n,n)\} _{n \in \mathbb{N}}\)</span>
+が有限測度の取り尽くし列であり, Theorem <a
+href="#theorem:unique-product-measure" data-reference-type="ref"
+data-reference="theorem:unique-product-measure">4.4</a>より一意性が従う. ◻</p>
+</div>
+<div class="definition">
+<p><strong>Definition 4.16</strong>. <em><span
+class="math inline">\(\mathbb{R}^n\)</span>上の測度を帰納的に<span
+class="math inline">\(\lambda_n\)</span>を<span
+class="math inline">\(\lambda_{n-1}\times \lambda\)</span> と直積で定め,
+n次元Lebesgue測度と呼ぶ.</em></p>
+</div>
+<p><span class="math inline">\(\mathcal{I}^n \coloneqq \prod_{k=1}^{n}
+\mathcal{I}\)</span> とおく.</p>
+<div id="proposition:cube-in-R^n" class="proposition">
+<p><strong>Proposition 4.17</strong>. <em><span
+class="math inline">\(\forall R = I_1 \times \cdots \times I_n \in
+\mathcal{I}^n\)</span>に対し, <span
+class="math display">\[\begin{aligned}
+      \lambda_n(R) = \prod_{k=1}^{n} |I_k|
+    \end{aligned}\]</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> Fubiniの定理より直ちに従う. ◻</p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 4.18</strong>. <em><span
+class="math inline">\(\sigma(\mathcal{I}^n)=
+\mathcal{B}(\mathbb{R})\)</span> が成立する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span
+class="math inline">\(\mathbb{R}^n\)</span>が<span
+class="math inline">\(\mathcal{I}^n\)</span>のもとで第二可算である. ◻</p>
+</div>
+<div class="theorem">
+<p><strong>Theorem 4.19</strong>. <em><span
+class="math inline">\(\lambda_n\)</span>はProposition <a
+href="#proposition:cube-in-R^n" data-reference-type="ref"
+data-reference="proposition:cube-in-R^n">4.17</a>を満たす<span
+class="math inline">\(\left( \mathbb{R}^n, \mathcal{B}(\mathbb{R}^n)
+\right)\)</span> 上の唯一の測度である.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span
+class="math inline">\(\mathcal{I}^n\)</span>が<span
+class="math inline">\(\pi\)</span>-systemで,
+有限測度の取り尽くし列が簡単に取れる. ◻</p>
+</div>
+<div class="remark">
+<p><em>Remark 4.3</em>. 一意性より, <span
+class="math inline">\(n\)</span>次元Lebesgue測度は外測度から構成しても同じものになる.
+<span class="math display">\[\begin{aligned}
+      \lambda^*_n(A) = \inf \{\sum_{k=1}^{\infty} \prod_{i=1}^{n}
+|I^k_i|  \mid I^k_i \in \mathcal{I}, A \subseteq
+\bigcup_{k=1}^{\infty}\left( \prod_{i=1}^{n}I^k_i   \right)   \}
+    \end{aligned}\]</span></p>
+</div>
+<div class="theorem">
+<p><strong>Theorem 4.20</strong>. <em><span
+class="math inline">\(\forall B \in
+\mathcal{B}(\mathbb{R}^n)\)</span>に対して, 次が成立する.</em></p>
+<ol>
+<li><p><em><span class="math inline">\(\forall x \in \mathbb{R}^n; x+B
+\in \mathcal{B}(\mathbb{R}^n) \land \lambda_n(x + B) =
+\lambda_n(B)\)</span></em></p></li>
+<li><p><em><span class="math inline">\(\forall \alpha \in \mathbb{R};
+\alpha B \in \mathcal{B}(\mathbb{R}^n) \land \lambda_n(\alpha B) =
+|\alpha|^n \lambda_n(B)\)</span></em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(\mathcal{B}_x \coloneqq
+\{B \in \mathcal{B}(\mathbb{R}^n)  \mid x +B  \in
+\mathcal{B}(\mathbb{R}^n)\} = \mathcal{B}(\mathbb{R})\)</span>, <span
+class="math inline">\(\mathcal{B}_{\alpha}\coloneqq \{B \in
+\mathcal{B}(\mathbb{R}^n) \mid \alpha B \in
+\mathcal{B}(\mathbb{R}^n)\}  = \mathcal{B}(\mathbb{R}^n)\)</span>を示し,
+<span class="math inline">\(\lambda_n^x (B)\coloneqq \lambda_n(x+B),
+\lambda_n^{\alpha}(B) \coloneqq |\alpha|^{-n}\lambda_n(\alpha
+B)\)</span>が測度であることを示せばよい. ◻</p>
+</div>
+<h1 id="合成積">合成積</h1>
+<p><span class="math inline">\(\left( X,\mathcal{S} \right) , \left(
+Y,\mathcal{T} \right)\)</span> を可測空間とする.</p>
+<h2 id="言葉の準備">言葉の準備</h2>
+<div id="proposition:6.2" class="proposition">
+<p><strong>Proposition 5.1</strong>. <em><span class="math inline">\(T:X
+\to Y\)</span>を可測写像とする. この時, <span class="math inline">\(\mu
+&#39; \coloneqq \mu (T^{-1}(B)), B \in \mathcal{T}\)</span> とすると,
+<span class="math inline">\(\mu &#39;\)</span>が<span
+class="math inline">\((Y,\mathcal{T})\)</span>上の測度.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 逆像は和を保つので, 明らかである. ◻</p>
+</div>
+<div class="definition">
+<p><strong>Definition 5.2</strong>. <em>Proposition <a
+href="#proposition:6.2" data-reference-type="ref"
+data-reference="proposition:6.2">5.1</a> で定めた測度<span
+class="math inline">\(\mu &#39;\)</span>を<span
+class="math inline">\(T\)</span>のもとでの <span
+class="math inline">\(\mu\)</span>の像測度(image
+measure)または押し出し測度(push-forward measure)と呼び, <span
+class="math inline">\(\mu \circ T^{-1}\)</span>や<span
+class="math inline">\(T_*\mu\)</span>と書く.</em></p>
+</div>
+<div class="proposition">
+<p><strong>Proposition 5.3</strong>. <em><span
+class="math inline">\(f:Y\to \overline{\mathbb{R}}\)</span> を<span
+class="math inline">\(\mathcal{T}\)</span>-可測とすると, <span
+class="math inline">\(f\circ T\)</span>は <span
+class="math inline">\(\mathcal{S}\)</span>-可測である.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 逆像の性質に従う. ◻</p>
+</div>
+<div class="theorem">
+<p><strong>Theorem 5.4</strong>. <em><span class="math inline">\(f:Y\to
+[0, \infty]\)</span>を<span
+class="math inline">\(\mathcal{T}\)</span>-可測とすると, <span
+class="math display">\[\begin{aligned}
+      \int_X (f\circ T) d\mu  = \int_Y f d(T_*\mu )
+    \end{aligned}\]</span> が成立する. <span
+class="math inline">\(\int_Y |f| d(T_* \mu ) &lt;
+\infty\)</span>であれば, <span class="math inline">\(f\circ T\)</span>も
+<span class="math inline">\(\mu\)</span>の下で可積分で,
+それの積分は<span class="math inline">\(|f|\)</span>
+の押し出し測度の下での積分と一致する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span
+class="math inline">\(f\)</span>が非負単函数の時に示せば十分である.
+非負単函数の場合は明らかである. ◻</p>
+</div>
+<div id="definition:6.8" class="definition">
+<p><strong>Definition 5.5</strong>. <em><span
+class="math inline">\(\left( \mathbb{R}^n, \mathcal{B}(\mathbb{R}^n)
+\right)\)</span> 上の可測函数<span class="math inline">\(f,g:
+\mathbb{R}^n \to [0,\infty]\)</span>と<span
+class="math inline">\(\sigma\)</span>-有限な測度 <span
+class="math inline">\(\mu ,\nu\)</span>に対して,</em></p>
+<ol>
+<li><p><em><span class="math inline">\((f*g)(x)\coloneqq
+\int_{\mathbb{R}^n}f(x-y)g(y) d\lambda_n(y), x \in
+\mathbb{R}^n\)</span>,</em></p></li>
+<li><p><em><span class="math inline">\((f*\mu )(x) \coloneqq
+\int_{\mathbb{R}^n}f(x-y) d\mu (y), x \in
+\mathbb{R}^n\)</span>,</em></p></li>
+<li><p><em><span class="math inline">\((\mu *\nu )(B) \coloneqq
+\int_{\mathbb{R}^n}\left( \int_{\mathbb{R}^n}\chi_{B}(x+y) d\mu
+(x) \right) d\nu (y)\)</span></em></p></li>
+</ol>
+<p><em>1, 2 を<span class="math inline">\(f\)</span>と<span
+class="math inline">\(g\)</span> / <span
+class="math inline">\(\mu\)</span>の合成積(convolution) と呼ぶ. 3を<span
+class="math inline">\(\mu\)</span>と<span
+class="math inline">\(\nu\)</span>の合成積と呼ぶ. <span
+class="math inline">\(f,g: \mathbb{R}^n
+\to  \overline{\mathbb{R}}\)</span> であっても, 1と2が意味を持つ<span
+class="math inline">\(x\)</span>に対して定まる函数 <span
+class="math inline">\(f*g\)</span>と <span
+class="math inline">\(f*\mu\)</span>を合成積と呼ぶ.</em></p>
+</div>
+<div class="remark">
+<p><em>Remark 5.1</em>. <span class="math inline">\(S: \mathbb{R}^n
+\times \mathbb{R}^n \to \mathbb{R}^n\)</span>を<span
+class="math inline">\((x,y) \mapsto x+y\)</span>が連続写像で,
+可測写像であり, <span class="math inline">\((x,y) \mapsto
+\chi_B(x+y)\)</span>が可測写像の合成であり, 可測函数である.
+Tonelliの定理より, 3で定めた測度の合成積がwell-defined.</p>
+</div>
+<div id="proposition:6.10" class="proposition">
+<p><strong>Proposition 5.6</strong>. <em>Definition <a
+href="#definition:6.8" data-reference-type="ref"
+data-reference="definition:6.8">5.5</a> の設定の下で,
+次が成立する:</em></p>
+<ol>
+<li><p><em><span class="math inline">\(f*g = g*f\)</span></em></p></li>
+<li><p><em><span class="math inline">\(\mu
+*\nu  =\nu  *\mu\)</span></em></p></li>
+<li><p><em><span class="math inline">\(S(x,y) = x+y\)</span>の下で,
+<span class="math inline">\(\mu *\nu = S_* (\mu \times
+\nu)\)</span></em></p></li>
+<li><p><em><span class="math inline">\(\forall B \in
+\mathcal{B}(\mathbb{R}^n)\)</span>に対し, <span
+class="math display">\[\begin{aligned}
+        (\mu *\nu )(B) &amp;= \int_{\mathbb{R}^n}\mu (-y+B) d\nu (y) \\
+                       &amp;= \int_{\mathbb{R}^n}\nu (-x+B) d\mu (x)
+      \end{aligned}\]</span></em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(y \mapsto
+-(y-x)\)</span>とすると, <span class="math display">\[\begin{aligned}
+      (f*g)(x) &amp;= \int_{\mathbb{R}^n} f(-(y-x)) g(y-x+x)
+d\lambda_n(y) \\
+               &amp;=\int_{\mathbb{R}^n}f(-y)g(y+x) d\lambda_n(y) \\
+               &amp;= \int_{\mathbb{R}^n }f(y) g(-y+x) d\lambda_n(y) \\
+               &amp;= (g*f)(x)
+    \end{aligned}\]</span> よって, 1が成立する. 2がTonelliの定理に従う.
+次に3を示す. <span class="math inline">\(\forall B \in
+\mathcal{B}(\mathbb{R}^n)\)</span> に対し, <span
+class="math display">\[\begin{aligned}
+      (\mu * \nu )(B) &amp;= \int_{\mathbb{R}^n \times \mathbb{R}^n}
+\chi_B\circ S d(\mu \times \nu ) \\
+                      &amp;= \int_{\mathbb{R}^n}\chi_Bd(S_*(\mu
+\times \nu )) \\
+                      &amp;= S_*(\mu \times \nu ) (B)
+    \end{aligned}\]</span> 4について, <span
+class="math inline">\(\forall y \in \mathbb{R}^n\)</span>に対し, <span
+class="math display">\[\begin{aligned}
+      \chi_B(x+y) = \chi_{-y+B}(x)
+    \end{aligned}\]</span> が成立し, <span
+class="math display">\[\begin{aligned}
+      (\mu *\nu )(B) &amp;= \int_{\mathbb{R}^n}\mu (-y+B) d\nu (y) \\
+                     &amp;=\int_{\mathbb{R}^n} \nu (-y+B) d\mu (x).
+    \end{aligned}\]</span> ◻</p>
+</div>
+<h2 id="諸性質">諸性質</h2>
+<div id="theorem:6.12" class="theorem">
+<p><strong>Theorem 5.7</strong>. <em><span class="math inline">\(p \in
+[1, \infty ]\)</span>とし, <span class="math inline">\(f \in L^p
+(\lambda_n), g \in L^1(\lambda_n)\)</span>とすると, <span
+class="math display">\[\begin{aligned}
+    f*g \in L^p(\lambda_n)
+  \end{aligned}\]</span> であって, <span
+class="math display">\[\begin{aligned}
+    \|f*g\|_p \leq \|f\|_p\|g\|_1
+  \end{aligned}\]</span> が成立する. これをYoung’s convolution
+inequalityと呼ぶ.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> まず<span class="math inline">\(f,g \geq
+0\)</span>とする. <span class="math inline">\(p =\infty\)</span>の時,
+<span class="math inline">\(\forall  x \in \mathbb{R}^n\)</span>に対し,
+<span class="math display">\[\begin{aligned}
+       \int_{\mathbb{R}^n}f(x-y) g(y) d\lambda_n(y) \leq
+\|f\|_{\infty}\int_{\mathbb{R}^n}g(y) d\lambda_n(y) =
+\|f\|_{\infty}\|g\|_1
+     \end{aligned}\]</span> が成立する.</p>
+<p><span class="math inline">\(p&lt;\infty\)</span>の時, <span
+class="math display">\[\begin{aligned}
+       \int_{\mathbb{R}^n}(f*g)^p d\lambda_n &amp;=
+\int_{\mathbb{R}^n}\left( \int_{\mathbb{R}^n}f(x-y) g(y)
+d\lambda_n(y)  \right) ^p d\lambda_n(x) \\
+                                             &amp;=
+\int_{\mathbb{R}^n}\left( \int_{\mathbb{R}^n} f(x-y)g(y)^{1/p}
+g(y)^{1/q} d\lambda_n(y) \right) ^p d\lambda_n(x) \\
+                                             &amp;\leq
+\int_{\mathbb{R}^n}\left( \left( \int_{\mathbb{R}^n}f(x-y)^p g(y)
+d\lambda_n(y) \right) ^{\frac{1}{p}} \left(
+\int_{\mathbb{R}^n}g(y)\lambda_n(y)  \right) ^{\frac{1}{q}} \right) ^p
+\lambda_n(x) \\
+                                             &amp;\leq
+\int_{\mathbb{R}^n}\left( f(x-y)^p g(y) d\lambda_n(y) \right)
+d\lambda_n(x) \times \|g\|_1^{\frac{p}{q}} \\
+                                             &amp;\leq
+\int_{\mathbb{R}^n}\left( \int_{\mathbb{R}^n}f(x-y)^p d\lambda_n(x)
+\right) g(y) d\lambda_n(y) \times \|g\|_1^{\frac{p}{q}}\\
+                                             &amp;\leq \|f\|_p^p
+\|g\|_1^p
+     \end{aligned}\]</span> により, <span
+class="math inline">\(\|f*g\|_p \leq
+\|f\|_p  \|g\|_1\)</span>が成立する. <span
+class="math inline">\(f,g\)</span>が非負とは限らない場合は,
+分解して前半の議論より, <span class="math display">\[\begin{aligned}
+       f^{\pm}*g^{\pm } \in L^p(\lambda_n)
+     \end{aligned}\]</span> であることを用いれば良い. ◻</p>
+</div>
+<div class="definition">
+<p><strong>Definition 5.8</strong>. <em><span
+class="math inline">\(C_c\left( \mathbb{R}^n
+\right)\)</span>をコンパクトなサポートを持つ連続函数全体. <span
+class="math inline">\(\mathrm{supp}f\coloneqq \overline{\{f \neq 0\}
+}\)</span>. 特に, <span class="math inline">\(\forall p \in [1 ,\infty];
+C_c\left( \mathbb{R}^n \right) \subseteq
+L^p(\lambda_n)\)</span>.</em></p>
+</div>
+<div id="lemma:6.15" class="lemma">
+<p><strong>Lemma 5.9</strong>. <em><span class="math inline">\(\forall p
+\in [1, \infty)\)</span>に対し, <span
+class="math inline">\(C_c(\mathbb{R}^n)\)</span>は<span
+class="math inline">\(L^p(\lambda_n)\)</span>で稠密.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em>
+任意の有界可測集合の定義函数はコンパクトなサポートをもつ連続函数で近似できることを示せば良い.</p>
+<ol>
+<li><p><span class="math inline">\(\forall \varepsilon &gt;0\)</span>,
+<span class="math inline">\(\exists G\)</span>(bounded open set) s.t.
+<span class="math inline">\(B \subseteq G\)</span> and <span
+class="math inline">\(\lambda_n (G \setminus B) &lt; \left(
+\frac{\varepsilon}{2} \right) ^p\)</span>.</p></li>
+<li><p>For non-empty set <span class="math inline">\(E \subseteq
+\mathbb{R}^n\)</span>, <span class="math inline">\(d(\_,E)\)</span> is a
+continuous function.</p></li>
+<li><p><span class="math inline">\(\varphi_k (x) \coloneqq \min \{1, k
+d(x,G^c)\}\)</span> is continuous and increasingly converges to <span
+class="math inline">\(\chi_G(x)\)</span> as <span
+class="math inline">\(k\to \infty\)</span>.</p></li>
+<li><p>Since <span class="math inline">\(G\)</span> is bounded, <span
+class="math inline">\(\varphi_k \in C_c(\mathbb{R}^n)\)</span>, <span
+class="math inline">\(\varphi_k \to \chi_G\)</span> in <span
+class="math inline">\(L^p\)</span> from DCT. Therefore <span
+class="math inline">\(\exists k(\varepsilon)\)</span> s.t. <span
+class="math inline">\(\|\chi_G - \varphi_{k(\varepsilon)}\|_p
+&lt;\frac{\varepsilon}{2}\)</span>. Thus <span
+class="math inline">\(\|\chi_B - \varphi_{k(\varepsilon)}\|_p \leq
+\|\chi_B - \chi_G\|_p + \|\chi_G -
+\varphi_{k(\varepsilon)}\|_p &lt;\varepsilon\)</span>.</p></li>
+</ol>
+<p> ◻</p>
+</div>
+<div class="remark">
+<p><em>Remark 5.2</em>. <span
+class="math inline">\(p=\infty\)</span>の時, <span
+class="math inline">\(\|1-\varphi\|_{\infty}\)</span> はいかなる<span
+class="math inline">\(C_c(\mathbb{R}^n)\)</span>の元を持っても近似できない.</p>
+</div>
+<div id="proposition:6.17" class="proposition">
+<p><strong>Proposition 5.10</strong>. <em><span class="math inline">\(p
+\in [1,\infty )\)</span>とし, <span class="math inline">\(f \in
+L^p(\lambda_n)\)</span>とすると, <span
+class="math inline">\([f]_p:\mathbb{R}^n \to \mathbb{R}\)</span> <span
+class="math inline">\(x \mapsto \|f(x+ \cdot) - f\|_p\)</span>
+が一様連続.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> Lebesgue 積分の平行移動不変性より, <span
+class="math inline">\([f]_p\)</span>の一様連続性が <span
+class="math inline">\(0\)</span>における連続性に従う.</p>
+<p><span class="math inline">\(\forall \varphi \in
+C_c(\mathbb{R}^n)\)</span>に対し, <span
+class="math inline">\([\varphi]_p\)</span>は原点で連続であることを以下示す:
+<span class="math inline">\(\forall \{x_k\}_{k\in \mathbb{N}} \subseteq
+\mathbb{R}^n\)</span> s.t. <span class="math inline">\(x_k \to
+0\)</span>に対し, <span class="math inline">\([\varphi]_p(x_k) \to
+0\)</span>. (<span
+class="math inline">\(\because\)</span>優収束定理)</p>
+<p><span class="math inline">\(\forall \varepsilon &gt;0\)</span>に対し,
+Lemma <a href="#lemma:6.15" data-reference-type="ref"
+data-reference="lemma:6.15">5.9</a> より,<span
+class="math inline">\(\exists \varphi_{\varepsilon} \in
+C_c(\mathbb{R}^n)\)</span> s.t. <span
+class="math inline">\(\|f-\varphi_{\varepsilon}\|_p &lt;
+\frac{\varepsilon}{3}\)</span> が成立する. また, <span
+class="math inline">\(\exists r(\varepsilon) &gt;0\)</span> s.t. <span
+class="math inline">\(|x| &lt;r(\varepsilon) \implies
+[\varphi_{\varepsilon}]_p(x) &lt; \frac{\varepsilon}{3}\)</span>
+が成立する. <span class="math inline">\(|x| &lt;
+r(\varepsilon)\)</span>の時, <span
+class="math display">\[\begin{aligned}
+    [f]_p(x) &amp; \leq |[f]_p(x) - [\varphi_{\varepsilon}]_p(x) | +
+[\varphi_{\varepsilon}]_p(x) \\
+             &amp;\leq \|f(x+ \cdot ) - f -(
+\varphi_{\varepsilon}(x+\cdot) - \varphi_{\varepsilon})\|_p +
+\frac{\varepsilon}{3} \\
+             &amp;\leq \|f-\varphi_{\varepsilon}\|_p + \|f
+-\varphi_{\varepsilon}\|_p + \frac{\varepsilon}{3}\\
+             &amp;&lt; \varepsilon
+  \end{aligned}\]</span> ◻</p>
+</div>
+<div id="theorem:6.14" class="theorem">
+<p><strong>Theorem 5.11</strong>. <em><span class="math inline">\(f \in
+L^{\infty}(\lambda_n ), g \in L^1(\lambda_n)\)</span>とすると, <span
+class="math inline">\(f*g\)</span>は <span
+class="math inline">\(\lambda_n\)</span>に関して一様連続.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(f*g \in
+L^{\infty}(\lambda_n)\)</span> より, <span class="math inline">\(\exists
+N \in \mathcal{B}(\mathbb{R}^n)\)</span> s.t. <span
+class="math inline">\(\lambda_n(N) = 0 , |(f*g)(x)| &lt; \infty, \forall
+x \in \mathbb{R}^n  \setminus N\)</span>が成立. すると, <span
+class="math inline">\(\forall x , x&#39; \in \mathbb{R}^n \setminus
+N\)</span>に対し, <span class="math display">\[\begin{aligned}
+      \left| (f*g)(x) - (f*g)(x&#39;) \right| &amp;= \left|
+\int_{\mathbb{R}^n}f(y)\left( g(x-y) - g(x&#39;-y) \right) d\lambda_n
+(y) \right| \\
+       &amp;\leq   \int_{\mathbb{R}^n}\left| f(y)\left( g(x-y) -
+g(x&#39;-y) \right) \right| d\lambda_n(y) \\
+       &amp;\leq \|f\|_{\infty} [g]_1 (x - x&#39;)
+    \end{aligned}\]</span> Proposition <a href="#proposition:6.17"
+data-reference-type="ref" data-reference="proposition:6.17">5.10</a>
+より結論が従う. ◻</p>
+</div>
+<div id="definition:" class="definition">
+<p><strong>Definition 5.12</strong>. <em><span
+class="math inline">\(\rho: \mathbb{R}^n \to
+\mathbb{R}\)</span>は以下の性質を満たす性質函数とする.</em></p>
+<ol>
+<li><p><em><span class="math inline">\(\rho  \in
+C^{\infty}_c(\mathbb{R}^n)\)</span></em></p></li>
+<li><p><em><span class="math inline">\(\rho \geq
+0\)</span></em></p></li>
+<li><p><em><span class="math inline">\(\mathrm{supp}\rho \subseteq
+\overline{B(0,1)}\)</span></em></p></li>
+<li><p><em><span class="math inline">\(\int_{\mathbb{R}^n} \rho d
+\lambda_n =1\)</span></em></p></li>
+</ol>
+<p><em><span class="math display">\[\begin{aligned}
+      \rho(x) \coloneqq \begin{cases}
+        \frac{\exp(-\frac{1}{1-|x|^2})}{\int_{B(0,1)}\exp(-\frac{1}{1-|y|^2})d\lambda_n(y)},
+&amp; \quad x \in B(0,1) \\
+        0, &amp; \quad x \not\in B(0,1)
+      \end{cases}
+    \end{aligned}\]</span> が1つの例となる.</em></p>
+</div>
+<div id="lemma:6.22" class="lemma">
+<p><strong>Lemma 5.13</strong>. <em>各<span
+class="math inline">\(\varepsilon&gt;0\)</span>に対し, <span
+class="math display">\[\begin{aligned}
+    \rho_{\varepsilon}(x) \coloneqq \varepsilon^{-n}
+\rho(\frac{1}{\varepsilon}x)
+  \end{aligned}\]</span> と定める. この時,
+以下の命題が成立する:</em></p>
+<ol>
+<li><p><em><span class="math inline">\(\rho_{\varepsilon} \in
+C^{\infty}_c(\mathbb{R}^n)\)</span></em></p></li>
+<li><p><em><span class="math inline">\(\rho_{\varepsilon} \geq
+0\)</span></em></p></li>
+<li><p><em><span class="math inline">\(\mathrm{supp}\rho_{\varepsilon}
+\subseteq \overline{B(0,\varepsilon)}\)</span></em></p></li>
+<li><p><em><span
+class="math inline">\(\int_{\mathbb{R}^n}\rho_{\varepsilon}d\lambda_n =
+1\)</span></em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 1,2,3が明らかであり, 4を証明する. 変数変換より <span
+class="math display">\[\begin{aligned}
+      \int_{\mathbb{R}^n}\rho_\varepsilon d\lambda_n &amp; =
+\varepsilon^{-n}\times \varepsilon^{n} \int_{\mathbb{R}^n} \rho
+d\lambda_n = 1
+    \end{aligned}\]</span> ◻</p>
+</div>
+<div id="definition:6.23" class="definition">
+<p><strong>Definition 5.14</strong>. <em><span class="math inline">\(p
+\in [1,\infty]\)</span>とする. 各<span
+class="math inline">\(\varepsilon&gt;0\)</span>に対し, <span
+class="math inline">\(J_{\varepsilon}: L^p(\lambda_n) \to
+L^p(\lambda_n)\)</span> <span class="math display">\[\begin{aligned}
+    J_{\varepsilon}(f) \coloneqq f*\rho_{\varepsilon}
+  \end{aligned}\]</span> と定義する. <span
+class="math inline">\(J_{\varepsilon}\)</span> をFriedrichs’s mollifier
+と呼ぶ.</em></p>
+</div>
+<div id="proposition:6.24" class="proposition">
+<p><strong>Proposition 5.15</strong>. <em><span class="math inline">\(p
+\in [1,\infty]\)</span> とし, <span class="math inline">\(f \in
+L^p(\lambda_n)\)</span>とすると, <span class="math inline">\(\forall
+\varepsilon&gt;0, \forall\)</span>に対して,</em></p>
+<ol>
+<li><p><em><span class="math inline">\(J_{\varepsilon}(f) \in
+C^{\infty}(\mathbb{R}^n)\)</span></em></p></li>
+<li><p><em><span class="math inline">\(\mathrm{supp}J_{\varepsilon}(f)
+\subseteq \{x \in \mathbb{R}^n  \mid  d(x, \mathrm{supp}(f)) \leq
+\varepsilon\}\)</span></em></p></li>
+<li><p><em><span class="math inline">\(\|J_{\varepsilon}(f)\|_p \leq
+\|f\|_p\)</span></em></p></li>
+</ol>
+<p><em>が成立. 更に<span class="math inline">\(p &lt;
+\infty\)</span>の時, </em></p>
+<ol>
+<li><p><em><span class="math inline">\( \| J_{\varepsilon }(f) -
+f\|_p  \overset{\varepsilon \to 0} \longrightarrow 0\)</span></em></p></li>
+</ol>
+</div>
+<div class="proof">
+<p><em>Proof.</em> 簡単のため, <span class="math inline">\(n =
+1\)</span>とする. <span class="math inline">\(\forall
+R&gt;0\)</span>を固定する. <span class="math inline">\(\forall
+R&gt;0\)</span>を固定して, <span class="math inline">\(I_R = (-R
+,R)\)</span>上で <span class="math inline">\(C^{\infty}\)</span>
+級を示せば十分. まずProposition <a href="#proposition:6.10"
+data-reference-type="ref" data-reference="proposition:6.10">5.6</a>より,
+<span class="math display">\[\begin{aligned}
+      J_{\varepsilon}(f)(x) = \int_{\mathbb{R}} f(y)
+\rho_{\varepsilon}(x-y) d\lambda(y), \quad \forall x \in \mathbb{R}.
+    \end{aligned}\]</span> また, <span
+class="math display">\[\begin{aligned}
+      \sup_{x \in I_R}|(\partial_x\rho_{\varepsilon})(x-y) \leq
+\|\partial_x\rho_{\varepsilon}\|_{\infty}
+\chi_{I_{R+\varepsilon}}(y), \quad \forall y \in \mathbb{R}.
+    \end{aligned}\]</span> 実際, <span class="math inline">\(y \not\in
+I_{R+\varepsilon}\)</span> の時, <span class="math inline">\(\forall x
+\in I_R\)</span>に対し, <span class="math inline">\(|x-y| &gt;
+\varepsilon\)</span>より, <span
+class="math inline">\((\partial_x\rho)(x-y) =0\)</span>. よって, <span
+class="math inline">\(\sup_{x \in I_R}|(\partial_x
+\rho_{\varepsilon})(x-y)|\)</span> は可積分で, <span
+class="math display">\[\begin{aligned}
+      \partial_x J_{\varepsilon}(f)(x) = \int_{\mathbb{R}}f(y)
+(\partial_x\rho_{\varepsilon})(x-y) d\lambda (y)
+    \end{aligned}\]</span> よって, <span
+class="math inline">\(J_{\varepsilon}(f) \in
+C^{\infty}(\mathbb{R})\)</span> が従う. <span
+class="math display">\[\begin{aligned}
+      J_{\varepsilon}(f)(x) &amp;= \int_{\overline{B(0,\varepsilon) } }
+f(x-y) \rho_{\varepsilon}(y) d\lambda_n(y), \quad \forall x \in
+\mathbb{R}^n \\
+    \end{aligned}\]</span> そこで, <span class="math inline">\(x \in
+\mathbb{R}^n\)</span>が<span class="math inline">\(d (x, \mathrm{supp}f)
+&gt;\varepsilon\)</span>を満たすならば, <span
+class="math inline">\(\forall  y \in  \overline{B(0,\varepsilon)},
+f(x-y) \rho_{\varepsilon}(y) =0\)</span> を示せば十分. <span
+class="math display">\[\begin{aligned}
+      |x-z| &gt;\varepsilon, \forall z \in  \mathrm{supp}f
+    \end{aligned}\]</span> すると, <span
+class="math display">\[\begin{aligned}
+      x-y \not\in \mathrm{supp}f, \forall y \in
+\overline{B(0,\varepsilon)}
+    \end{aligned}\]</span> よって, <span class="math inline">\(f(x-y) =
+0 , \forall y \in \overline{B(0,\varepsilon)}\)</span> が成立する. <span
+class="math inline">\(\|J_{\varepsilon}(f)\|_p \leq \|f\|_p
+\|\rho_{\varepsilon}\| = \|f\|_{p}\)</span>.</p>
+<p><span class="math display">\[\begin{aligned}
+      \|J_{\varepsilon}(f) - f\|_p^p &amp;= \int_{\mathbb{R}^n}\left|
+\int_{\mathbb{R}^n}f(x-y)\rho_{\varepsilon}(y) d\lambda_n(y) -f(x)
+\right| ^p d\lambda_n(x) \\
+                                     &amp;= \int_{\mathbb{R}^n}\left|
+\int_{\mathbb{R}^n} (f(x-y) -f(x) )\rho_{\varepsilon}(y)
+d\lambda_n(y)\right| ^p d\lambda_n(x) \\
+                                     &amp;\leq  \int_{\mathbb{R}^n}\int_{\mathbb{R}^n}|
+f(x-y) - f(x)|^p \rho_{\varepsilon}(y) d\lambda_n(y) \times
+\|\rho_{\varepsilon}\|_1^{p/q} d\lambda_n(x)\\
+                                     &amp;=
+\int_{\mathbb{R}^n}\int_{\mathbb{R}^n}| f(x- \varepsilon y) -f(x)|^p
+\rho(y) d\lambda_n(y) d\lambda_n(x)\\
+                                     &amp;\leq  \int_{\mathbb{R}^n}
+\left( \int_{\mathbb{R}^n} |f(x-\varepsilon y) - f(x) |^pd\lambda_n(x)
+\right) \rho(y) d\lambda_n(x)\\
+                                     &amp;\overset{\varepsilon
+\to 0} \longrightarrow 0
+    \end{aligned}\]</span> 最後は優収束定理に従う. ◻</p>
+</div>
+<div id="theorem:6.18" class="theorem">
+<p><strong>Theorem 5.16</strong>. <em><span
+class="math inline">\(\forall p \in [1,p)\)</span>に対し, <span
+class="math inline">\(C^{\infty}_c (\mathbb{R}^n)\)</span>は<span
+class="math inline">\(L^p(\lambda_n)\)</span>で稠密.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(\forall \varepsilon
+&gt;0\)</span>を固定して, Lemma <a href="#lemma:6.15"
+data-reference-type="ref" data-reference="lemma:6.15">5.9</a>より, <span
+class="math inline">\(\exists  \varphi \in C_c(\mathbb{R}^n)\)</span>
+s.t. <span class="math inline">\(\|f-\varphi \|_p &lt;\varepsilon
+/2\)</span>. Proposition <a href="#proposition:6.24"
+data-reference-type="ref" data-reference="proposition:6.24">5.15</a>
+より, <span class="math inline">\(\exists \varepsilon_0\)</span> s.t.
+<span class="math inline">\(\|\varphi - J_{\varepsilon_0}(\varphi) \|_p
+&lt; \varepsilon /2\)</span>. すると, <span class="math inline">\(\|f
+-  J_{\varepsilon_0}(\varphi) \|_p \leq \varepsilon /2 + \varepsilon /
+2= \varepsilon\)</span>. <span
+class="math inline">\(J_{\varepsilon_0}(\varphi)\)</span>が滑らかである.
+また, <span class="math inline">\(\mathrm{supp}
+\varphi\)</span>が有界であることより, Proposition <a
+href="#proposition:6.24" data-reference-type="ref"
+data-reference="proposition:6.24">5.15</a> と合わせて, <span
+class="math inline">\(\mathrm{supp}
+J_{\varepsilon_0}(\varphi)\)</span>の有界性が従う. ◻</p>
+</div>
+<div id="theorem:6.19" class="theorem">
+<p><strong>Theorem 5.17</strong> (Riemann-Lebesgueの補題). <em><span
+class="math inline">\(f \in L^1(\lambda)\)</span>と<span
+class="math inline">\(t \in \mathbb{R}\)</span>に対し, <span
+class="math inline">\(x \mapsto f(x)\cos(tx),
+f(x)\sin(tx)\)</span>は<span
+class="math inline">\(L^1(\lambda)\)</span>の元であることに注意して,
+<span class="math inline">\(\forall f \in L^1(\lambda)\)</span>に対し,
+<span class="math display">\[\begin{aligned}
+    \lim_{|t| \to \infty} \int_{\mathbb{R}} f(x) \cos(tx) d\lambda(x) =
+0
+  \end{aligned}\]</span> が成立, <span
+class="math inline">\(\cos\)</span>を<span
+class="math inline">\(\sin\)</span>にしても良い.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> <span class="math inline">\(\forall \varepsilon
+&gt;0\)</span>を固定. Theorem <a href="#theorem:6.18"
+data-reference-type="ref" data-reference="theorem:6.18">5.16</a> を
+<span class="math inline">\(p =1\)</span>として用いて, <span
+class="math inline">\(\exists \varphi_{\varepsilon}\in
+C^{\infty}_c(\mathbb{R})\)</span> s.t. <span
+class="math display">\[\begin{aligned}
+      \int_{\mathbb{R}} |f-\varphi_{\varepsilon}|d\lambda &lt;
+\varepsilon
+    \end{aligned}\]</span> そこで, <span
+class="math inline">\(\mathrm{supp}\varphi_{\varepsilon} \subseteq
+[-R,R]\)</span> となる<span class="math inline">\(R\)</span>を取り,
+<span class="math inline">\(\forall t \neq 0\)</span>に対し, <span
+class="math display">\[\begin{aligned}
+      \int_{\mathbb{R}}\varphi_{\varepsilon}(x) \cos(tx) d \lambda(x)
+&amp; = - \frac{1}{t}
+\int_{\mathbb{R}}(\partial_x\varphi_{\varepsilon})(x) \sin(tx)
+d\lambda(x)
+    \end{aligned}\]</span> よって, <span
+class="math display">\[\begin{aligned}
+      \left| \int_{\mathbb{R}}\varphi_{\varepsilon}(x) \cos(tx)
+d\lambda(x) \right| \leq \frac{1}{t}
+\int_{\mathbb{R}}|\partial_{x}\varphi_{\varepsilon}| d\lambda
+    \end{aligned}\]</span> すると, <span
+class="math inline">\(I_t\coloneqq \int_{\mathbb{R}}f(x) \cos(tx)
+d\lambda(x)\)</span> とおいて, <span
+class="math display">\[\begin{aligned}
+      |I_t| &amp;= \left| \int_{\mathbb{R}}\left( f(x) -
+\varphi_{\varepsilon}(x) + \varphi_{\varepsilon}(x)\right) \cos(tx)
+d\lambda(x) \right| \\
+            &amp;\leq \int_{\mathbb{R}}\left| (f(x) -
+\varphi_{\varepsilon}(x) \cos(tx) d\lambda(x) \right| + \left|
+\int_{\mathbb{R}}\varphi_{\varepsilon}(x) \cos(tx) d\lambda(x) \right|
+\\
+            &amp;&lt; \varepsilon + \frac{1}{|t|} \int_{\mathbb{R}}
+|\partial_x\varphi_{\varepsilon}| d\lambda .
+    \end{aligned}\]</span> これより, <span
+class="math display">\[\begin{aligned}
+      \limsup_{|t| \to \infty} |I_t| \leq \varepsilon.
+    \end{aligned}\]</span> <span
+class="math inline">\(\varepsilon\)</span>が任意より, 定理が従う. ◻</p>
+</div>
+<h1
+id="lebesgue積分論による多変数函数の積分学">Lebesgue積分論による多変数函数の積分学</h1>
+<h2 id="radon-nikodymの定理">Radon-Nikodymの定理</h2>
+<p>以下, 測度空間<span class="math inline">\(\left( X, \mathcal{S},
+\mu  \right)\)</span>を測度空間として固定する.</p>
+<div id="definition:7.1" class="definition">
+<p><strong>Definition 6.1</strong>. <em><span class="math inline">\((X,
+\mathcal{S})\)</span> 上の測度 <span
+class="math inline">\(\nu\)</span>が<span
+class="math inline">\(\mu\)</span>に関して絶対連続である<span
+class="math inline">\(\overset{def} \iff \forall N \in
+\mathcal{S}\)</span> s.t. <span class="math inline">\(\mu (N) =0
+\implies \nu (N) = 0\)</span>. これを <span class="math inline">\(\nu
+\ll \mu\)</span>と表す.</em></p>
+</div>
+<div id="example:7.2" class="example">
+<p><strong>Example 6.2</strong>. <em><span class="math inline">\(f :X
+\to [0,\infty]\)</span>を<span
+class="math inline">\(\mathcal{S}\)</span>-可測函数とする. <span
+class="math display">\[\begin{aligned}
+    \nu (A) \coloneqq \int_A f d\mu , \quad A \in \mathcal{S}
+  \end{aligned}\]</span> <span class="math inline">\(\nu\)</span>が<span
+class="math inline">\((X,\mathcal{S})\)</span> 上の測度である. (<span
+class="math inline">\(\because\)</span>単調収束定理) 更に, <span
+class="math inline">\(\nu \ll \mu\)</span>.</em></p>
+</div>
+<div id="theorem:7.3" class="theorem">
+<p><strong>Theorem 6.3</strong>. <em><span class="math inline">\(\mu,
+\nu\)</span>を<span class="math inline">\(\sigma\)</span>-有限な<span
+class="math inline">\((X,\mathcal{S})\)</span>上の測度で, <span
+class="math inline">\(\nu  \ll \mu\)</span>とする. この時,
+ある非負可測函数<span class="math inline">\(f:X \to
+[0,\infty]\)</span>が存在して, <span
+class="math display">\[\begin{aligned}
+      \nu (A) = \int_A f d\mu , \quad \forall A \in \mathcal{S}
+    \end{aligned}\]</span> <span class="math inline">\(f\)</span>は
+<span class="math inline">\(\mu\)</span>に関して一意に存在する.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> まず, <span class="math inline">\(\mu ,
+\nu\)</span>が有限測度の時:</p>
+<p>証明1: (これは面倒くさいし, 発想も自然ではないし,
+これで何も勉強できない. だけど,
+実数の完備性さえ知っていれば証明として読めるやつになっている)</p>
+<p>Step 1. <span class="math inline">\(\rho \coloneqq  \mu  +
+\nu\)</span>に対し, <span class="math display">\[\begin{aligned}
+      \Phi(u)\coloneqq \int_X u^2 d\mu + \int_X (1-u)^2 d\nu
+    \end{aligned}\]</span> すると, <span class="math inline">\(\Phi(0) =
+\nu (X) &lt;\infty\)</span>より, <span
+class="math display">\[\begin{aligned}
+     C\coloneqq \inf \{\Phi(u) \mid u \in L^2(\rho)\}
+    \end{aligned}\]</span> は有限値. また, <span
+class="math inline">\(\forall u,v \in L^2(\rho)\)</span>に対し, <span id="eq:6.5"
+class="math display" >\[
+    \begin{aligned}
+      \Phi(u+v) + \Phi(u-v) = 2 \Phi(u) + 2 \|v\|^2_{L^2(\rho)}
+    \end{aligned}\]</span> は計算より得られる.</p>
+<p>Step 2. <span class="math inline">\(\exists g \in L^2(\rho)\)</span>
+s.t. <span class="math inline">\(C = \Phi(g)\)</span>. 以下これを示す:
+<span class="math inline">\(\inf\)</span>の定義より, <span
+class="math inline">\(\exists \{g_n\} _{n \in \mathbb{N}}\)</span> s.t.
+<span class="math inline">\(C = \lim_{n \to \infty} \Phi(g_n)\)</span>.
+すると, <span class="math display">\[\begin{aligned}
+        u \coloneqq \frac{g_n+g_m}{2}, \quad v \coloneqq \frac{g_n
+-g_m}{2}
+      \end{aligned}\]</span> と取って, (<a href="#eq:6.5"
+data-reference-type="ref"
+data-reference="eq:6.5">[eq:6.5]</a>)式に代入すると, <span
+class="math display">\[\begin{aligned}
+        C \overset{n,m \to \infty} \longleftarrow &amp; \frac{1}{2}\Phi(g_n) +
+\frac{1}{2}\Phi(g_m) \\
+                                          &amp;= \Phi\left(
+\frac{g_n+g_m}{2} \right) + \left\| \frac{g_n -g_m}{2}
+\right\|^2_{L^2(\rho)} \geq C + \left\| \frac{g_n -g_m}{2}
+\right\|^2_{L^2(\rho)} .
+      \end{aligned}\]</span> よって, <span class="math inline">\(\{g_n\}
+_{n \in \mathbb{N}}\)</span> が<span
+class="math inline">\(L^2(\rho)\)</span>上のCauchy列である. それの極限を
+<span class="math inline">\(g\)</span>と定める. 最後に, <span
+class="math inline">\(u = g_n, v = g - g_n\)</span>として, (<a
+href="#eq:6.5" data-reference-type="ref"
+data-reference="eq:6.5">[eq:6.5]</a>)式に代入して, <span
+class="math display">\[\begin{aligned}
+        &amp;\Phi(g) + \Phi(2g_n-g) \\
+        &amp;=2\Phi(g_n) + 2\|g-g_n\|^2_{L^2(\rho)}\\
+        &amp;\overset{n\to  \infty} \longrightarrow 2C+0
+      \end{aligned}\]</span> これに従って, <span
+class="math inline">\(\Phi(g)  \leq C\)</span>が得られ, <span
+class="math inline">\(\Phi(g) = C\)</span>が得られる.</p>
+<p>Step 3. <span class="math inline">\(g\)</span>は <span
+class="math inline">\(g:X \to [0,1]\)</span>とできる. <span
+class="math display">\[\begin{aligned}
+      \tilde{g} \coloneqq \min \{g^+ ,1\}
+    \end{aligned}\]</span> と置くと, <span
+class="math inline">\(1-\tilde{g} = (1- g^+)^+\)</span>より, <span
+class="math display">\[\begin{aligned}
+      \left( \tilde{g} \right) ^2 &amp; \leq g^2 \\
+      (1-\tilde{g})^2 &amp;\leq (1-g)^2
+    \end{aligned}\]</span> よって, <span
+class="math display">\[\begin{aligned}
+      C \leq \Phi(\tilde{g}) \leq \Phi(g) =C
+    \end{aligned}\]</span> そこで, <span
+class="math inline">\(\tilde{g}\)</span>を <span
+class="math inline">\(g\)</span>として使えば良い.</p>
+<p>Step 4. <span class="math display">\[\begin{aligned}
+    f\coloneqq \frac{g}{1-g}\chi_{g&lt;1}
+  \end{aligned}\]</span> が定理の主張を満たすことを示せば良い. <span
+class="math inline">\(\forall A \in \mathcal{S}, \forall t \in
+\mathbb{R}\)</span>に対し, <span class="math display">\[\begin{aligned}
+    0 &amp;\leq \Phi(g+ t \chi_A) - \Phi(g) \\
+      &amp;= t^2\left( \mu (A) + \nu (A) \right) + 2t \left( \int_A g
+d\mu  - \int_A (1-g) d\nu \right)  
+  \end{aligned}\]</span> が成立するので, 2次函数の判別式より, <span
+class="math display">\[\begin{aligned}
+    \int_{A}g d \mu = \int_A (1-g) d\nu , \quad \forall A \in
+\mathcal{S}
+  \end{aligned}\]</span> そこで, <span class="math inline">\(A=
+\{g=1\}\)</span> と取ると, <span class="math inline">\(\mu (\{g=1\})
+=0\)</span>, いま, <span class="math inline">\(\nu  \ll
+\mu\)</span>より, <span class="math display">\[\begin{aligned}
+    \nu \left( \{g=1\}  \right) =0
+  \end{aligned}\]</span> が成立する. また非負可測函数<span
+class="math inline">\(h\)</span>を単函数を持って単調増加的に近似できるので,
+<span class="math display">\[\begin{aligned}
+    \int_A gh d\mu  = \int_A (1-g)h d\nu , \quad \forall A \in
+\mathcal{S}.
+  \end{aligned}\]</span> よって, <span class="math inline">\(h=
+\frac{1}{1-g}\chi_{\{g&lt;1\} }\)</span> と取ると, <span
+class="math display">\[\begin{aligned}
+    \int_A \frac{g}{1-g}\chi_{\{g&lt;1\} }d\mu = \int_A
+\chi_{\{g&lt;1\}} = \nu (A).
+  \end{aligned}\]</span></p>
+<p>証明2:(少し函数解析の知識を使う)</p>
+<p><span class="math inline">\(L^2(\mu +
+\nu)\)</span>が前のchapterで完備距離空間であることがわかる. さらに,
+これに自然な 内積構造が入る. i.e. <span class="math inline">\(\forall f
+,g \in L^2(\mu + \nu), \langle f, g \rangle \coloneqq \int_X fg d(\mu
++\nu)\)</span>.</p>
+<p>これにより, <span class="math inline">\(L^2(\mu + \nu
+)\)</span>がHilbert空間であることがわかった. 今, この空間上の線形汎函数
+<span class="math inline">\(\varphi : L^2(\mu + \nu) \to
+\mathbb{R}\)</span>を <span class="math inline">\(f \to  \int_{X} f
+d\nu\)</span> として定める. Hilbert 空間のRieszの表現定理より, ある<span
+class="math inline">\(g \in L^2( \mu + \nu)\)</span>が存在して, <span
+class="math inline">\(\forall f \in L^2 (\mu +\nu)\)</span>に対して,
+<span class="math display">\[\begin{aligned}
+    \int_X f d \nu = \int_X fg d (\mu + \nu) = \int_X fg d \mu + \int_X
+fg d \nu
+  \end{aligned}\]</span> が成立する. この式を変形すると, <span id="eq:radon"
+class="math display">\[
+  \begin{aligned}
+    \int_X f (1-g) d \nu = \int_X fg d\mu
+  \end{aligned}\]</span> が成立する.</p>
+<p><span class="math inline">\(f\coloneqq \chi_{\{g &lt;0
+\}}\)</span> とすると, 上式より<span class="math inline">\(0 \leq \nu
+(\{g&lt;0\})\leq  \int_X fg d \mu  \leq 0\)</span>. 従って, <span
+class="math inline">\(\mu \left( \{g&lt;0 \}  \right) = 0\)</span>.
+(ここに多少ギャップを感じるかもしれないが, よく考えて見たら
+当たり前のことしか言っていない, checkせよ) <span
+class="math inline">\(f\coloneqq \chi_{\{g \geq 1 \} }\)</span>
+とすると, 同様に, <span class="math inline">\(\mu \left( \{g \geq
+1\}  \right)  = 0\)</span> が得られる.</p>
+<p><span class="math inline">\(\nu \ll \mu\)</span>より, <span
+class="math inline">\(\nu \left( \{g&lt;0\}  \right) = \nu \left( \{g
+\geq 1\}  \right) = 0\)</span> がわかる.</p>
+<p>任意の可測集合<span class="math inline">\(A \in \mathcal{S}\)</span>
+に対して, <span class="math inline">\(f_k\coloneqq \min \{
+\frac{\chi_{A }}{1-g} , k\}\)</span> と定めると, 式<a
+href="#eq:radon" data-reference-type="ref"
+data-reference="eq:radon">[eq:radon]</a> に対して, 単調収束定理を
+適用する.</p>
+<p><span class="math display">\[\begin{aligned}
+    \int_X \chi_A d \nu = \int_{X} \chi_A \frac{g}{1-g} d\mu
+  \end{aligned}\]</span></p>
+<p>が成立する. この<span
+class="math inline">\(g/(1-g)\)</span>が我々の望む函数である.</p>
+<p>以上より存在性の証明が終わった. 一意性の証明を読者の演習問題にする.
+<span
+class="math inline">\(\sigma\)</span>-有限な測度空間の場合の議論も読者に任せる. ◻</p>
+</div>
+<h2 id="lebesgueの微分定理">Lebesgueの微分定理</h2>
+<p>ここから<span class="math inline">\((\mathbb{R}^n,
+\mathcal{B}(\mathbb{R}^n) , \lambda_n)\)</span> を考察する.</p>
+<div class="lemma">
+<p><strong>Lemma 6.4</strong> (Vitali の被覆定理). </p>
+</div>
+</body>
+</html>
