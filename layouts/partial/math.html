@@ -1,29 +1,18 @@
-<script type="text/javascript" id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
 <script type="text/javascript">
-        MathJax = {
-            tex: {
-                tags: 'ams'  // Enables autonumbering for all displayed equations
-            }
-        };
+    MathJax = {
+        loader: {
+            load: ['[tex]/mathtools', '[tex]/ams', '[tex]/centernot']  // Load necessary extensions
+        },
+        tex: {
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],  // Block delimiters
+            inlineMath: [['\\(', '\\)']],                 // Inline delimiters
+            packages: {'[+]': ['mathtools', 'ams', 'centernot']},  // Add AMS package for \label, \ref
+            tags: 'ams',
+        }
+    };
 </script>
 
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-<script>
-  MathJax = {
-    loader: {
-              load: ['[tex]/mathtools', '[tex]/centernot']
-          },
-
-    tex: {
-      displayMath: [['\[', '\]'], ['$$', '$$']],  // block
-      inlineMath: [['\(', '\)']]                  // inline
-      packages: {'[+]': ['mathtools', 'ams', 'centernot']},
-      autoload: {
-	centernot: ['centernot', 'centerOver']
-      }
-    }
-  };
+<script type="text/javascript" id="MathJax-script" async 
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
 

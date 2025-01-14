@@ -7712,24 +7712,6 @@ class=&#34;math inline&#34;&gt;\(\sigma\)&lt;/span&gt;-有限な測度空間の�
       
       <guid>http://localhost:1313/blog/posts/lebesgue_updated/</guid>
       <description>
-
-&lt;script id=&#34;MathJax-script&#34; async src=&#34;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js&#34;&gt;&lt;/script&gt;
-&lt;script&gt;
-  MathJax = {
-    loader: {
-              load: [&#39;[tex]/mathtools&#39;, &#39;[tex]/centernot&#39;]
-          },
-
-    tex: {
-      displayMath: [[&#39;\[&#39;, &#39;\]&#39;], [&#39;$$&#39;, &#39;$$&#39;]],  // block
-      inlineMath: [[&#39;\(&#39;, &#39;\)&#39;]]                  // inline
-      autoload: {
-	centernot: [&#39;centernot&#39;, &#39;centerOver&#39;]
-      }
-    }
-  };
-&lt;/script&gt;
-
 &lt;body&gt;
 
 &lt;h1 id=&#34;測度&#34;&gt;測度&lt;/h1&gt;
